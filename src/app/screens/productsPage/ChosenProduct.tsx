@@ -29,6 +29,7 @@ const shopRetriever = createSelector(retrieveShop, (shop) => ({ shop }));
 
 export default function ChosenProduct() {
     const { productId } = useParams<{ productId: string }>();
+    console.log("ChosenProduct productId:", productId);
     const dispatch = useDispatch();
     const { setShop, setChosenProduct } = actionDispatch(dispatch);
     const { chosenProduct } = useSelector(chosenProductRetriever);
