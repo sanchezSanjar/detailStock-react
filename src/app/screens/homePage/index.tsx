@@ -8,6 +8,8 @@ import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 import MemberService from "../../services/MemberService";
 import type { Member } from "../../../lib/types/member";
+import PopularProducts from "./PopularProducts";
+import NewProducts from "./NewProducts";
 
 const actionDispatch = (dispatch: Dispatch) => ({
     setPopularProducts: (data: Product[]) => dispatch(setPopularProducts(data)),
@@ -35,8 +37,10 @@ export default function HomePage() {
     }, []);
 
     return (
-        <div className={"homepage"}>
-            <Statistics />
-        </div>
-    );
+    <div className={"homepage"}>
+        <Statistics />
+        <PopularProducts />
+        <NewProducts />
+    </div>
+);
 }

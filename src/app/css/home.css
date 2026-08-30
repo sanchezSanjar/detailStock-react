@@ -1,0 +1,134 @@
+.homepage .popular-products-frame {
+    width: 100%;
+    height: 580px;
+    display: flex;
+    background-color: #0a0a0a;
+}
+
+.homepage .popular-products-frame .popular-section {
+    margin-top: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepage .popular-products-frame .popular-section .category-title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 1.44px;
+    color: #ffffff;
+}
+
+.homepage .popular-products-frame .popular-section .cards-frame {
+    width: 100%;
+    margin-top: 43px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.homepage .popular-products-frame .popular-section .cards-frame .card {
+    min-height: 430px;
+    min-width: 300px;
+    cursor: pointer;
+}
+
+.homepage .popular-products-frame .cards-frame .card .card-cover {
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0) 200px),
+        linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 300px);
+}
+
+.homepage .popular-products-frame .no-data {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #e50914;
+}
+
+.homepage .new-products-frame {
+    width: 100%;
+    background: #111111;
+    padding: 60px 0;
+}
+
+.homepage .new-products-frame .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepage .new-products-frame .main .category-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 40px;
+}
+
+.homepage .new-products-frame .main .cards-frame {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.homepage .new-products-frame .main .cards-frame .card {
+    width: 270px;
+    height: 335px;
+    cursor: pointer;
+}
+
+.homepage .new-products-frame .main .cards-frame .card .product-sale {
+    position: absolute;
+    margin-top: 10px;
+    z-index: 100;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e50914;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.homepage .new-products-frame .main .cards-frame .card .product-detail {
+    display: flex;
+    justify-content: center;
+    margin-top: -12px;
+    border-top: 1px solid #333;
+    background-color: #1a1a1a;
+}
+
+.homepage .new-products-frame .card .product-detail .info .title {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.homepage .new-products-frame .card .product-detail .info .price {
+    margin-left: 10px;
+    color: #e50914;
+    font-weight: 600;
+}
+
+.homepage .new-products-frame .card .product-detail .info .views {
+    display: flex;
+    align-items: center;
+    color: #999999;
+}
+
+.homepage .new-products-frame .no-data {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #e50914;
+}

@@ -13,6 +13,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^9.4.0",
+    "@mui/joy": "^5.0.0-beta.52",
     "@mui/material": "^9.4.0",
     "@reduxjs/toolkit": "^2.12.0",
     "@types/react-router-dom": "^5.3.3",
@@ -23,6 +24,7 @@
     "react-redux": "^9.3.0",
     "react-router-dom": "^7.18.3",
     "redux-logger": "^3.0.6",
+    "styled-components": "^6.5.3",
     "sweetalert2": "^11.26.25",
     "swiper": "^14.2.0",
     "universal-cookie": "^8.1.2"
@@ -36,6 +38,7 @@
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@types/redux-logger": "^3.0.13",
+    "@types/styled-components": "^5.1.36",
     "@types/swiper": "^5.4.3",
     "@vitejs/plugin-react": "^6.1.0",
     "babel-plugin-react-compiler": "^1.0.0",
