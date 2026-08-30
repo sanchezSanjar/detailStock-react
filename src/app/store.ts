@@ -4,6 +4,7 @@ import cartReducer from "./slices/cartSlice";
 import homePageReducer from "./screens/homePage/slice";
 import { createLogger } from "redux-logger";
 import productPageReducer from "./screens/productsPage/slice"
+import ordersPageReducer from "./screens/ordersPage/slice"
 
 const logger = createLogger();
 
@@ -12,7 +13,8 @@ export const store = configureStore({
         auth: authReducer,
         cart: cartReducer,
         homePage: homePageReducer,
-        productPage: productPageReducer
+        productPage: productPageReducer,
+        ordersPage: ordersPageReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(logger),
