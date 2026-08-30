@@ -21,11 +21,11 @@ export default function Events() {
                     centeredSlides={true}
                     spaceBetween={30}
                     navigation={{
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
+                        nextEl: ".events-nav-next",
+                        prevEl: ".events-nav-prev",
                     }}
                     pagination={{
-                        el: ".swiper-pagination",
+                        el: ".events-dots",
                         clickable: true,
                     }}
                     autoplay={{
@@ -54,9 +54,9 @@ export default function Events() {
                 </Swiper>
 
                 <Box className={"prev-next-frame"}>
-                    <button className={"swiper-button-prev"}>‹</button>
-                    <div className={"dot-frame-pagination swiper-pagination"}></div>
-                    <button className={"swiper-button-next"}>›</button>
+                    <button className={"events-nav-prev"}>‹</button>
+                    <div className={"events-dots"}></div>
+                    <button className={"events-nav-next"}>›</button>
                 </Box>
             </Stack>
         </div>

@@ -269,19 +269,19 @@
     margin-top: 24px;
 }
 
-.homepage .swiper-button-prev,
-.homepage .swiper-button-next {
+.homepage .events-nav-prev,
+.homepage .events-nav-next {
     background: #e50914;
     color: #fff;
     border: none;
     border-radius: 50%;
-    width: 36px;
+    width: 50px;
     height: 36px;
-    font-size: 20px;
+    font-size: 30px;
     cursor: pointer;
 }
 
-.homepage .swiper-pagination {
+.homepage .events-dots {
     display: flex;
     gap: 8px;
 }
