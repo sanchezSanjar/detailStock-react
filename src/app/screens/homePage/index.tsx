@@ -14,7 +14,7 @@ import MemberService from "../../services/MemberService";
 import type { Member } from "../../../lib/types/member";
 import Advertisement from "./Advertisement";
 import ActiveUsers from "./ActiveUsers";
-// import Events from "./Events";
+import Events from "./Events";
 
 
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -73,6 +73,7 @@ export default function HomePage() {
         <NewProducts />
         <Advertisement />
         <ActiveUsers />
+        <Events />
 
     </div>
 );

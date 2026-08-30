@@ -14,7 +14,7 @@ export default function ActiveUsers() {
         <div className={"active-users-frame"}>
             <Container>
                 <Stack className={"main"}>
-                    <Box className={"category-title"}>Active Shops</Box>
+                    <Box className={"category-title"}>Active Users</Box>
                     <Stack direction={"row"} sx={{ justifyContent: "space-between", flexWrap: "wrap", gap: 3 }} className={"cards-frame"}>
                         {topUsers.length !== 0 ? (
                             topUsers.map((member: Member) => {
@@ -30,7 +30,7 @@ export default function ActiveUsers() {
                                 );
                             })
                         ) : (
-                            <Box className="no-data">No active shops available</Box>
+                            <Box className="no-data">No active Users available</Box>
                         )}
                     </Stack>
                 </Stack>
