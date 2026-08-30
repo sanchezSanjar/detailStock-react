@@ -87,29 +87,138 @@
 
 .stats-bar {
     width: 100%;
-    padding: 40px 0;
+    padding: 50px 0;
     background: rgba(20, 20, 20, 0.9);
     backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+}
+
+.stats-bar .MuiStack-root {
+    max-width: 900px;
+    width: 100%;
 }
 
 .stat-item {
     text-align: center;
+    padding: 0 20px;
 }
 
 .stat-number {
-    font-size: 36px !important;
-    font-weight: 700 !important;
+    font-size: 42px !important;
+    font-weight: 800 !important;
     color: #e50914 !important;
+    line-height: 1 !important;
 }
 
 .stat-label {
-    font-size: 14px !important;
+    font-size: 15px !important;
     color: #cccccc !important;
-    margin-top: 4px !important;
+    margin-top: 8px !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .stat-divider {
     width: 1px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.2);
+    height: 60px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.footer-section {
+    width: 100%;
+    background: #1a1a1a;
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.footer-top {
+    justify-content: space-between;
+}
+
+.footer-brand {
+    max-width: 380px;
+}
+
+.footer-logo {
+    font-size: 24px !important;
+    font-weight: 700 !important;
+    color: #e50914 !important;
+    margin-bottom: 16px !important;
+}
+
+.footer-desc {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: #999999 !important;
+    margin-bottom: 20px !important;
+}
+
+.footer-socials {
+    gap: 16px;
+}
+
+.footer-socials a {
+    color: #cccccc;
+    display: flex;
+    transition: color 0.2s ease;
+}
+
+.footer-socials a:hover {
+    color: #e50914;
+}
+
+.footer-heading {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin-bottom: 16px !important;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-link {
+    color: #999999;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 12px;
+    transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+    color: #e50914;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-line {
+    font-size: 14px !important;
+    color: #999999 !important;
+    margin-bottom: 12px !important;
+}
+
+.footer-line strong {
+    color: #e50914;
+    margin-right: 6px;
+}
+
+.footer-divider {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    margin: 30px 0 20px !important;
+}
+
+.footer-copyright {
+    text-align: center !important;
+    font-size: 13px !important;
+    color: #777777 !important;
 }
