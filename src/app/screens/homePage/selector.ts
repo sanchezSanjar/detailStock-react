@@ -5,4 +5,4 @@ const selectHomePage = (state: RootState) => state.homePage;
 
 export const retrievePopularProducts = createSelector(selectHomePage, (h) => h.popularProducts);
 export const retrieveNewProducts = createSelector(selectHomePage, (h) => h.newProducts);
-export const retrieveTopShops = createSelector(selectHomePage, (h) => h.topShops);
+export const retrieveTopUsers = createSelector(selectHomePage, (h) => h.topUsers);

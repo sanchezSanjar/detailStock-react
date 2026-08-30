@@ -8,7 +8,7 @@ export function useCountUp(target: number, duration: number = 1500) {
 
         const step = (timestamp: number) => {
             if (!startTime) startTime = timestamp;
-            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const progress = Math.min((timestamp - startTime) / duration, 3);
             setCount(Math.floor(progress * target));
 
             if (progress < 1) {

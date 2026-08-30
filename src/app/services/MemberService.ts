@@ -8,15 +8,15 @@ class MemberService {
         this.path = serverApi;
     }
 
-    public async getTopShops(): Promise<Member[]> {
-        try {
-            const url = this.path + "/member/top-shops";
-            const result = await axios.get(url);
-            return result.data;
-        } catch (err) {
-            console.log("Error, getTopShops:", err);
-            throw err;
-        }
+    public async getTopUsers(): Promise<Member[]> {
+    try {
+        const url = this.path + "/member/top-users";
+        const result = await axios.get(url);
+        return result.data;
+    } catch (err) {
+        console.log("Error, getTopUsers:", err);
+        throw err;
+    }
     }
 }
 

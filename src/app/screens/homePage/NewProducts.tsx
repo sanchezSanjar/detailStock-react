@@ -1,9 +1,4 @@
-import { Box, Container, Stack } from "@mui/material";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Card from "@mui/joy/Card";
-import CardOverflow from "@mui/joy/CardOverflow";
-import Typography from "@mui/joy/Typography";
-import { CssVarsProvider } from "@mui/joy/styles";
+import { Box, Container, Stack, Card, CardMedia, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Divider from "../../components/divider";
 import { useSelector } from "react-redux";
@@ -20,53 +15,36 @@ export default function NewProducts() {
     return (
         <div className={"new-products-frame"}>
             <Container>
-                <Stack className={"main"}>
+                <Box className={"main"}>
                     <Box className={"category-title"}>New Arrivals</Box>
-                    <Stack className={"cards-frame"}>
-                        <CssVarsProvider>
-                            {newProducts.length !== 0 ? (
-                                newProducts.map((product: Product) => {
-                                    const imagePath = `${serverApi}/${product.productImages[0]}`;
-                                    const sizeVolume =
-                                        product.productVolume !== "ZERO"
-                                            ? product.productVolume
-                                            : product.productSize;
-                                    return (
-                                        <Card key={product._id} variant="outlined" className={"card"}>
-                                            <CardOverflow>
-                                                <div className="product-sale">{sizeVolume}</div>
-                                                <AspectRatio ratio="1">
-                                                    <img src={imagePath} alt="" />
-                                                </AspectRatio>
-                                            </CardOverflow>
-                                            <CardOverflow variant="soft" className="product-detail">
-                                                <Stack className="info">
-                                                    <Stack direction={"row"}>
-                                                        <Typography className={"title"}>
-                                                            {product.productName}
-                                                        </Typography>
-                                                        <Divider width="2" height="24" bg="#d9d9d9" />
-                                                        <Typography className={"price"}>
-                                                            ${product.productPrice}
-                                                        </Typography>
-                                                    </Stack>
-                                                    <Stack>
-                                                        <Typography className={"views"}>
-                                                            {product.productViews}
-                                                            <VisibilityIcon sx={{ fontSize: 20, marginLeft: "5px" }} />
-                                                        </Typography>
-                                                    </Stack>
-                                                </Stack>
-                                            </CardOverflow>
-                                        </Card>
-                                    );
-                                })
-                            ) : (
-                                <Box className="no-data">New products are not available</Box>
-                            )}
-                        </CssVarsProvider>
+                    <Stack direction={"row"} sx={{ flexWrap: "wrap", gap: 2 }} className={"cards-frame"}>
+                        {newProducts.length !== 0 ? (
+                            newProducts.map((product: Product) => {
+                                const imagePath = `${serverApi}/${product.productImages[0]}`;
+                                const sizeVolume = product.productVolume !== "ZERO" ? product.productVolume : product.productSize;
+                                return (
+                                    <Card key={product._id} variant="outlined" className={"card"} sx={{ position: "relative" }}>
+                                        <div className="product-sale">{sizeVolume}</div>
+                                        <CardMedia component="img" image={imagePath} sx={{ aspectRatio: "1" }} />
+                                        <Box className="product-detail" sx={{ p: 1.5 }}>
+                                            <Stack direction={"row"} sx={{ alignItems: "center" }}>
+                                                <Typography className={"title"}>{product.productName}</Typography>
+                                                <Divider width="2" height="24" bg="#d9d9d9" />
+                                                <Typography className={"price"}>${product.productPrice}</Typography>
+                                            </Stack>
+                                            <Typography className={"views"} sx={{ display: "flex", alignItems: "center" }}>
+                                                {product.productViews}
+                                                <VisibilityIcon sx={{ fontSize: 20, marginLeft: "5px" }} />
+                                            </Typography>
+                                        </Box>
+                                    </Card>
+                                );
+                            })
+                        ) : (
+                            <Box className="no-data">New products are not available</Box>
+                        )}
                     </Stack>
-                </Stack>
+                </Box>
             </Container>
         </div>
     );

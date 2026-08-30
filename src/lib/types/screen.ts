@@ -12,7 +12,7 @@ export interface RootState {
 export interface HomePageState {
     popularProducts: Product[];
     newProducts: Product[];
-    topShops: Member[];
+    topUsers: Member[];
 }
 
 /** PRODUCTS PAGE */
