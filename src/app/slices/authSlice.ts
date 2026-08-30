@@ -1,12 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-
-export interface Member {
-    _id: string;
-    memberNick: string;
-    memberType: string;
-    memberImage?: string;
-    accessToken?: string;
-}
+import type { Member } from "../../lib/types/member";
 
 interface AuthState {
     authMember: Member | null;

@@ -12,8 +12,17 @@ interface CartState {
     items: CartItem[];
 }
 
+const loadCartFromStorage = (): CartItem[] => {
+    const stored = localStorage.getItem("cartData");
+    return stored ? JSON.parse(stored) : [];
+};
+
+const saveCartToStorage = (items: CartItem[]) => {
+    localStorage.setItem("cartData", JSON.stringify(items));
+};
+
 const initialState: CartState = {
-    items: [],
+    items: loadCartFromStorage(),
 };
 
 const cartSlice = createSlice({
@@ -27,10 +36,12 @@ const cartSlice = createSlice({
             } else {
                 state.items.push(action.payload);
             }
+            saveCartToStorage(state.items);
         },
         incrementItem: (state, action: PayloadAction<string>) => {
             const item = state.items.find(i => i.productId === action.payload);
             if (item) item.quantity++;
+            saveCartToStorage(state.items);
         },
         decrementItem: (state, action: PayloadAction<string>) => {
             const item = state.items.find(i => i.productId === action.payload);
@@ -40,12 +51,15 @@ const cartSlice = createSlice({
                     state.items = state.items.filter(i => i.productId !== action.payload);
                 }
             }
+            saveCartToStorage(state.items);
         },
         removeFromCart: (state, action: PayloadAction<string>) => {
             state.items = state.items.filter(i => i.productId !== action.payload);
+            saveCartToStorage(state.items);
         },
         clearCart: (state) => {
             state.items = [];
+            saveCartToStorage(state.items);
         },
     },
 });

@@ -1,6 +1,6 @@
 import { Box, Container, Stack } from "@mui/material";
 // import Divider from "../../components/divider";
-import { useCountUp } from "../../hooks/useCountUp";
+import { useCountUp } from "../../components/hooks/useCountUp";
 
 export default function Statistics() {
     const shopsCount = useCountUp(12);

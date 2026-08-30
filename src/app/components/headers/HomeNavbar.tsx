@@ -3,9 +3,25 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store";
 import { Basket } from "../basket";
+import { useDispatch } from "react-redux";
+import { logout } from "../../slices/authSlice";
+import MemberService from "../../services/MemberService";
+import { serverApi } from "../../../lib/config";
+
 
 export default function HomeNavbar() {
     const authMember = useSelector((state: RootState) => state.auth.authMember);
+    const dispatch = useDispatch();
+
+    const handleLogout = async () => {
+        try {
+            const member = new MemberService();
+            await member.logout();
+            dispatch(logout());
+        } catch (err) {
+            console.log(err);
+        }
+    };
     return (
         <div className="navbar-wrapper">
             <Stack
@@ -51,14 +67,12 @@ export default function HomeNavbar() {
                     {!authMember ? (
                         <Box className="login-box">
                             <NavLink to="/login">
-                                <Button variant="contained" className="login-btn">
-                                    Login
-                                </Button>
+                                <Button variant="contained" className="login-btn">Login</Button>
                             </NavLink>
                         </Box>
                     ) : (
-                        <Box className="user-avatar">
-                            <img src="/icons/default-user.svg" alt="user" />
+                        <Box className="user-avatar" onClick={handleLogout} sx={{ cursor: "pointer" }}>
+                            <img src={authMember.memberImage ? `${serverApi}/${authMember.memberImage}` : "/icons/default-user.svg"} alt="user" />
                         </Box>
                     )}
                 </Stack>
