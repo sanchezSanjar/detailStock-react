@@ -1,0 +1,78 @@
+.help-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 100px 0 60px;
+    position: relative;
+    background: url('/img/default.png') fixed 45% / cover no-repeat;
+    background-color: #0a0a0a;
+}
+
+.help-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 0;
+}
+
+.help-page > .MuiContainer-root {
+    position: relative;
+    z-index: 1;
+}
+
+.help-container {
+    margin-top: 5cm;
+    max-width: 900px;
+}
+
+.table_list .MuiTab-root {
+    color: #999999;
+    font-weight: 700;
+}
+
+.table_list .Mui-selected {
+    color: #e50914 !important;
+}
+
+.MuiTabs-indicator {
+    background-color: #e50914 !important;
+}
+
+.help-main-content {
+    margin-top: 30px;
+}
+
+.rules-frame p {
+    color: #cccccc;
+    line-height: 1.7;
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.accordion-menu .MuiAccordion-root {
+    background: #151515 !important;
+    color: #ffffff !important;
+    margin-bottom: 10px;
+    border-radius: 8px !important;
+}
+
+.accordion-menu .MuiAccordionSummary-root {
+    font-weight: 600;
+}
+
+.accordion-menu .MuiSvgIcon-root {
+    color: #e50914;
+}
+
+.admin-letter-frame span {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.admin-letter-frame p {
+    color: #cccccc;
+    font-size: 15px;
+}

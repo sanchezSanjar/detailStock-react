@@ -94,9 +94,9 @@ export default function OrdersPage() {
                         <Box className={"liner"}></Box>
                         <Box className={"order-user-address"}>
                             <LocationOnIcon />
-                            <div className={"spec-address-txt"}>
+                            {/* <div className={"spec-address-txt"}>
                                 {authMember?.memberAddress ? authMember.memberAddress : "No address on file"}
-                            </div>
+                            </div> */}
                         </Box>
                     </Box>
                 </Stack>

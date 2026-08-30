@@ -1,0 +1,176 @@
+.user-page {
+    width: 100%;
+    min-height: 100vh;
+    background: #0a0a0a;
+    padding: 100px 0 60px;
+}
+
+.my-page-frame {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* LEFT — SETTINGS FORM */
+
+.my-page-left {
+    flex: 2;
+    min-width: 0;
+}
+
+.menu-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.menu-content {
+    background: #151515;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.settings .member-media-frame {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.mb-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e50914;
+}
+
+.media-change-box span {
+    color: #ffffff;
+    font-weight: 600;
+    display: block;
+}
+
+.media-change-box p {
+    color: #999999;
+    font-size: 12px;
+    margin: 4px 0;
+}
+
+.up-del-box button {
+    color: #e50914 !important;
+    min-width: auto !important;
+}
+
+.input-frame {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.long-input,
+.short-input {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.spec-label {
+    color: #cccccc;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.spec-input,
+.spec-textarea {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+}
+
+.spec-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.spec-input:focus,
+.spec-textarea:focus {
+    border-color: #e50914;
+}
+
+.save-box {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.save-box button {
+    background: #e50914 !important;
+    font-weight: 700 !important;
+    padding: 10px 32px !important;
+}
+
+/* RIGHT — PROFILE SUMMARY */
+
+.my-page-right {
+    flex: 1;
+    min-width: 260px;
+}
+
+.order-info-box {
+    background: #151515;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.order-user-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e50914;
+}
+
+.order-user-name {
+    margin-top: 12px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.order-user-prof {
+    color: #999999;
+    font-size: 13px;
+    margin-top: 2px;
+    text-align: center;
+}
+
+.user-media-box {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 20px 0;
+    color: #cccccc;
+}
+
+.user-media-box svg:hover {
+    color: #e50914;
+    cursor: pointer;
+}
+
+.user-desc {
+    color: #cccccc;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+}

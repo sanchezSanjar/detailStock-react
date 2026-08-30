@@ -3,7 +3,7 @@
     min-height: 100vh;
     padding: 100px 0 60px;
     position: relative;
-    background: url('/img/default.png') center 45% / cover no-repeat;
+    background: url('/img/default.png') fixed 45% / cover no-repeat;
     background-attachment: fixed;
     background-color: #0a0a0a;
 }

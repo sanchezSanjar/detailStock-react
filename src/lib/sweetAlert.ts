@@ -8,3 +8,24 @@ export const sweetErrorHandling = async (err: unknown) => {
         text: message,
     });
 };
+
+export const sweetTopSuccessAlert = async (message: string, duration = 1500) => {
+    await Swal.fire({
+        position: "top",
+        icon: "success",
+        title: message,
+        showConfirmButton: false,
+        timer: duration,
+    });
+};
+
+export const sweetTopSmallSuccessAlert = async (message: string, duration = 1500) => {
+    await Swal.fire({
+        position: "top",
+        icon: "success",
+        title: message,
+        showConfirmButton: false,
+        timer: duration,
+        toast: true,
+    });
+};
