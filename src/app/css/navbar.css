@@ -4,7 +4,8 @@
     display: flex;
     justify-content: center;
     padding-top: 20px;
-    background: #000;
+    background: transparent;
+    
 }
 
 .home-navbar,
@@ -12,14 +13,15 @@
     width: fit-content;
     padding: 6px 12px;
 
-    background: rgba(0, 0, 0, 0.75);
+    
+    background: rgba(255, 255, 255, 0.35);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 16px;
 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 .navbar-inner {
@@ -63,11 +65,11 @@
     box-shadow: 0 0 20px rgba(229, 9, 20, 0.45);
 }
 
-.nav-links .hover-line a.underline {
+/* .nav-links .hover-line a.underline {
     background: #e50914;
     color: #ffffff;
     box-shadow: 0 0 20px rgba(229, 9, 20, 0.35);
-}
+} */
 
 .login-box {
     margin-left: 12px;
@@ -94,4 +96,12 @@
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #e50914;
+}
+
+body {
+    background: url('/img/default.png') center 45% / cover no-repeat;
+    background-color: #0a0a0a;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }

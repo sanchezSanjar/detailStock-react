@@ -1,13 +1,13 @@
-import { Container, Stack, Box, Button } from "@mui/material";
+import { Stack, Box, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store";  
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 export function HomeNavbar() {
     const authMember = useSelector((state: RootState) => state.auth.authMember);
     return (
         <div className="navbar-wrapper">
-            <Container maxWidth={false} className="home-navbar">
                 <Stack
                     direction={"row"}
                     sx={{
@@ -50,7 +50,11 @@ export function HomeNavbar() {
                         <Box className={"hover-line"}>
                             <NavLink to="/help" className={({ isActive }) => isActive ? "underline" : ""}>Help</NavLink>
                         </Box>
-
+                        <Box className="cart-icon">
+                            <NavLink to="/cart">
+                                <ShoppingCartOutlinedIcon sx={{ color: "#ffffff" }} />
+                            </NavLink>
+                        </Box>
                         {!authMember ? (
                             <Box className="login-box">
                                 <NavLink to="/login">
@@ -66,7 +70,6 @@ export function HomeNavbar() {
                         )}
                     </Stack>
                 </Stack>
-            </Container>
         </div>
     );
 }

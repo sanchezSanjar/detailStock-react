@@ -2,6 +2,7 @@ import { Container, Stack, Box, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store";  
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 export function OtherNavbar() {
     const authMember = useSelector((state: RootState) => state.auth.authMember);
@@ -47,7 +48,11 @@ export function OtherNavbar() {
                                 <NavLink to="/member-page" className={({ isActive }) => isActive ? "underline" : ""}>My Page</NavLink>
                             </Box>
                         ) : null}
-
+                        <Box className="cart-icon">
+                            <NavLink to="/cart">
+                                <ShoppingCartOutlinedIcon sx={{ color: "#ffffff" }} />
+                            </NavLink>
+                        </Box>
                         {!authMember ? (
                             <Box className="login-box">
                                 <NavLink to="/login">
