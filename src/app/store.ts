@@ -1,18 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import HomePageReducer from "./screens/homePage/slice";
+import authReducer from "./slices/authSlice";
 // import ProductsPageReducer from "./screens/productsPage/slice";
 // import OrdersPageReducer from "./screens/ordersPage/slice";
-import reduxLogger from "redux-logger";
+import { createLogger } from "redux-logger";
+
+const logger = createLogger();
 
 export const store = configureStore({
-
   reducer: {
-    // homePage: HomePageReducer,
+    auth: authReducer,
     // productsPage: ProductsPageReducer,
     // ordersPage: OrdersPageReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(reduxLogger),
+    getDefaultMiddleware().concat(logger),
 });
 
 export type AppDispatch = typeof store.dispatch;

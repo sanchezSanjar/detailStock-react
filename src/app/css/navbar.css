@@ -1,0 +1,97 @@
+.navbar-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    background: #000;
+}
+
+.home-navbar,
+.other-navbar {
+    width: fit-content;
+    padding: 6px 12px;
+
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-inner {
+    gap: 40px;
+}
+
+.logo-box a {
+    text-decoration: none;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.logo-text strong {
+    color: #e50914;
+}
+
+.nav-links {
+    gap: 8px;
+}
+
+.nav-links a {
+    display: block;
+    padding: 12px 20px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 11px;
+    transition: all 0.25s ease;
+}
+
+.nav-links .hover-line a:hover {
+    background: #e50914;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.45);
+}
+
+.nav-links .hover-line a.underline {
+    background: #e50914;
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.35);
+}
+
+.login-box {
+    margin-left: 12px;
+}
+
+.login-btn {
+    background: #e50914 !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: none !important;
+    padding: 8px 24px !important;
+}
+
+.login-btn:hover {
+    background: #ff1a25 !important;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+}
+
+.user-avatar img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e50914;
+}
