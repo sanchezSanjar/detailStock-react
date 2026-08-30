@@ -1,61 +1,42 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
-import { useCountUp } from "../../hooks/useCountUp";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import type { Dispatch } from "@reduxjs/toolkit";
+import Statistics from "./Statistics";
+import { setPopularProducts, setNewProducts, setTopShops } from "./slice";
+import type { Product } from "../../../lib/types/product";
+import ProductService from "../../services/ProductService";
+import { ProductCollection } from "../../../lib/enums/product.enum";
+import MemberService from "../../services/MemberService";
+import type { Member } from "../../../lib/types/member";
 
-export function HomePage() {
-    const shopsCount = useCountUp(12);
-    const feedbacksCount = useCountUp(8);
-    const productsCount = useCountUp(50);
-    const customersCount = useCountUp(200);
+const actionDispatch = (dispatch: Dispatch) => ({
+    setPopularProducts: (data: Product[]) => dispatch(setPopularProducts(data)),
+    setNewProducts: (data: Product[]) => dispatch(setNewProducts(data)),
+    setTopShops: (data: Member[]) => dispatch(setTopShops(data)),
+});
+
+export default function HomePage() {
+    const { setPopularProducts, setNewProducts, setTopShops } = actionDispatch(useDispatch());
+
+    useEffect(() => {
+        const product = new ProductService();
+        product.getProducts({ page: 1, limit: 4, order: "productViews", productCollection: ProductCollection.EXTERIOR_CARE })
+            .then((data) => setPopularProducts(data))
+            .catch((err) => console.log(err));
+
+        product.getProducts({ page: 1, limit: 4, order: "createdAt" })
+            .then((data) => setNewProducts(data))
+            .catch((err) => console.log(err));
+
+        const member = new MemberService();
+        member.getTopShops()
+            .then((data) => setTopShops(data))
+            .catch((err) => console.log(err));
+    }, []);
 
     return (
-        <div className="home-page">
-            <div className="hero-section">
-                <Container maxWidth={false} className="hero-content">
-                    <Stack className="hero-text">
-                        <Typography className="hero-title">
-                            World's Best Detailing<br />Products For Your Car
-                        </Typography>
-                        <Typography className="hero-subtitle">
-                            Your choice decides your status.
-                        </Typography>
-                        <Typography className="hero-service">
-                            Service 24/7
-                        </Typography>
-                        <Box className="hero-cta">
-                            <NavLink to="/signup">
-                                <Button variant="contained" className="signup-btn">
-                                    SIGN UP
-                                </Button>
-                            </NavLink>
-                        </Box>
-                    </Stack>
-                </Container>
-
-                <div className="stats-bar">
-                    <Stack direction={"row"} sx={{ justifyContent: "space-around", alignItems: "center" }}>
-                        <Box className="stat-item">
-                            <Typography className="stat-number">{shopsCount}</Typography>
-                            <Typography className="stat-label">Shops</Typography>
-                        </Box>
-                        <div className="stat-divider" />
-                        <Box className="stat-item">
-                            <Typography className="stat-number">{feedbacksCount}</Typography>
-                            <Typography className="stat-label">Feedbacks</Typography>
-                        </Box>
-                        <div className="stat-divider" />
-                        <Box className="stat-item">
-                            <Typography className="stat-number">{productsCount}+</Typography>
-                            <Typography className="stat-label">Products</Typography>
-                        </Box>
-                        <div className="stat-divider" />
-                        <Box className="stat-item">
-                            <Typography className="stat-number">{customersCount}+</Typography>
-                            <Typography className="stat-label">Customers</Typography>
-                        </Box>
-                    </Stack>
-                </div>
-            </div>
+        <div className={"homepage"}>
+            <Statistics />
         </div>
     );
 }
