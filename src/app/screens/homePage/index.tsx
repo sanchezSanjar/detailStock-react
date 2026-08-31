@@ -65,9 +65,10 @@ export default function HomePage() {
                     </Box>
                 </Stack>
             </Container>
+
+            <Statistics />
         </div>
 
-        <Statistics />
         <PopularProducts />
         <NewProducts />
         <Advertisement />

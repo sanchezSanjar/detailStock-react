@@ -5,11 +5,11 @@
 .hero-section {
     position: relative;
     width: 100%;
-    min-height: 500px;
+    min-height: 650px;
     background: url('/img/default.png') center 45% / cover no-repeat;
     background-color: #0a0a0a;
-    /* display: flex;
-    flex-direction: column; */
+    display: flex;
+    flex-direction: column;
 }
 
 .hero-section::before {
@@ -23,7 +23,7 @@
 .hero-content {
     position: relative;
     z-index: 1;
-    height: 100%;
+    flex: 1;
     display: flex;
     align-items: center;
     padding-left: 8%;
@@ -87,14 +87,16 @@
 }
 
 .stats-bar {
+    position: relative;
+    z-index: 1;
     max-width: 900px;
     width: 100%;
-    padding: 50px 0;
+    padding: 40px 0;
     background: rgba(20, 20, 20, 0.9);
     backdrop-filter: blur(6px);
     display: flex;
     justify-content: center;
-    margin: 0 auto; 
+    margin: 0 auto 40px;
 }
 
 .stats-bar .MuiStack-root {
