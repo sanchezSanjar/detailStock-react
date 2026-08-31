@@ -9,7 +9,6 @@ import NewProducts from "./NewProducts";
 import { setPopularProducts, setNewProducts, setTopUsers } from "./slice";
 import type { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
-import { ProductCollection } from "../../../lib/enums/product.enum";
 import MemberService from "../../services/MemberService";
 import type { Member } from "../../../lib/types/member";
 import Advertisement from "./Advertisement";
@@ -28,7 +27,7 @@ export default function HomePage() {
 
     useEffect(() => {
         const product = new ProductService();
-        product.getProducts({ page: 1, limit: 4, order: "productViews", productCollection: ProductCollection.EXTERIOR_CARE })
+        product.getProducts({ page: 1, limit: 4, order: "productViews" })
             .then((data) => setPopularProducts(data))
             .catch((err) => console.log(err));
 
