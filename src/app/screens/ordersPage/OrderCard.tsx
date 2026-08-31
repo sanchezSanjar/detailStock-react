@@ -1,7 +1,7 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import type { Order } from "../../../lib/types/order";
 import { OrderStatus } from "../../../lib/enums/order.enum";
-import { serverApi } from "../../../lib/config";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
 
 interface OrderCardProps {
     order: Order;
@@ -14,7 +14,7 @@ export default function OrderCard({ order, onUpdateStatus }: OrderCardProps) {
             <Stack className={"order-items"}>
                 {order.orderItems.map((item) => {
                     const product = order.productData.find((p) => p._id === item.productId);
-                    const imagePath = product ? `${serverApi}/${product.productImages[0]}` : "/icons/default-user.svg";
+                    const imagePath = getImageUrl(product?.productImages[0]);
                     return (
                         <Stack key={item._id} direction={"row"} className={"order-item-row"} sx={{ alignItems: "center", gap: 2 }}>
                             <img src={imagePath} className={"order-item-img"} alt="" />

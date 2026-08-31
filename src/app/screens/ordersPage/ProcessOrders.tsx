@@ -4,7 +4,7 @@ import moment from "moment";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveProcessOrders } from "./selector";
-import { serverApi } from "../../../lib/config";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
 import type { Order, OrderItem, OrderUpdateInput } from "../../../lib/types/order";
 import type { Product } from "../../../lib/types/product";
 import OrderService from "../../services/OrderService";
@@ -49,7 +49,7 @@ export default function ProcessOrders({ setValue, setOrderBuilder }: ProcessOrde
                             {order?.orderItems?.map((item: OrderItem) => {
                                 const product: Product | undefined = order.productData.find((ele) => item.productId === ele._id);
                                 if (!product) return null;
-                                const imagePath = `${serverApi}/${product.productImages[0]}`;
+                                const imagePath = getImageUrl(product.productImages[0]);
                                 return (
                                     <Box key={item._id} className={"orders-name-price"}>
                                         <img src={imagePath} className={"order-dish-img"} alt="" />

@@ -16,7 +16,7 @@ import { useParams } from "react-router-dom";
 import ProductService from "../../services/ProductService";
 import MemberService from "../../services/MemberService";
 import type { Member } from "../../../lib/types/member";
-import { serverApi } from "../../../lib/config";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
 import { addToCart } from "../../slices/cartSlice";
 import  "../../css/products.css";
 
@@ -57,7 +57,7 @@ export default function ChosenProduct() {
                 <Stack className={"chosen-product-slider"}>
                     <Swiper loop={true} spaceBetween={10} navigation={true} modules={[Navigation]} className="swiper-area">
                         {chosenProduct.productImages.map((ele: string, index: number) => {
-                            const imagePath = `${serverApi}/${ele}`;
+                            const imagePath = getImageUrl(ele);
                             return (
                                 <SwiperSlide key={index}>
                                     <img className="slider-image" src={imagePath} alt="" />

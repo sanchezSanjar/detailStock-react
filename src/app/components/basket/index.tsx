@@ -6,6 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../store";
 import { incrementItem, decrementItem, removeFromCart } from "../../slices/cartSlice";
+import "../../css/basket.css";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
+import OrderService from "../../services/OrderService";
+import { clearCart } from "../../slices/cartSlice";
+import { sweetErrorHandling } from "../../../lib/sweetAlert";
 
 export function Basket() {
     const navigate = useNavigate();
@@ -27,8 +32,15 @@ export function Basket() {
     };
 
     const handleOrder = () => {
+        try {
+        new OrderService().createOrder(cartItems);
+        dispatch(clearCart());
         handleClose();
-        navigate("/order");
+        navigate("/orders");
+    } catch (err) {
+        console.log(err);
+        sweetErrorHandling(err).then();
+    }
     };
 
     return (
@@ -59,6 +71,7 @@ export function Basket() {
                             filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
                             mt: 1.5,
                             minWidth: 320,
+                            backgroundColor: "#151515",
                             "&:before": {
                                 content: '""',
                                 display: "block",
@@ -67,7 +80,7 @@ export function Basket() {
                                 right: 14,
                                 width: 10,
                                 height: 10,
-                                bgcolor: "background.paper",
+                                bgcolor: "#151515",
                                 transform: "translateY(-50%) rotate(45deg)",
                                 zIndex: 0,
                             },
@@ -93,7 +106,11 @@ export function Basket() {
                                         >
                                             <CancelIcon color={"primary"} />
                                         </div>
-                                        <img src={item.productImage} className={"product-img"} alt={item.productName} />
+                                        <img
+                                            src={getImageUrl(item.productImage)}
+                                            className={"product-img"}
+                                            alt={item.productName}
+                                        />
                                         <span className={"product-name"}>{item.productName}</span>
                                         <p className={"product-price"}>${item.productPrice} x {item.quantity}</p>
                                         <Box sx={{ minWidth: 120 }}>

@@ -3,7 +3,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrievePausedOrders } from "./selector";
-import { serverApi } from "../../../lib/config";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
 import type { Order, OrderItem, OrderUpdateInput } from "../../../lib/types/order";
 import type { Product } from "../../../lib/types/product";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
@@ -64,7 +64,7 @@ export default function PausedOrders({ setValue, setOrderBuilder }: PausedOrders
                             {order?.orderItems?.map((item: OrderItem) => {
                                 const product: Product | undefined = order.productData.find((ele) => item.productId === ele._id);
                                 if (!product) return null;
-                                const imagePath = `${serverApi}/${product.productImages[0]}`;
+                                const imagePath = getImageUrl(product.productImages[0]);
                                 return (
                                     <Box key={item._id} className={"orders-name-price"}>
                                         <img src={imagePath} className={"order-dish-img"} alt={product.productName} />

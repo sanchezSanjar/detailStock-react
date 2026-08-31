@@ -44,45 +44,45 @@
         transform: translateX(0);
     }
 }
-.hero-title {
-    font-size: 48px !important;
-    font-weight: 700 !important;
-    line-height: 1.2 !important;
+.hero-title.MuiTypography-root {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
     background-color: rgba(0, 0, 0, 0.5);
-    color: #ffffff !important;
-    margin-bottom: 20px !important;
+    color: #ffffff;
+    margin-bottom: 20px;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
     animation: slideInFromRight 0.8s ease-out;
 }
 
-.hero-subtitle {
-    font-size: 22px !important;
-    color: #ff3039 !important;
-    font-weight: 600 !important;
-    margin-bottom: 10px !important;
+.hero-subtitle.MuiTypography-root {
+    font-size: 22px;
+    color: #ff3039;
+    font-weight: 600;
+    margin-bottom: 10px;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
     animation: slideInFromRight 0.8s ease-out 0.2s backwards;
 }
 
-.hero-service {
-    font-size: 16px !important;
-    color: #ffffff !important;
-    margin-bottom: 30px !important;
+.hero-service.MuiTypography-root {
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 30px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     animation: slideInFromRight 0.8s ease-out 0.4s backwards;
 }
 
-.signup-btn {
-    background: #e50914 !important;
-    color: #ffffff !important;
-    padding: 12px 36px !important;
-    font-weight: 700 !important;
-    letter-spacing: 1px !important;
-    border-radius: 10px !important;
+.signup-btn.MuiButton-root {
+    background: #e50914;
+    color: #ffffff;
+    padding: 12px 36px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 10px;
 }
 
-.signup-btn:hover {
-    background: #ff1a25 !important;
+.signup-btn.MuiButton-root:hover {
+    background: #ff1a25;
     box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
 }
 
@@ -108,16 +108,16 @@
 }
 
 .stat-number {
-    font-size: 42px !important;
-    font-weight: 800 !important;
-    color: #e50914 !important;
-    line-height: 1 !important;
+    font-size: 42px;
+    font-weight: 800;
+    color: #e50914;
+    line-height: 1;
 }
 
 .stat-label {
-    font-size: 15px !important;
-    color: #cccccc !important;
-    margin-top: 8px !important;
+    font-size: 15px;
+    color: #cccccc;
+    margin-top: 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -147,18 +147,18 @@
     max-width: 380px;
 }
 
-.footer-logo {
-    font-size: 24px !important;
-    font-weight: 700 !important;
-    color: #e50914 !important;
-    margin-bottom: 16px !important;
+.footer-logo.MuiTypography-root {
+    font-size: 24px;
+    font-weight: 700;
+    color: #e50914;
+    margin-bottom: 16px;
 }
 
-.footer-desc {
-    font-size: 14px !important;
-    line-height: 1.6 !important;
-    color: #999999 !important;
-    margin-bottom: 20px !important;
+.footer-desc.MuiTypography-root {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #999999;
+    margin-bottom: 20px;
 }
 
 .footer-socials {
@@ -175,11 +175,11 @@
     color: #e50914;
 }
 
-.footer-heading {
-    font-size: 16px !important;
-    font-weight: 700 !important;
-    color: #ffffff !important;
-    margin-bottom: 16px !important;
+.footer-heading.MuiTypography-root {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
 }
 
 .footer-links {
@@ -204,10 +204,10 @@
     flex-direction: column;
 }
 
-.footer-line {
-    font-size: 14px !important;
-    color: #999999 !important;
-    margin-bottom: 12px !important;
+.footer-line.MuiTypography-root {
+    font-size: 14px;
+    color: #999999;
+    margin-bottom: 12px;
 }
 
 .footer-line strong {
@@ -215,13 +215,13 @@
     margin-right: 6px;
 }
 
-.footer-divider {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    margin: 30px 0 20px !important;
+.footer-divider.MuiDivider-root {
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 30px 0 20px;
 }
 
-.footer-copyright {
-    text-align: center !important;
-    font-size: 13px !important;
-    color: #777777 !important;
+.footer-copyright.MuiTypography-root {
+    text-align: center;
+    font-size: 13px;
+    color: #777777;
 }

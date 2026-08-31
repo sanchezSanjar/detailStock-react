@@ -1,11 +1,28 @@
 import { Stack, Box, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../store";
 import { Basket } from "../basket";
+import { logout } from "../../slices/authSlice";
+import MemberService from "../../services/MemberService";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
+
+const defaultUserIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
 
 export function OtherNavbar() {
     const authMember = useSelector((state: RootState) => state.auth.authMember);
+    const dispatch = useDispatch();
+
+    const handleLogout = async () => {
+        try {
+            const member = new MemberService();
+            await member.logout();
+            dispatch(logout());
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div className="navbar-wrapper">
             <Stack
@@ -57,8 +74,11 @@ export function OtherNavbar() {
                             </NavLink>
                         </Box>
                     ) : (
-                        <Box className="user-avatar">
-                            <img src="/icons/default-user.svg" alt="user" />
+                        <Box className="user-avatar" onClick={handleLogout} sx={{ cursor: "pointer" }}>
+                            <img
+                                src={getImageUrl(authMember.memberImage, defaultUserIcon)}
+                                alt="user"
+                            />
                         </Box>
                     )}
                 </Stack>

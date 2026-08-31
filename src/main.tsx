@@ -7,7 +7,6 @@ import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./app/MaterialTheme";
 import { BrowserRouter } from "react-router-dom";
-import ContextProvider from "./app/context/ContextProvider";
 
 
 const container = document.getElementById("root")!;
@@ -19,9 +18,7 @@ root.render(
     <ThemeProvider theme={theme}>
         <CssBaseline />
         <BrowserRouter>
-            <ContextProvider>
                 <App />
-            </ContextProvider>
         </BrowserRouter>
     </ThemeProvider>
 </Provider>

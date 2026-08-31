@@ -9,6 +9,7 @@ import HomeNavbar from "./components/headers/HomeNavbar";
 import { OtherNavbar } from "./components/headers/OtherNavbar";
 import { Footer } from "./components/footer";
 import LoginPage from "./screens/loginPage";
+import SignupPage from "./screens/signupPage";
 import "./css/app.css";
 import "./css/navbar.css";
 import "./css/home.css";
@@ -16,7 +17,7 @@ import "./css/home.css";
 
 function App() {
 const location = useLocation();
-console.log("location:", location);
+
 
  return(
   <>      
@@ -27,6 +28,7 @@ console.log("location:", location);
     <Route path="/orders/*" element={<OrdersPage />} />
     <Route path="/member-page/*" element={<UserPage />} />
     <Route path="/help" element={<HelpPage />} />
+    <Route path="/signup" element={<SignupPage />} />
     <Route path="/login" element={<LoginPage />} />
     <Route path="/" element={<HomePage />} />
         </Routes>

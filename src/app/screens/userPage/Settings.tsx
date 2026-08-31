@@ -4,17 +4,17 @@ import { useState, type ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { MemberUpdateInput } from "../../../lib/types/member";
 import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
-import { serverApi } from "../../../lib/config";
 import MemberService from "../../services/MemberService";
 import { setAuthMember } from "../../slices/authSlice";
 import type { RootState } from "../../store";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
 
 export function Settings() {
     const dispatch = useDispatch();
     const authMember = useSelector((state: RootState) => state.auth.authMember);
 
     const [memberImagePreview, setMemberImagePreview] = useState<string>(
-        authMember?.memberImage ? `${serverApi}/${authMember.memberImage}` : "/icons/default-user.svg"
+        getImageUrl(authMember?.memberImage)
     );
     const [memberUpdateInput, setMemberUpdateInput] = useState<MemberUpdateInput>({
         memberNick: authMember?.memberNick,

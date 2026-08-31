@@ -13,7 +13,7 @@ import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { useNavigate } from "react-router-dom";
 import "../../css/order.css";
-import { serverApi } from "../../../lib/config";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
 import type { RootState } from "../../store";
 
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -83,7 +83,7 @@ export default function OrdersPage() {
                         <Box className={"member-box"}>
                             <div className={"order-user-img"}>
                                 <img
-                                    src={authMember?.memberImage ? `${serverApi}/${authMember.memberImage}` : "/icons/default-user.svg"}
+                                    src={getImageUrl(authMember?.memberImage)}
                                     className={"order-user-avatar"}
                                     alt=""
                                 />
@@ -94,9 +94,9 @@ export default function OrdersPage() {
                         <Box className={"liner"}></Box>
                         <Box className={"order-user-address"}>
                             <LocationOnIcon />
-                            {/* <div className={"spec-address-txt"}>
+                            <div className={"spec-address-txt"}>
                                 {authMember?.memberAddress ? authMember.memberAddress : "No address on file"}
-                            </div> */}
+                            </div>
                         </Box>
                     </Box>
                 </Stack>

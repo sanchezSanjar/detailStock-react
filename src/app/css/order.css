@@ -1,8 +1,24 @@
 .order-page {
     width: 100%;
     min-height: 100vh;
-    background: #0a0a0a;
     padding: 100px 0 60px;
+    position: relative;
+    background: url('/img/default.png') center 70% / cover no-repeat;
+    background-attachment: fixed;
+    background-color: #0a0a0a;
+}
+
+.order-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 0;
+}
+
+.order-page > .order-container {
+    position: relative;
+    z-index: 1;
 }
 
 .order-container {
@@ -28,12 +44,12 @@
     letter-spacing: 0.5px;
 }
 
-.table_list .Mui-selected {
-    color: #e50914 !important;
+.table_list .MuiTab-root.Mui-selected {
+    color: #e50914;
 }
 
-.MuiTabs-indicator {
-    background-color: #e50914 !important;
+.table_list .MuiTabs-indicator {
+    background-color: #e50914;
 }
 
 .order-main-content {
@@ -133,24 +149,24 @@
     margin: 0;
 }
 
-.cancel-button {
-    background: rgba(255, 255, 255, 0.08) !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    text-transform: none !important;
+.cancel-button.MuiButton-root {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: none;
 }
 
-.pay-button,
-.verify-button {
-    background: #e50914 !important;
-    color: #ffffff !important;
-    font-weight: 700 !important;
-    text-transform: none !important;
+.pay-button.MuiButton-root,
+.verify-button.MuiButton-root {
+    background: #e50914;
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: none;
 }
 
-.pay-button:hover,
-.verify-button:hover {
-    background: #ff1a25 !important;
+.pay-button.MuiButton-root:hover,
+.verify-button.MuiButton-root:hover {
+    background: #ff1a25;
 }
 
 .no-data {

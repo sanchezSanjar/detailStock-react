@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveTopUsers } from "./selector";
 import type { Member } from "../../../lib/types/member";
-import { serverApi } from "../../../lib/config";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
 
 const activeUsersRetriever = createSelector(retrieveTopUsers, (topUsers) => ({ topUsers }));
 
@@ -18,9 +18,7 @@ export default function ActiveUsers() {
                     <Stack direction={"row"} sx={{ justifyContent: "space-between", flexWrap: "wrap", gap: 3 }} className={"cards-frame"}>
                         {topUsers.length !== 0 ? (
                             topUsers.map((member: Member) => {
-                                const imagePath = member.memberImage
-                                    ? `${serverApi}/${member.memberImage}`
-                                    : "/icons/default-user.svg";
+                                const imagePath = getImageUrl(member.memberImage);
                                 return (
                                     <Stack key={member._id} className={"user-card"} sx={{ alignItems: "center" }}>
                                         <Avatar src={imagePath} sx={{ width: 90, height: 90, border: "2px solid #e50914" }} />

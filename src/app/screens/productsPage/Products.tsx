@@ -1,7 +1,5 @@
 import { type ChangeEvent, useEffect, useState } from "react";
-import { Box, Button, Container, Stack, Badge, Pagination, PaginationItem } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -13,9 +11,10 @@ import { retrieveProducts } from "./selector";
 import type { Product, ProductInquiry } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
-import { serverApi } from "../../../lib/config";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
 import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../slices/cartSlice";
+import { Box, Button, Container, Stack, Card, CardMedia, CardContent, Typography, Pagination, PaginationItem } from "@mui/material";
 
 const actionDispatch = (dispatch: Dispatch) => ({
     setProducts: (data: Product[]) => dispatch(setProducts(data)),
@@ -83,7 +82,11 @@ export default function Products() {
     if (value === "") {
         setProductSearch((prev) => ({ ...prev, page: 1, search: "" }));
     }
-};
+    };
+
+    const filteredProducts = products.filter((product: Product) =>
+    product.productName.toLowerCase().includes(searchText.toLowerCase())
+    );
 
     const handleAddToCart = (product: Product, e: React.MouseEvent) => {
         e.stopPropagation();
@@ -180,43 +183,64 @@ export default function Products() {
                         </Stack>
 
                         <Stack direction={"row"} className="product-wrapper">
-                            {products.length !== 0 ? (
-                                products.map((product: Product) => {
-                                    const imagePath = `${serverApi}/${product.productImages[0]}`;
-                                    const sizeVolume = product.productVolume !== "ZERO" ? product.productVolume : product.productSize;
-                                    return (
-                                        <Stack
-                                            key={product._id}
-                                            className="product-card"
-                                            onClick={() => chooseProductHandler(product._id)}
+                                {filteredProducts.length !== 0 ? (
+                                filteredProducts.map((product: Product) => {
+                                const imagePath = getImageUrl(product.productImages[0]);
+                                const sizeVolume = product.productVolume !== "ZERO" ? product.productVolume : product.productSize;
+                                return (
+                                    <Card
+                                        key={product._id}
+                                        className="product-card"
+                                        sx={{ position: "relative", backgroundColor: "#151515", cursor: "pointer" }}
+                                        onClick={() => chooseProductHandler(product._id)}
+                                    >
+                                        <div className="product-sale">{sizeVolume}</div>
+                                        <CardMedia component="img" image={imagePath} draggable={false} sx={{ height: 300 }} />
+                                        <Button
+                                            className={"shop-btn"}
+                                            onClick={(e) => handleAddToCart(product, e)}
+                                            sx={{ position: "absolute", top: 10, right: 10, zIndex: 2 }}
                                         >
-                                            <Stack className="product-img" sx={{ backgroundImage: `url(${imagePath})` }}>
-                                                <div className="product-sale">{sizeVolume}</div>
-                                                <Button className={"shop-btn"} onClick={(e) => handleAddToCart(product, e)}>
-                                                    🛒
-                                                </Button>
-                                                <Button className="view-btn" sx={{ left: "10px" }}>
-                                                    <Badge badgeContent={product.productViews} color="secondary">
-                                                        <RemoveRedEyeIcon sx={{ color: product.productViews === 0 ? "gray" : "white" }} />
-                                                    </Badge>
-                                                </Button>
-                                            </Stack>
-                                            <Box className={"product-desc"}>
-                                                <span className="product-title">{product.productName}</span>
-                                                <div className="product-desc">
-                                                    <MonetizationOnIcon />
-                                                    {product.productPrice}
-                                                </div>
-                                            </Box>
-                                        </Stack>
+                                            🛒
+                                        </Button>
+                                        <CardContent
+                                            sx={{
+                            position: "absolute",
+                            bottom: 0,
+                            width: "100%",
+                            background: "linear-gradient(to top, rgba(0,0,0,0.85), transparent)",
+                        }}>
+                        <Stack direction={"row"} sx={{ justifyContent: "space-between", alignItems: "center" }}>
+                            <Typography
+                                sx={{
+                                    color: "#fff",
+                                    fontSize: "1.1rem",
+                                    fontWeight: 700,
+                                    flex: 1,
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                }}
+                            >
+                                {product.productName}
+                                    </Typography>
+                                    <Typography sx={{ color: "#e50914", fontWeight: 600 }}>
+                                        ${product.productPrice}
+                                    </Typography>
+                                </Stack>
+                                <Typography sx={{ color: "#ccc", display: "flex", alignItems: "center", mt: 0.5 }}>
+                                    {product.productViews}
+                                    <RemoveRedEyeIcon sx={{ fontSize: 20, marginLeft: "5px" }} />
+                                </Typography>
+                            </CardContent>
+                                        </Card>
                                     );
                                 })
                             ) : (
                                 <Box className="no-data">Products are not available</Box>
                             )}
                         </Stack>
-                    </Stack>
-
+                        </Stack>
                     <Stack className="pagination-section">
                         <Pagination
                             count={products.length !== 0 ? productSearch.page + 1 : productSearch.page}

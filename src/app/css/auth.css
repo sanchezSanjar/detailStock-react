@@ -1,11 +1,24 @@
 .auth-page {
     width: 100%;
     min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #0a0a0a;
-    padding: 100px 0;
+    padding: 100px 0 60px;
+    position: relative;
+    background: url('/img/default.png') center 70% / cover no-repeat;
+    background-attachment: fixed;
+    background-color: #0a0a0a;
+}
+
+.auth-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 0;
+}
+
+.auth-page > .MuiContainer-root {
+    position: relative;
+    z-index: 1;
 }
 
 .auth-frame {
@@ -16,17 +29,17 @@
     border-radius: 16px;
 }
 
-.auth-title {
-    font-size: 32px !important;
-    font-weight: 700 !important;
-    color: #ffffff !important;
-    margin-bottom: 8px !important;
+.auth-title.MuiTypography-root {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
 }
 
-.auth-subtext {
-    color: #999999 !important;
-    font-size: 14px !important;
-    margin-bottom: 30px !important;
+.auth-subtext.MuiTypography-root {
+    color: #999999;
+    font-size: 14px;
+    margin-bottom: 30px;
 }
 
 .auth-subtext a {
@@ -55,10 +68,19 @@
     color: #ffffff;
 }
 
-.auth-btn {
+.auth-btn.MuiButton-root {
     width: 100%;
-    background: #e50914 !important;
-    padding: 12px 0 !important;
-    font-weight: 700 !important;
-    margin-top: 10px !important;
+    background: #e50914;
+    padding: 12px 0;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.auth-row {
+    display: flex;
+    gap: 20px;
+}
+
+.auth-row .auth-input-group {
+    flex: 1;
 }

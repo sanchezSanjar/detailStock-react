@@ -3,7 +3,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveFinishedOrders } from "./selector";
-import { serverApi } from "../../../lib/config";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
 import type { Order, OrderItem } from "../../../lib/types/order";
 import type { Product } from "../../../lib/types/product";
 
@@ -21,7 +21,7 @@ export default function FinishedOrders() {
                             {order?.orderItems?.map((item: OrderItem) => {
                                 const product: Product | undefined = order.productData.find((ele) => item.productId === ele._id);
                                 if (!product) return null;
-                                const imagePath = `${serverApi}/${product.productImages[0]}`;
+                                const imagePath = getImageUrl(product.productImages[0]);
                                 return (
                                     <Box key={item._id} className={"orders-name-price"}>
                                         <img src={imagePath} className={"order-dish-img"} alt="" />

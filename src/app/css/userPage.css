@@ -1,22 +1,44 @@
 .user-page {
     width: 100%;
     min-height: 100vh;
-    background: #0a0a0a;
     padding: 100px 0 60px;
+    position: relative;
+    background: url('/img/default.png') center 70% / cover no-repeat;
+    background-attachment: fixed;
+    background-color: #0a0a0a;
+}
+
+.user-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 0;
+}
+
+.user-page > .MuiContainer-root {
+    position: relative;
+    z-index: 1;
 }
 
 .my-page-frame {
-    display: flex;
-    flex-direction: row;
     gap: 30px;
     align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
-/* LEFT — SETTINGS FORM */
+.my-page-right {
+    flex: 1;
+    min-width: 260px;
+    max-width: 300px;
+    margin-top: 44px;   /* roughly matches the height of "Modify Member Details" + its margin on the left */
+}
 
 .my-page-left {
-    flex: 2;
-    min-width: 0;
+    flex: 1;
+    min-width: 320px;
+    max-width: 560px;
 }
 
 .menu-name {
@@ -24,6 +46,8 @@
     font-weight: 700;
     color: #ffffff;
     margin-bottom: 20px;
+    line-height: 1.2;
+    min-height: 27px; /* 22px * 1.2, so both .menu-name elements match even when one is visibility:hidden */
 }
 
 .menu-content {
@@ -36,6 +60,7 @@
 .settings .member-media-frame {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 20px;
     margin-bottom: 24px;
 }
@@ -61,8 +86,8 @@
 }
 
 .up-del-box button {
-    color: #e50914 !important;
-    min-width: auto !important;
+    color: #e50914;
+    min-width: auto;
 }
 
 .input-frame {
@@ -109,22 +134,17 @@
 
 .save-box {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     margin-top: 10px;
 }
 
 .save-box button {
-    background: #e50914 !important;
-    font-weight: 700 !important;
-    padding: 10px 32px !important;
+    background: #e50914;
+    font-weight: 700;
+    padding: 10px 32px;
 }
 
 /* RIGHT — PROFILE SUMMARY */
-
-.my-page-right {
-    flex: 1;
-    min-width: 260px;
-}
 
 .order-info-box {
     background: #151515;
@@ -139,6 +159,7 @@
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #e50914;
+    align-self: center;
 }
 
 .order-user-name {
@@ -146,6 +167,8 @@
     color: #ffffff;
     font-weight: 700;
     font-size: 17px;
+    text-align: center;
+    align-self: center;
 }
 
 .order-user-prof {
@@ -174,3 +197,4 @@
     line-height: 1.6;
     text-align: center;
 }
+

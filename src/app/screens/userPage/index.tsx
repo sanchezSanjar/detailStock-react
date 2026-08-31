@@ -8,7 +8,7 @@ import { Settings } from "./Settings";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store";
-import { serverApi } from "../../../lib/config";
+import { getImageUrl } from "../../../lib/utils/getImageUrl";
 import "../../css/userPage.css";
 
 export default function UserPage() {
@@ -24,39 +24,40 @@ export default function UserPage() {
     return (
         <div className={"user-page"}>
             <Container>
-                <Stack className={"my-page-frame"}>
-                    <Stack className={"my-page-left"}>
-                        <Box sx={{ display: "flex", flexDirection: "column" }}>
-                            <Box className={"menu-name"}>Modify Member Details</Box>
-                            <Box className={"menu-content"}>
-                                <Settings />
-                            </Box>
+                <Stack direction="row" className={"my-page-frame"}>
+                    <Stack direction="column" className={"my-page-left"}>
+                        <Box className={"menu-name"}>Modify Member Details</Box>
+                        <Box className={"menu-content"}>
+                            <Settings />
                         </Box>
                     </Stack>
 
-                    <Stack className={"my-page-right"}>
+                    <Stack direction="column" className={"my-page-right"}>
+                        <Box className={"menu-name"} sx={{ visibility: "hidden" }}>
+                            Profile
+                        </Box>
                         <Box className={"order-info-box"}>
-                            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                            <Stack direction="column" alignItems="center" sx={{ width: "100%" }}>
                                 <img
-                                    src={authMember?.memberImage ? `${serverApi}/${authMember.memberImage}` : "/icons/default-user.svg"}
+                                    src={getImageUrl(authMember?.memberImage)}
                                     className={"order-user-avatar"}
                                     alt=""
                                 />
                                 <span className={"order-user-name"}>{authMember?.memberNick}</span>
                                 <span className={"order-user-prof"}>{authMember?.memberType}</span>
-                                {/* <span className={"order-user-prof"}>
+                                <span className={"order-user-prof"}>
                                     {authMember?.memberAddress ? authMember.memberAddress : "No address"}
-                                </span> */}
-                            </Box>
+                                </span>
+                            </Stack>
                             <Box className={"user-media-box"}>
                                 <FacebookIcon />
                                 <InstagramIcon />
                                 <TelegramIcon />
                                 <YouTubeIcon />
                             </Box>
-                            {/* <p className={"user-desc"}>
+                            <p className={"user-desc"}>
                                 {authMember?.memberDesc ? authMember.memberDesc : "No description"}
-                            </p> */}
+                            </p>
                         </Box>
                     </Stack>
                 </Stack>

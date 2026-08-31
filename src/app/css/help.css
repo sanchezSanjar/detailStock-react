@@ -30,12 +30,12 @@
     font-weight: 700;
 }
 
-.table_list .Mui-selected {
-    color: #e50914 !important;
+.table_list .MuiTab-root.Mui-selected {
+    color: #e50914;
 }
 
-.MuiTabs-indicator {
-    background-color: #e50914 !important;
+.table_list .MuiTabs-indicator {
+    background-color: #e50914;
 }
 
 .help-main-content {
@@ -50,10 +50,10 @@
 }
 
 .accordion-menu .MuiAccordion-root {
-    background: #151515 !important;
-    color: #ffffff !important;
+    background: #151515;
+    color: #ffffff;
     margin-bottom: 10px;
-    border-radius: 8px !important;
+    border-radius: 8px;
 }
 
 .accordion-menu .MuiAccordionSummary-root {

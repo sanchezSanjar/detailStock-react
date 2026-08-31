@@ -71,18 +71,18 @@
     margin-left: 12px;
 }
 
-.login-btn {
-    background: #e50914 !important;
-    color: #ffffff !important;
-    border-radius: 10px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.5px !important;
-    text-transform: none !important;
-    padding: 8px 24px !important;
+.login-btn.MuiButton-root {
+    background: #e50914;
+    color: #ffffff;
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: none;
+    padding: 8px 24px;
 }
 
-.login-btn:hover {
-    background: #ff1a25 !important;
+.login-btn.MuiButton-root:hover {
+    background: #ff1a25;
     box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
 }
 
