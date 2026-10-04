@@ -1,105 +1,115 @@
 .help-page {
     width: 100%;
     min-height: 100vh;
-    padding: 100px 0 60px;
-    position: relative;
-    background: url('/img/default.png') fixed 45% / cover no-repeat;
-    background-color: #0a0a0a;
-}
-
-.help-page::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.75);
-    z-index: 0;
-}
-
-.help-page > .MuiContainer-root {
-    position: relative;
-    z-index: 1;
+    padding: 56px 0 70px;
+    background-color: var(--bg);
 }
 
 .help-container {
-    margin-top: 5cm;
     max-width: 900px;
 }
 
+.help-menu {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 0 8px;
+}
+
+.help-menu .MuiBox-root {
+    border-bottom: none !important;
+}
+
 .table_list .MuiTab-root {
-    color: #999999;
+    color: var(--muted);
     font-weight: 700;
 }
 
 .table_list .MuiTab-root.Mui-selected {
-    color: #e50914;
+    color: var(--brand);
 }
 
 .table_list .MuiTabs-indicator {
-    background-color: #e50914;
+    background-color: var(--brand);
+    height: 3px;
+    border-radius: 3px 3px 0 0;
 }
 
 .help-main-content {
-    margin-top: 30px;
+    margin-top: 20px;
+}
+
+.help-main-content .MuiTabPanel-root {
+    padding: 0;
+}
+
+.rules-frame {
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
 }
 
 .rules-frame p {
-    color: #cccccc;
-    line-height: 1.7;
+    color: #4b5563;
+    line-height: 1.75;
     font-size: 15px;
-    margin-bottom: 16px;
+    margin: 0 0 14px;
+}
+
+.rules-frame p:last-child {
+    margin-bottom: 0;
 }
 
 .accordion-menu .MuiAccordion-root {
-    background: #151515;
-    color: #ffffff;
+    background: var(--surface);
+    color: var(--text);
     margin-bottom: 10px;
-    border-radius: 8px;
+    border: 1px solid var(--line);
+    border-radius: 12px !important;
+    box-shadow: none;
 }
 
-.accordion-menu .MuiAccordionSummary-root {
-    font-weight: 600;
+.accordion-menu .MuiAccordion-root::before {
+    display: none;
+}
+
+.accordion-menu .MuiAccordion-root.Mui-expanded {
+    border-color: rgba(229, 9, 20, 0.35);
+}
+
+.accordion-menu .MuiAccordionSummary-content .MuiTypography-root {
+    font-weight: 700;
+}
+
+.accordion-menu .MuiAccordionDetails-root .MuiTypography-root {
+    color: var(--muted);
+    line-height: 1.7;
 }
 
 .accordion-menu .MuiSvgIcon-root {
-    color: #e50914;
+    color: var(--brand);
+}
+
+.admin-letter-frame {
+    padding: 28px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
 }
 
 .admin-letter-frame span {
     font-size: 24px;
-    font-weight: 700;
-    color: #ffffff;
+    font-weight: 800;
+    color: var(--text);
     display: block;
     margin-bottom: 10px;
 }
 
 .admin-letter-frame p {
-    color: #cccccc;
+    margin: 0;
+    color: var(--muted);
     font-size: 15px;
-}
-
-@media (max-width: 900px) {
-    .help-page {
-        background-attachment: scroll;
-        padding: 40px 0;
-    }
-
-    .help-container {
-        margin-top: 0;
-    }
-}
-
-@media (max-width: 600px) {
-    .rules-frame p {
-        font-size: 14px;
-    }
-
-    .admin-letter-frame span {
-        font-size: 20px;
-    }
-
-    .help-main-content .MuiTabPanel-root {
-        padding: 16px 0;
-    }
 }
 
 /* NOTICES */
@@ -113,25 +123,26 @@
     flex-direction: column;
     gap: 6px;
     padding: 18px 20px;
-    background: #151515;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-left: 3px solid #e50914;
-    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--brand);
+    border-radius: 12px;
 }
 
 .notice-date {
-    color: #8a8a8a;
+    color: var(--muted);
     font-size: 12px;
+    font-weight: 600;
 }
 
 .notice-title {
-    color: #ffffff;
+    color: var(--text);
     font-size: 17px;
 }
 
 .notice-content {
     margin: 0;
-    color: #cccccc;
+    color: #4b5563;
     font-size: 14px;
     line-height: 1.6;
     white-space: pre-line;
@@ -140,5 +151,30 @@
 .help-empty {
     padding: 40px 0;
     text-align: center;
-    color: #999999;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
+}
+
+
+@media (max-width: 900px) {
+    .help-page {
+        padding: 32px 0 48px;
+    }
+}
+
+@media (max-width: 600px) {
+    .rules-frame,
+    .admin-letter-frame {
+        padding: 18px;
+    }
+
+    .rules-frame p {
+        font-size: 14px;
+    }
+
+    .admin-letter-frame span {
+        font-size: 20px;
+    }
 }

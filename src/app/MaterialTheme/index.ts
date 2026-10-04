@@ -2,31 +2,35 @@ import { createTheme } from '@mui/material/styles';
 import { common } from '@mui/material/colors';
 import shadow from './shadow';
 import typography from './typography';
-// import { maxWidth } from '@mui/system';
+
+const fontFamily = "'Inter', 'Helvetica Neue', Arial, sans-serif";
 
 /**
  * LIGHT THEME (DEFAULT)
  */
 const light = {
 	palette: {
-		type: 'light',
+		mode: 'light',
 		background: {
-			default: '#f8f8ff',
+			default: '#f4f5f7',
 			paper: common.white,
 		},
 		primary: {
-			contrastText: '#d7b586',
-			main: '#343434',
+			main: '#e50914',
+			dark: '#c40812',
+			contrastText: common.white,
 		},
 		secondary: {
-			contrastText: '#343434',
-			main: '#d7b586',
+			main: '#1e242b',
+			contrastText: common.white,
 		},
 		text: {
-			primary: '#343434',
-			secondary: '#d7b586',
-			dark: common.black,
+			primary: '#1e242b',
+			secondary: '#6b7280',
 		},
+	},
+	shape: {
+		borderRadius: 10,
 	},
 	components: {
 		MuiContainer: {
@@ -39,15 +43,31 @@ const light = {
 		MuiCssBaseline: {
 			styleOverrides: {
 				html: { height: '100%' },
-				body: { background: "url('/img/default.png') center 45% / cover no-repeat",
-                    	backgroundColor: "#0a0a0a",
-                    	minHeight: "100vh", },
+				body: {
+					backgroundColor: '#f4f5f7',
+					color: '#1e242b',
+					fontFamily,
+					minHeight: '100vh',
+				},
+			},
+		},
+		MuiButton: {
+			defaultProps: {
+				disableElevation: true,
+			},
+			styleOverrides: {
+				root: {
+					borderRadius: 10,
+					textTransform: 'none',
+					fontWeight: 700,
+					letterSpacing: 0.2,
+				},
 			},
 		},
 	},
 	shadow,
-	typography,
-};
+	typography: { ...typography, fontFamily },
+} as const;
 
 // A custom theme for this app
 let theme = createTheme(light);

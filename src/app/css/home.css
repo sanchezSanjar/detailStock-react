@@ -1,182 +1,64 @@
+/* POPULAR PRODUCTS */
+
 .homepage .popular-products-frame {
     width: 100%;
-    height: 580px;
-    display: flex;
-    position: relative;
-    overflow: hidden;
-    background-color: #0a0a0a;
+    padding: 110px 0 60px;
+    background-color: var(--bg);
 }
 
-.homepage .popular-products-frame::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        100deg,
-        transparent 30%,
-        rgba(229, 9, 20, 0.55) 48%,
-        rgba(229, 9, 20, 0.85) 50%,
-        rgba(229, 9, 20, 0.55) 52%,
-        transparent 70%
-    );
-    background-size: 300% 100%;
-    animation: popular-swipe 5s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes popular-swipe {
-    0% {
-        background-position: 150% 0;
-    }
-    50% {
-        background-position: -50% 0;
-    }
-    100% {
-        background-position: -50% 0;
-    }
-}
-
-.homepage .popular-products-frame .popular-section {
-    margin-top: 45px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-}
-
-.homepage .popular-products-frame .popular-section .category-title {
-    text-align: center;
-    font-size: 36px;
-    font-weight: 600;
-    letter-spacing: 1.44px;
-    color: #ffffff;
-}
-
-.homepage .popular-products-frame .popular-section .cards-frame {
-    width: 100%;
-    margin-top: 43px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.homepage .popular-products-frame .popular-section .cards-frame .card {
-    width: 270px;
-    min-height: 335px;
-    cursor: pointer;
-}
-
-.homepage .popular-products-frame .cards-frame .card .card-cover {
-    background:
-        linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0) 200px),
-        linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 300px);
-}
-
-.homepage .popular-products-frame .no-data {
-    width: 100%;
-    height: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    color: #e50914;
-}
-
-.homepage .new-products-frame {
-    width: 100%;
-    background: #111111;
-    padding: 60px 0;
-}
-
+.homepage .popular-section,
 .homepage .new-products-frame .main {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.homepage .new-products-frame .main .category-title {
-    font-size: 36px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 40px;
-}
-
-.homepage .new-products-frame .main .cards-frame {
+.homepage .cards-frame {
     width: 100%;
+    margin-top: 36px;
+    display: flex;
     flex-direction: row;
-    justify-content: space-between;
     flex-wrap: wrap;
-    gap: 20px;
-}
-
-.homepage .new-products-frame .main .cards-frame .card {
-    width: 270px;
-    min-height: 335px;
-    cursor: pointer;
-}
-
-.homepage .new-products-frame .main .cards-frame .card .product-sale {
-    position: absolute;
-    margin-top: 10px;
-    z-index: 100;
-    padding: 6px 16px;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    background: #e50914;
-    border-radius: 25px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #ffffff;
+    gap: 24px;
 }
 
-.homepage .new-products-frame .main .cards-frame .card .product-detail {
-    display: flex;
-    justify-content: center;
-    margin-top: -12px;
-    border-top: 1px solid #333;
-    background-color: #1a1a1a;
-}
-
-.homepage .new-products-frame .card .product-detail .info .title {
-    color: #ffffff;
-    font-weight: 500;
-}
-
-.homepage .new-products-frame .card .product-detail .info .price {
-    margin-left: 10px;
-    color: #e50914;
-    font-weight: 600;
-}
-
-.homepage .new-products-frame .card .product-detail .info .views {
-    display: flex;
-    align-items: center;
-    color: #999999;
-}
-
-.homepage .new-products-frame .no-data {
+.homepage .no-data {
     width: 100%;
-    height: 300px;
+    padding: 60px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
-    color: #e50914;
+    font-size: 18px;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px dashed var(--line);
+    border-radius: var(--radius);
 }
+
+/* NEW PRODUCTS */
+
+.homepage .new-products-frame {
+    width: 100%;
+    background: var(--surface);
+    padding: 70px 0;
+}
+
+/* ADVERTISEMENT */
 
 .homepage .ads-section {
     width: 100%;
-    background-color: #0a0a0a;
-    padding: 40px 0;
+    background-color: var(--bg);
+    padding: 60px 0;
 }
 
 .homepage .ads-frame {
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background-color: #000;
+    background-color: var(--charcoal);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
 }
 
 .homepage .ads-video {
@@ -186,10 +68,12 @@
     display: block;
 }
 
+/* ACTIVE USERS */
+
 .homepage .active-users-frame {
     width: 100%;
-    background: #0a0a0a;
-    padding: 60px 0;
+    background: var(--surface);
+    padding: 70px 0;
 }
 
 .homepage .active-users-frame .main {
@@ -199,39 +83,46 @@
 }
 
 .homepage .active-users-frame .category-title {
-    font-size: 36px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 40px;
+    margin-bottom: 36px;
+}
+
+.homepage .active-users-frame .cards-frame {
+    margin-top: 0;
+    justify-content: center !important;
 }
 
 .homepage .active-users-frame .user-card {
-    width: 140px;
+    width: 150px;
+    padding: 20px 10px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.homepage .active-users-frame .user-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
 }
 
 .homepage .active-users-frame .user-name {
-    color: #ffffff;
-    font-weight: 600;
+    color: var(--text);
+    font-weight: 700;
     margin-top: 12px;
 }
 
 .homepage .active-users-frame .user-points {
-    color: #e50914;
+    color: var(--brand);
     font-size: 13px;
+    font-weight: 600;
 }
 
-.homepage .active-users-frame .no-data {
-    color: #999999;
-    font-size: 18px;
-}
-
-
-/* EVENTS*/
+/* EVENTS */
 
 .homepage .events-frame {
     width: 100%;
-    background: #111111;
-    padding: 60px 0;
+    background: var(--bg);
+    padding: 70px 0;
 }
 
 .homepage .events-main {
@@ -239,52 +130,57 @@
 }
 
 .homepage .events-text .category-title {
-    font-size: 36px;
-    font-weight: 700;
-    color: #ffffff;
     display: block;
-    margin-bottom: 40px;
-    text-align: center;
+    margin-bottom: 36px;
 }
 
 .homepage .events-info {
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
+    padding-bottom: 10px;
 }
 
 .homepage .events-info-frame {
     width: 350px;
-    background: #1a1a1a;
-    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
     overflow: hidden;
+}
+
+.homepage .events-img {
+    height: 190px;
+    background: var(--photo-bg);
 }
 
 .homepage .events-img-el {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
     display: block;
 }
 
 .homepage .events-desc {
-    padding: 16px;
+    padding: 16px 18px 18px;
 }
 
 .homepage .event-title-speaker strong {
-    color: #ffffff;
-    font-size: 18px;
+    color: var(--text);
+    font-size: 17px;
     display: block;
 }
 
 .homepage .spec-text-author {
-    color: #e50914;
+    color: var(--brand);
     font-size: 13px;
+    font-weight: 600;
     margin: 4px 0 0;
 }
 
 .homepage .text-desc {
-    color: #999999;
+    color: var(--muted);
     font-size: 14px;
+    line-height: 1.6;
     margin: 10px 0;
 }
 
@@ -292,7 +188,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 12px;
-    color: #777777;
+    color: var(--muted);
 }
 
 .homepage .prev-next-frame {
@@ -304,14 +200,26 @@
 
 .homepage .events-nav-prev,
 .homepage .events-nav-next {
-    background: #e50914;
-    color: #fff;
-    border: none;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--line);
     border-radius: 50%;
-    width: 50px;
-    height: 36px;
-    font-size: 30px;
+    font-size: 26px;
+    line-height: 1;
     cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.homepage .events-nav-prev:hover,
+.homepage .events-nav-next:hover {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #ffffff;
 }
 
 .homepage .events-dots {
@@ -319,64 +227,38 @@
     gap: 8px;
 }
 
+.homepage .events-dots .swiper-pagination-bullet-active {
+    background: var(--brand);
+}
+
 
 @media (max-width: 900px) {
     .homepage .popular-products-frame {
-        height: auto;
-        padding-bottom: 50px;
-    }
-
-    .homepage .popular-products-frame .popular-section .cards-frame,
-    .homepage .new-products-frame .main .cards-frame {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .homepage .popular-products-frame .popular-section .category-title,
-    .homepage .new-products-frame .main .category-title,
-    .homepage .active-users-frame .category-title,
-    .homepage .events-text .category-title {
-        font-size: 28px;
-        margin-bottom: 24px;
-    }
-
-    .homepage .popular-products-frame .popular-section .cards-frame {
-        margin-top: 0;
+        padding: 80px 0 40px;
     }
 
     .homepage .new-products-frame,
     .homepage .active-users-frame,
     .homepage .events-frame {
-        padding: 40px 0;
+        padding: 44px 0;
     }
 
-    .homepage .active-users-frame .cards-frame {
-        justify-content: center !important;
+    .homepage .cards-frame {
+        margin-top: 24px;
+        gap: 16px;
     }
 
     .homepage .ads-section {
-        padding: 24px 0;
+        padding: 32px 0;
     }
 }
 
 @media (max-width: 600px) {
-    .homepage .popular-products-frame .popular-section .cards-frame .card,
-    .homepage .new-products-frame .main .cards-frame .card {
-        width: 100%;
-        max-width: 360px;
-    }
-
     .homepage .active-users-frame .user-card {
-        width: 120px;
+        width: 130px;
     }
 
     .homepage .events-info-frame {
         width: 85vw;
-    }
-
-    .homepage .no-data {
-        font-size: 18px;
-        text-align: center;
     }
 }

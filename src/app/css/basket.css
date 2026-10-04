@@ -1,7 +1,7 @@
 .basket-frame {
     padding: 16px;
-    background: #151515;
-    color: #ffffff;
+    background: var(--surface);
+    color: var(--text);
     max-height: 480px;
     overflow-y: auto;
 }
@@ -9,7 +9,7 @@
 .all-check-box {
     padding: 24px 16px;
     text-align: center;
-    color: #999999;
+    color: var(--muted);
 }
 
 .orders-main-wrapper {
@@ -19,7 +19,7 @@
 }
 
 .orders-wrapper {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--line);
     padding-bottom: 16px;
 }
 
@@ -31,7 +31,7 @@
 .basket-info-box {
     position: relative;
     display: grid;
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 64px 1fr;
     grid-template-rows: auto auto auto;
     column-gap: 12px;
     align-items: center;
@@ -45,25 +45,34 @@
     z-index: 1;
 }
 
+.cancel-btn .MuiSvgIcon-root {
+    color: #b0b6bd;
+    transition: color 0.2s ease;
+}
+
+.cancel-btn:hover .MuiSvgIcon-root {
+    color: var(--brand);
+}
+
 .product-img {
     grid-row: 1 / 3;
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
-    background: #0a0a0a;
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: var(--photo-bg);
 }
 
-.product-name {
+.basket-info-box .product-name {
     grid-column: 2;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
-.product-price {
+.basket-info-box .product-price {
     grid-column: 2;
     font-size: 13px;
-    color: #999999;
+    color: var(--muted);
     margin: 4px 0;
 }
 
@@ -74,29 +83,33 @@
 }
 
 .col-2 button {
-    width: 28px;
-    height: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: transparent;
-    color: #ffffff;
-    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+    border: 1.5px solid #cfd4da;
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 8px;
+    font-weight: 700;
     cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
 }
 
 .col-2 button:hover {
-    border-color: #e50914;
+    border-color: var(--brand);
+    color: var(--brand);
 }
 
 .basket-order {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid var(--line);
 }
 
-.price {
+.basket-order .price {
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 800;
 }

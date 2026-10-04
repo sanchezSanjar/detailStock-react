@@ -80,7 +80,7 @@ export default function OrdersPage() {
                             <Pagination
                                 count={currentOrders.length === ORDERS_LIMIT ? currentPage + 1 : currentPage}
                                 page={currentPage}
-                                color={"secondary"}
+                                color={"primary"}
                                 onChange={(_e, page) => setPages((prev) => ({ ...prev, [value]: page }))}
                             />
                         </Stack>

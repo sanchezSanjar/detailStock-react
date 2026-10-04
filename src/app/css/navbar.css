@@ -1,26 +1,22 @@
 .navbar-wrapper {
-    position: relative;
+    position: sticky;
+    top: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 15px 0;
-    background-color: #0a0a0a;
-    z-index: 10;
-    
-}
-
-.home-navbar,
-.other-navbar {
-    width: fit-content;
-    padding: 6px 12px;
-    background: transparent;
-    backdrop-filter: none;         /* blur ni butunlay olib tashlash */
-    -webkit-backdrop-filter: none;
-    border: none;
-    box-shadow: none;
+    padding: 12px 0;
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+    z-index: 1100;
 }
 
 .navbar-inner {
+    width: 100%;
+    max-width: 1300px;
+    padding: 0 24px;
+    box-sizing: border-box;
     gap: 40px;
 }
 
@@ -29,89 +25,87 @@
 }
 
 .logo-text {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #ffffff;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: var(--text);
 }
 
 .logo-text strong {
-    color: #e50914;
+    color: var(--brand);
 }
 
 .nav-links {
     gap: 8px;
 }
 
+.nav-menu-links {
+    gap: 4px;
+}
+
 .nav-links a {
     display: block;
-    padding: 12px 20px;
-    color: #ffffff;
+    padding: 10px 16px;
+    color: var(--text);
     text-decoration: none;
     font-size: 15px;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    border-radius: 11px;
-    transition: all 0.25s ease;
+    border-radius: 10px;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .nav-links .hover-line a:hover {
-    background: #e50914;
-    color: #ffffff;
-    box-shadow: 0 0 20px rgba(229, 9, 20, 0.45);
+    background: var(--brand-soft);
+    color: var(--brand);
 }
 
-/* .nav-links .hover-line a.underline {
-    background: #e50914;
-    color: #ffffff;
-    box-shadow: 0 0 20px rgba(229, 9, 20, 0.35);
-} */
+.nav-links .hover-line a.underline {
+    color: var(--brand);
+}
 
 .login-box {
-    margin-left: 12px;
+    margin-left: 8px;
 }
 
 .login-btn.MuiButton-root {
-    background: #e50914;
+    background: var(--brand);
     color: #ffffff;
     border-radius: 10px;
     font-weight: 700;
-    letter-spacing: 0.5px;
     text-transform: none;
     padding: 8px 24px;
 }
 
 .login-btn.MuiButton-root:hover {
-    background: #ff1a25;
-    box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+    background: var(--brand-dark);
 }
 
 .user-avatar img {
+    display: block;
     width: 72px;
     height: 72px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #e50914;
+    border: 2px solid var(--brand);
+    transition: transform 0.2s ease;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #0a0a0a;   /* solid color only, no image, no url() */
-    min-height: 100vh;
+.user-avatar img:hover {
+    transform: scale(1.05);
 }
+
 
 /* MOBILE MENU */
 
 .nav-burger.MuiIconButton-root {
     display: none;
-    color: #ffffff;
+    color: var(--text);
 }
 
 .nav-drawer.MuiPaper-root {
     width: 260px;
-    background: #111111;
-    color: #ffffff;
+    background: var(--surface);
+    color: var(--text);
 }
 
 .nav-drawer-header {
@@ -121,7 +115,7 @@ body {
 }
 
 .nav-drawer-header .MuiIconButton-root {
-    color: #ffffff;
+    color: var(--text);
 }
 
 .nav-drawer-links {
@@ -132,21 +126,25 @@ body {
 .nav-drawer-links a {
     display: block;
     padding: 14px 16px;
-    color: #ffffff;
+    color: var(--text);
     text-decoration: none;
     font-size: 16px;
     font-weight: 600;
     border-radius: 10px;
 }
 
-.nav-drawer-links a.underline,
-.nav-drawer-links a:hover {
-    background: #e50914;
+.nav-drawer-links a.underline {
+    background: var(--brand);
+    color: #ffffff;
+}
+
+.nav-drawer-links a:not(.underline):hover {
+    background: var(--brand-soft);
+    color: var(--brand);
 }
 
 @media (max-width: 900px) {
     .navbar-inner {
-        width: 100%;
         gap: 12px;
         padding: 0 16px;
     }
@@ -178,7 +176,7 @@ body {
     }
 
     .logo-text {
-        font-size: 17px;
+        font-size: 18px;
     }
 
     .user-avatar img {

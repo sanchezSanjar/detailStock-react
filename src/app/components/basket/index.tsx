@@ -54,8 +54,8 @@ export function Basket() {
                 aria-expanded={open ? "true" : undefined}
                 onClick={handleClick}
             >
-                <Badge badgeContent={totalQuantity} color="secondary">
-                    <ShoppingCartIcon sx={{ color: "#ffffff" }} />
+                <Badge badgeContent={totalQuantity} color="primary">
+                    <ShoppingCartIcon sx={{ color: "#1e242b" }} />
                 </Badge>
             </IconButton>
 
@@ -70,10 +70,10 @@ export function Basket() {
                         elevation: 0,
                         sx: {
                             overflow: "visible",
-                            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                            filter: "drop-shadow(0px 6px 16px rgba(30,36,43,0.16))",
                             mt: 1.5,
                             minWidth: 320,
-                            backgroundColor: "#151515",
+                            backgroundColor: "#ffffff",
                             "&:before": {
                                 content: '""',
                                 display: "block",
@@ -82,7 +82,7 @@ export function Basket() {
                                 right: 14,
                                 width: 10,
                                 height: 10,
-                                bgcolor: "#151515",
+                                bgcolor: "#ffffff",
                                 transform: "translateY(-50%) rotate(45deg)",
                                 zIndex: 0,
                             },

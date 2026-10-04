@@ -18,7 +18,7 @@ const NotFoundPage = lazy(() => import("./screens/notFoundPage"));
 
 const PageLoader = () => (
     <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "60vh" }}>
-        <CircularProgress color="secondary" />
+        <CircularProgress color="primary" />
     </Box>
 );
 

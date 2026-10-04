@@ -1,18 +1,17 @@
 .auth-page {
     width: 100%;
-    min-height: 100vh;
-    padding: 100px 0 60px;
+    min-height: calc(100vh - 80px);
+    padding: 64px 0;
     position: relative;
     background: url('/img/default.png') center 70% / cover no-repeat;
-    background-attachment: fixed;
-    background-color: #0a0a0a;
+    background-color: var(--charcoal);
 }
 
 .auth-page::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(30, 36, 43, 0.55);
     z-index: 0;
 }
 
@@ -23,57 +22,77 @@
 
 .auth-frame {
     width: 100%;
+    box-sizing: border-box;
     padding: 40px 36px;
-    background: rgba(20, 20, 20, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
+    background: var(--surface);
+    border-radius: 20px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
 }
 
 .auth-title.MuiTypography-root {
-    font-size: 32px;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 8px;
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 6px;
 }
 
 .auth-subtext.MuiTypography-root {
-    color: #999999;
+    color: var(--muted);
     font-size: 14px;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
 }
 
 .auth-subtext a {
-    color: #e50914;
+    color: var(--brand);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
+}
+
+.auth-subtext a:hover {
+    text-decoration: underline;
 }
 
 .auth-input-group {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .auth-input-group label {
     display: block;
-    color: #cccccc;
+    color: var(--text);
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 8px;
 }
 
 .auth-input-group .MuiOutlinedInput-root {
-    background: rgba(255, 255, 255, 0.06);
+    background: var(--surface);
+    border-radius: 10px;
+}
+
+.auth-input-group .MuiOutlinedInput-notchedOutline {
+    border-color: #cfd4da;
+    border-width: 1.5px;
+}
+
+.auth-input-group .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--brand);
 }
 
 .auth-input-group input {
-    color: #ffffff;
+    color: var(--text);
 }
 
 .auth-btn.MuiButton-root {
     width: 100%;
-    background: #e50914;
-    padding: 12px 0;
-    font-weight: 700;
-    margin-top: 10px;
+    background: var(--brand);
+    padding: 13px 0;
+    font-size: 15px;
+    margin-top: 8px;
+    border-radius: 12px;
+}
+
+.auth-btn.MuiButton-root:hover {
+    background: var(--brand-dark);
 }
 
 .auth-row {
@@ -85,9 +104,9 @@
     flex: 1;
 }
 
+
 @media (max-width: 900px) {
     .auth-page {
-        background-attachment: scroll;
         padding: 40px 0;
     }
 }

@@ -71,7 +71,7 @@ export default function ChosenProduct() {
                             </div>
                         </Box>
                         <p className={"product-desc"}>{chosenProduct.productDesc ? chosenProduct.productDesc : "No Description"}</p>
-                        <Divider height="1" width="100%" bg="#000000" />
+                        <Divider height="1" width="100%" bg="#e3e6ea" />
                         <div className={"product-price"}>
                             <span>Price:</span>
                             <span>${chosenProduct.productPrice}</span>
