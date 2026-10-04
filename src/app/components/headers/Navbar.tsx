@@ -1,8 +1,7 @@
 import { useState, type MouseEvent } from "react";
 import { Stack, Box, Button, Menu, MenuItem, ListItemIcon } from "@mui/material";
 import Logout from "@mui/icons-material/Logout";
-import Person from "@mui/icons-material/Person";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { Basket } from "../basket";
 import { logout } from "../../slices/authSlice";
@@ -14,15 +13,9 @@ const defaultUserIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
 export default function Navbar() {
     const authMember = useAppSelector((state) => state.auth.authMember);
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
     const handleMenuClose = () => setAnchorEl(null);
-
-    const handleMyPage = () => {
-        handleMenuClose();
-        navigate("/member-page");
-    };
 
     const handleLogout = async () => {
         handleMenuClose();
@@ -105,10 +98,6 @@ export default function Navbar() {
                                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                             >
-                                <MenuItem onClick={handleMyPage}>
-                                    <ListItemIcon><Person fontSize="small" /></ListItemIcon>
-                                    My Page
-                                </MenuItem>
                                 <MenuItem onClick={handleLogout}>
                                     <ListItemIcon><Logout fontSize="small" /></ListItemIcon>
                                     Logout
