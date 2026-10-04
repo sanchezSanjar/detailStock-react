@@ -1,5 +1,8 @@
-import { Stack, Box, Button } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { useState, type MouseEvent } from "react";
+import { Stack, Box, Button, Menu, MenuItem, ListItemIcon } from "@mui/material";
+import Logout from "@mui/icons-material/Logout";
+import Person from "@mui/icons-material/Person";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../store";
 import { Basket } from "../basket";
@@ -12,8 +15,18 @@ const defaultUserIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
 export default function Navbar() {
     const authMember = useSelector((state: RootState) => state.auth.authMember);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+    const handleMenuClose = () => setAnchorEl(null);
+
+    const handleMyPage = () => {
+        handleMenuClose();
+        navigate("/member-page");
+    };
 
     const handleLogout = async () => {
+        handleMenuClose();
         try {
             const member = new MemberService();
             await member.logout();
@@ -75,12 +88,34 @@ export default function Navbar() {
                             </NavLink>
                         </Box>
                     ) : (
-                        <Box className="user-avatar" onClick={handleLogout} sx={{ cursor: "pointer" }}>
-                            <img
-                                src={getImageUrl(authMember.memberImage, defaultUserIcon)}
-                                alt="user"
-                            />
-                        </Box>
+                        <>
+                            <Box
+                                className="user-avatar"
+                                onClick={(e: MouseEvent<HTMLElement>) => setAnchorEl(e.currentTarget)}
+                                sx={{ cursor: "pointer" }}
+                            >
+                                <img
+                                    src={getImageUrl(authMember.memberImage, defaultUserIcon)}
+                                    alt="user"
+                                />
+                            </Box>
+                            <Menu
+                                anchorEl={anchorEl}
+                                open={Boolean(anchorEl)}
+                                onClose={handleMenuClose}
+                                transformOrigin={{ horizontal: "right", vertical: "top" }}
+                                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                            >
+                                <MenuItem onClick={handleMyPage}>
+                                    <ListItemIcon><Person fontSize="small" /></ListItemIcon>
+                                    My Page
+                                </MenuItem>
+                                <MenuItem onClick={handleLogout}>
+                                    <ListItemIcon><Logout fontSize="small" /></ListItemIcon>
+                                    Logout
+                                </MenuItem>
+                            </Menu>
+                        </>
                     )}
                 </Stack>
             </Stack>
