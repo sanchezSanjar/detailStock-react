@@ -1,11 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { Order } from "../../../lib/types/order";
-
-interface OrdersPageState {
-    pausedOrders: Order[];
-    processOrders: Order[];
-    finishedOrders: Order[];
-}
+import type { OrdersPageState } from "../../../lib/types/screen";
 
 const initialState: OrdersPageState = {
     pausedOrders: [],
