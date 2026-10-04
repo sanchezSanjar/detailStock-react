@@ -31,6 +31,7 @@ export default function OrdersPage() {
     const [orderInquiry] = useState<OrderInquiry>({ page: 1, limit: 5, orderStatus: OrderStatus.PAUSE });
 
     useEffect(() => {
+        if (!authMember) return;
         const order = new OrderService();
 
         order.getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
@@ -44,7 +45,7 @@ export default function OrdersPage() {
         order.getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
             .then((data) => setFinishedOrders(data))
             .catch((err) => console.log(err));
-    }, [orderInquiry, orderBuilder]);
+    }, [authMember, orderInquiry, orderBuilder]);
 
     useEffect(() => {
         if (!authMember) navigate("/");

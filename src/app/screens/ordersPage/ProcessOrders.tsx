@@ -70,7 +70,7 @@ export default function ProcessOrders({ setValue, setOrderBuilder }: ProcessOrde
                                 <p>Delivery: ${order.orderDelivery}</p>
                                 <p>Total: ${order.orderTotal}</p>
                             </Box>
-                            <p className={"data-compl"}>{moment().format("YY-MM-DD HH:mm")}</p>
+                            <p className={"data-compl"}>{moment(order.updatedAt).format("YY-MM-DD HH:mm")}</p>
                             <Button onClick={() => finishOrderHandler(order._id)} variant="contained" className={"verify-button"}>
                                 Verify to Fulfil
                             </Button>
