@@ -101,3 +101,44 @@
         padding: 16px 0;
     }
 }
+
+/* NOTICES */
+
+.notice-list {
+    gap: 14px;
+}
+
+.notice-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px;
+    background: #151515;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid #e50914;
+    border-radius: 8px;
+}
+
+.notice-date {
+    color: #8a8a8a;
+    font-size: 12px;
+}
+
+.notice-title {
+    color: #ffffff;
+    font-size: 17px;
+}
+
+.notice-content {
+    margin: 0;
+    color: #cccccc;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.help-empty {
+    padding: 40px 0;
+    text-align: center;
+    color: #999999;
+}
