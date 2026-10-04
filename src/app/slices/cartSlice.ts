@@ -14,7 +14,12 @@ interface CartState {
 
 const loadCartFromStorage = (): CartItem[] => {
     const stored = localStorage.getItem("cartData");
-    return stored ? JSON.parse(stored) : [];
+    try {
+        const items = stored ? JSON.parse(stored) : [];
+        return Array.isArray(items) ? items.filter((item) => item?.productId) : [];
+    } catch {
+        return [];
+    }
 };
 
 const saveCartToStorage = (items: CartItem[]) => {
