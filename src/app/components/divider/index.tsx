@@ -6,10 +6,12 @@ export interface IDividerProps {
     bg?: string;
 }
 
+const toCssSize = (value?: string) => (value && /^\d+(\.\d+)?$/.test(value) ? `${value}px` : value);
+
 const DividerComponent = styled.span<IDividerProps>`
     display: flex;
-    min-width: ${({ width }) => `${width}px`};
-    min-height: ${({ height }) => `${height}px`};
+    min-width: ${({ width }) => toCssSize(width)};
+    min-height: ${({ height }) => toCssSize(height)};
     background: ${({ bg }) => `${bg}`};
 `;
 
