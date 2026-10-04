@@ -7,7 +7,6 @@ import { createLogger } from "redux-logger";
 import productPageReducer from "./screens/productsPage/slice"
 import ordersPageReducer from "./screens/ordersPage/slice"
 
-const logger = createLogger();
 
 export const store = configureStore({
     reducer: {
@@ -18,7 +17,7 @@ export const store = configureStore({
         ordersPage: ordersPageReducer
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(logger),
+        import.meta.env.DEV ? getDefaultMiddleware().concat(createLogger()) : getDefaultMiddleware(),
 });
 
 // Server session expired or cookie missing: drop the stale member kept in localStorage
