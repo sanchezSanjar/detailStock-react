@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Container, Stack, Box, Button, Rating } from "@mui/material";
+import { Container, Stack, Box, Button } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
@@ -63,7 +63,6 @@ export default function ChosenProduct() {
                         <span className={"resto-name"}>{shop?.memberNick}</span>
                         <span className={"resto-name"}>{shop?.memberPhone}</span>
                         <Box className={"rating-box"}>
-                            <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
                             <div className={"evaluation-box"}>
                                 <div className={"product-view"}>
                                     <RemoveRedEyeIcon sx={{ mr: "10px" }} />
