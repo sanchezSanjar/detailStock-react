@@ -97,7 +97,7 @@
 .spec-input,
 .spec-textarea {
     background: var(--surface);
-    border: 1.5px solid #cfd4da;
+    border: 1.5px solid var(--input-border);
     border-radius: 10px;
     padding: 12px 14px;
     color: var(--text);

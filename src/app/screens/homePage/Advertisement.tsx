@@ -13,7 +13,7 @@ export default function Advertisement() {
                         playsInline
                         data-video-media=""
                     >
-                        <source type="video/mp4" src="/video/detailStock-ads.mp4" />
+                        <source type="video/mp4" src="/video/detailStock-ads-1.mp4" />
                     </video>
                 </div>
             </Container>

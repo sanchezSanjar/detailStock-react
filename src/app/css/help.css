@@ -51,7 +51,7 @@
 }
 
 .rules-frame p {
-    color: #4b5563;
+    color: var(--text-soft);
     line-height: 1.75;
     font-size: 15px;
     margin: 0 0 14px;
@@ -142,7 +142,7 @@
 
 .notice-content {
     margin: 0;
-    color: #4b5563;
+    color: var(--text-soft);
     font-size: 14px;
     line-height: 1.6;
     white-space: pre-line;

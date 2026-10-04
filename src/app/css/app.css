@@ -1,17 +1,21 @@
+/* Dark graphite theme: layered greys instead of flat black */
 :root {
     --brand: #e50914;
     --brand-dark: #c40812;
-    --brand-soft: #fdecec;
-    --bg: #f4f5f7;
-    --surface: #ffffff;
-    --surface-2: #f0f2f5;
-    --line: #e3e6ea;
-    --text: #1e242b;
-    --muted: #6b7280;
-    --charcoal: #1e242b;
+    --brand-soft: rgba(229, 9, 20, 0.14);
+    --bg: #121418;
+    --surface: #1b1f25;
+    --surface-2: #242a31;
+    --line: #2e353e;
+    --input-border: #424a55;
+    --text: #f1f3f5;
+    --text-soft: #c3c9d0;
+    --muted: #8f98a3;
+    --charcoal: #0b0d10;
+    --nav-bg: rgba(18, 20, 24, 0.9);
     --photo-bg: #e4e7ea;
     --radius: 16px;
-    --shadow: 0 10px 30px rgba(30, 36, 43, 0.08);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 body {
@@ -56,17 +60,29 @@ body {
     flex-direction: column;
 }
 
+/* background video, same clip as the admin login */
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
 .hero-section::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, rgba(30, 36, 43, 0.75) 0%, rgba(30, 36, 43, 0.35) 55%, rgba(30, 36, 43, 0) 100%);
-    z-index: 0;
+    background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0.1) 100%),
+        linear-gradient(to bottom, rgba(18, 20, 24, 0) 70%, var(--bg) 100%);
+    z-index: 1;
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     flex: 1;
     display: flex;
     align-items: center;
@@ -141,13 +157,13 @@ body {
 
 .stats-bar {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 900px;
     width: calc(100% - 32px);
     padding: 32px 0;
     background: var(--surface);
     border-radius: var(--radius);
-    box-shadow: 0 20px 40px rgba(30, 36, 43, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: center;
     margin: 0 auto -60px;

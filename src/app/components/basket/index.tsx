@@ -55,7 +55,7 @@ export function Basket() {
                 onClick={handleClick}
             >
                 <Badge badgeContent={totalQuantity} color="primary">
-                    <ShoppingCartIcon sx={{ color: "#1e242b" }} />
+                    <ShoppingCartIcon sx={{ color: "var(--text)" }} />
                 </Badge>
             </IconButton>
 
@@ -70,10 +70,11 @@ export function Basket() {
                         elevation: 0,
                         sx: {
                             overflow: "visible",
-                            filter: "drop-shadow(0px 6px 16px rgba(30,36,43,0.16))",
+                            filter: "drop-shadow(0px 10px 24px rgba(0,0,0,0.45))",
                             mt: 1.5,
                             minWidth: 320,
-                            backgroundColor: "#ffffff",
+                            backgroundColor: "var(--surface)",
+                            border: "1px solid var(--line)",
                             "&:before": {
                                 content: '""',
                                 display: "block",
@@ -82,7 +83,7 @@ export function Basket() {
                                 right: 14,
                                 width: 10,
                                 height: 10,
-                                bgcolor: "#ffffff",
+                                bgcolor: "var(--surface)",
                                 transform: "translateY(-50%) rotate(45deg)",
                                 zIndex: 0,
                             },

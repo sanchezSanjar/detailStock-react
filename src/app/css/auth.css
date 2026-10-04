@@ -11,7 +11,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(30, 36, 43, 0.55);
+    background: rgba(0, 0, 0, 0.55);
     z-index: 0;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .auth-input-group .MuiOutlinedInput-notchedOutline {
-    border-color: #cfd4da;
+    border-color: var(--input-border);
     border-width: 1.5px;
 }
 

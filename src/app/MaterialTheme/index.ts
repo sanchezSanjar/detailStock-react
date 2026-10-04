@@ -6,14 +6,14 @@ import typography from './typography';
 const fontFamily = "'Inter', 'Helvetica Neue', Arial, sans-serif";
 
 /**
- * LIGHT THEME (DEFAULT)
+ * DARK GRAPHITE THEME (matches the tokens in app.css)
  */
-const light = {
+const dark = {
 	palette: {
-		mode: 'light',
+		mode: 'dark',
 		background: {
-			default: '#f4f5f7',
-			paper: common.white,
+			default: '#121418',
+			paper: '#1b1f25',
 		},
 		primary: {
 			main: '#e50914',
@@ -21,13 +21,14 @@ const light = {
 			contrastText: common.white,
 		},
 		secondary: {
-			main: '#1e242b',
+			main: '#2e353e',
 			contrastText: common.white,
 		},
 		text: {
-			primary: '#1e242b',
-			secondary: '#6b7280',
+			primary: '#f1f3f5',
+			secondary: '#8f98a3',
 		},
+		divider: '#2e353e',
 	},
 	shape: {
 		borderRadius: 10,
@@ -44,8 +45,8 @@ const light = {
 			styleOverrides: {
 				html: { height: '100%' },
 				body: {
-					backgroundColor: '#f4f5f7',
-					color: '#1e242b',
+					backgroundColor: '#121418',
+					color: '#f1f3f5',
 					fontFamily,
 					minHeight: '100vh',
 				},
@@ -70,7 +71,7 @@ const light = {
 } as const;
 
 // A custom theme for this app
-let theme = createTheme(light);
+let theme = createTheme(dark);
 theme = createTheme(theme, {
 	components: {
 		MuiContainer: {

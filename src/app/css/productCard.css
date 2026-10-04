@@ -14,7 +14,7 @@
 .product-card:hover {
     transform: translateY(-4px);
     border-color: rgba(229, 9, 20, 0.35);
-    box-shadow: 0 14px 30px rgba(30, 36, 43, 0.12);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
 }
 
 /* PHOTO: whole image, grey fills the space its shape leaves */
@@ -51,13 +51,13 @@
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.3px;
-    box-shadow: 0 2px 8px rgba(30, 36, 43, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product-card .product-badge.sold-out {
     left: auto;
     right: 12px;
-    background: var(--text);
+    background: var(--brand);
     color: #ffffff;
 }
 

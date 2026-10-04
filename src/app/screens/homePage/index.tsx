@@ -11,6 +11,7 @@ import MemberService from "../../services/MemberService";
 import Advertisement from "./Advertisement";
 import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
+import InfoCenter from "./InfoCenter";
 
 
 export default function HomePage() {
@@ -37,6 +38,9 @@ export default function HomePage() {
     <div className="homepage">
 
         <div className="hero-section">
+            <video className="hero-video" autoPlay muted loop playsInline poster="/img/default.png">
+                <source type="video/mp4" src="/video/detailStock-ads.mp4" />
+            </video>
             <Container maxWidth={false} className="hero-content">
                 <Stack className="hero-text">
                     <Typography className="hero-title">
@@ -66,6 +70,7 @@ export default function HomePage() {
         <Advertisement />
         <ActiveUsers />
         <Events />
+        <InfoCenter />
 
     </div>
 );

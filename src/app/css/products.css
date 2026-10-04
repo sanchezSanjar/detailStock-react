@@ -39,7 +39,7 @@
     align-items: center;
     padding: 6px;
     background: var(--surface);
-    border: 1.5px solid #cfd4da;
+    border: 1.5px solid var(--input-border);
     border-radius: 14px;
     box-shadow: var(--shadow);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -69,7 +69,7 @@
 }
 
 .products .single-search-input::placeholder {
-    color: #9aa1aa;
+    color: var(--muted);
 }
 
 .products .single-button-search.MuiButton-root {
@@ -100,7 +100,7 @@
 
 .products .MuiButton-outlined {
     background: var(--surface);
-    border-color: #cfd4da;
+    border-color: var(--input-border);
     color: var(--text);
 }
 
@@ -309,7 +309,7 @@
 }
 
 .chosen-product .product-desc {
-    color: #4b5563;
+    color: var(--text-soft);
     font-size: 15px;
     line-height: 1.7;
     margin: 8px 0 16px;

@@ -46,7 +46,7 @@
 }
 
 .cancel-btn .MuiSvgIcon-root {
-    color: #b0b6bd;
+    color: var(--muted);
     transition: color 0.2s ease;
 }
 
@@ -85,7 +85,7 @@
 .col-2 button {
     width: 30px;
     height: 30px;
-    border: 1.5px solid #cfd4da;
+    border: 1.5px solid var(--input-border);
     background: var(--surface);
     color: var(--text);
     border-radius: 8px;
