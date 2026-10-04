@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { incrementItem, decrementItem, removeFromCart } from "../../slices/cartSlice";
 import "../../css/basket.css";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
+import { formatPrice } from "../../../lib/utils/formatPrice";
 import OrderService from "../../services/OrderService";
 import { clearCart } from "../../slices/cartSlice";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
@@ -115,7 +116,7 @@ export function Basket() {
                                             alt={item.productName}
                                         />
                                         <span className={"product-name"}>{item.productName}</span>
-                                        <p className={"product-price"}>${item.productPrice} x {item.quantity}</p>
+                                        <p className={"product-price"}>{formatPrice(item.productPrice)} x {item.quantity}</p>
                                         <Box sx={{ minWidth: 120 }}>
                                             <div className="col-2">
                                                 <button className="remove" onClick={() => dispatch(decrementItem(item.productId))}>-</button>{" "}
@@ -131,7 +132,7 @@ export function Basket() {
                     {cartItems.length > 0 && (
                         <Box className={"basket-order"}>
                             <Typography className={"price"}>
-                                Total: ${totalPrice.toFixed(2)} ({totalQuantity} items)
+                                Total: {formatPrice(totalPrice)} ({totalQuantity} items)
                             </Typography>
                             <Button startIcon={<ShoppingCartIcon />} variant={"contained"} onClick={handleOrder}>
                                 Order

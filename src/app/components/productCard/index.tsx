@@ -5,6 +5,7 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import type { Product } from "../../../lib/types/product";
 import { ProductVolume } from "../../../lib/enums/product.enum";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
+import { formatPrice } from "../../../lib/utils/formatPrice";
 import "../../css/productCard.css";
 
 interface ProductCardProps {
@@ -34,7 +35,7 @@ export default function ProductCard({ product, onClick, onAddToCart }: ProductCa
             <div className={"product-body"}>
                 <span className={"product-name"} title={product.productName}>{product.productName}</span>
                 <div className={"product-meta"}>
-                    <span className={"product-price"}>${product.productPrice}</span>
+                    <span className={"product-price"}>{formatPrice(product.productPrice)}</span>
                     <span className={"product-views"}>
                         <VisibilityOutlinedIcon fontSize="inherit" />
                         {product.productViews}

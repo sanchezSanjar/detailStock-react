@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 import ProductService from "../../services/ProductService";
 import MemberService from "../../services/MemberService";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
+import { formatPrice } from "../../../lib/utils/formatPrice";
 import { addToCart } from "../../slices/cartSlice";
 import  "../../css/products.css";
 
@@ -74,7 +75,7 @@ export default function ChosenProduct() {
                         <Divider height="1" width="100%" bg="var(--line)" />
                         <div className={"product-price"}>
                             <span>Price:</span>
-                            <span>${chosenProduct.productPrice}</span>
+                            <span>{formatPrice(chosenProduct.productPrice)}</span>
                         </div>
                         <div className={"button-box"}>
                             <Button

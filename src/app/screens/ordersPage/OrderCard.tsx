@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Box } from "@mui/material";
 import type { Order, OrderItem } from "../../../lib/types/order";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
+import { formatPrice } from "../../../lib/utils/formatPrice";
 
 interface OrderCardProps {
     order: Order;
@@ -21,9 +22,9 @@ export default function OrderCard({ order, children }: OrderCardProps) {
                             <img src={imagePath} className={"order-dish-img"} alt={product.productName} />
                             <p className={"title-dish"}>{product.productName}</p>
                             <Box className={"price-box"}>
-                                <p>${item.itemPrice}</p>
+                                <p>{formatPrice(item.itemPrice)}</p>
                                 <p>x {item.itemQuantity}</p>
-                                <p style={{ marginLeft: "15px" }}>${item.itemQuantity * item.itemPrice}</p>
+                                <p style={{ marginLeft: "15px" }}>{formatPrice(item.itemQuantity * item.itemPrice)}</p>
                             </Box>
                         </Box>
                     );
@@ -32,9 +33,9 @@ export default function OrderCard({ order, children }: OrderCardProps) {
 
             <Box className={"total-price-box"}>
                 <Box className={"box-total"}>
-                    <p>Product price: ${order.orderTotal - order.orderDelivery}</p>
-                    <p>Delivery: ${order.orderDelivery}</p>
-                    <p>Total: ${order.orderTotal}</p>
+                    <p>Product price: {formatPrice(order.orderTotal - order.orderDelivery)}</p>
+                    <p>Delivery: {formatPrice(order.orderDelivery)}</p>
+                    <p>Total: {formatPrice(order.orderTotal)}</p>
                 </Box>
                 {children}
             </Box>
