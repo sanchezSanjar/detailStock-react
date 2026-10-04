@@ -66,7 +66,7 @@ export default function Products() {
     };
 
     const searchProductHandler = () => {
-        setProductSearch((prev) => ({ ...prev, search: searchText }));
+        setProductSearch((prev) => ({ ...prev, page: 1, search: searchText.trim() }));
     };
 
     const paginationHandler = (_e: ChangeEvent<unknown>, value: number) => {
@@ -85,7 +85,7 @@ export default function Products() {
     };
 
     const filteredProducts = products.filter((product: Product) =>
-    product.productName.toLowerCase().includes(searchText.toLowerCase())
+    product.productName.toLowerCase().includes(searchText.trim().toLowerCase())
     );
 
     const handleAddToCart = (product: Product, e: React.MouseEvent) => {
@@ -243,7 +243,7 @@ export default function Products() {
                         </Stack>
                     <Stack className="pagination-section">
                         <Pagination
-                            count={products.length !== 0 ? productSearch.page + 1 : productSearch.page}
+                            count={products.length === productSearch.limit ? productSearch.page + 1 : productSearch.page}
                             page={productSearch.page}
                             renderItem={(item) => (
                                 <PaginationItem

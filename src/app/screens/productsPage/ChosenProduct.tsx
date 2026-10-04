@@ -29,7 +29,6 @@ const shopRetriever = createSelector(retrieveShop, (shop) => ({ shop }));
 
 export default function ChosenProduct() {
     const { productId } = useParams<{ productId: string }>();
-    console.log("ChosenProduct productId:", productId);
     const dispatch = useDispatch();
     const { setShop, setChosenProduct } = actionDispatch(dispatch);
     const { chosenProduct } = useSelector(chosenProductRetriever);
@@ -48,14 +47,14 @@ export default function ChosenProduct() {
             .catch((err) => console.log(err));
     }, [productId]);
 
-    if (!chosenProduct) return null;
+    if (!chosenProduct || chosenProduct._id !== productId) return null;
 
     return (
         <div className={"chosen-product"}>
             <Box className={"title"}>Product Detail</Box>
             <Container className={"product-container"}>
                 <Stack className={"chosen-product-slider"}>
-                    <Swiper loop={true} spaceBetween={10} navigation={true} modules={[Navigation]} className="swiper-area">
+                    <Swiper loop={chosenProduct.productImages.length > 1} spaceBetween={10} navigation={true} modules={[Navigation]} className="swiper-area">
                         {chosenProduct.productImages.map((ele: string, index: number) => {
                             const imagePath = getImageUrl(ele);
                             return (
