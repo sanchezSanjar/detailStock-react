@@ -242,3 +242,67 @@
         padding: 0 16px;
     }
 }
+
+@media (max-width: 900px) {
+    .hero-section {
+        min-height: 520px;
+    }
+
+    .hero-content {
+        padding: 0 16px;
+    }
+
+    .hero-text {
+        margin-left: 0;
+        padding-top: 40px;
+    }
+
+    .hero-title.MuiTypography-root {
+        font-size: 34px;
+    }
+
+    .stats-bar {
+        padding: 28px 0;
+        margin-bottom: 24px;
+    }
+
+    .stats-bar .MuiStack-root {
+        flex-wrap: wrap;
+        row-gap: 24px;
+    }
+
+    .stat-divider {
+        display: none;
+    }
+
+    .stat-item {
+        width: 50%;
+        padding: 0;
+    }
+
+    .stat-number {
+        font-size: 32px;
+    }
+
+    .stat-label {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-section {
+        min-height: 460px;
+    }
+
+    .hero-title.MuiTypography-root {
+        font-size: 28px;
+    }
+
+    .hero-subtitle.MuiTypography-root {
+        font-size: 18px;
+    }
+
+    .signup-btn.MuiButton-root {
+        padding: 10px 28px;
+    }
+}

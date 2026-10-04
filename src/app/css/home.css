@@ -318,3 +318,65 @@
     display: flex;
     gap: 8px;
 }
+
+
+@media (max-width: 900px) {
+    .homepage .popular-products-frame {
+        height: auto;
+        padding-bottom: 50px;
+    }
+
+    .homepage .popular-products-frame .popular-section .cards-frame,
+    .homepage .new-products-frame .main .cards-frame {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .homepage .popular-products-frame .popular-section .category-title,
+    .homepage .new-products-frame .main .category-title,
+    .homepage .active-users-frame .category-title,
+    .homepage .events-text .category-title {
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+
+    .homepage .popular-products-frame .popular-section .cards-frame {
+        margin-top: 0;
+    }
+
+    .homepage .new-products-frame,
+    .homepage .active-users-frame,
+    .homepage .events-frame {
+        padding: 40px 0;
+    }
+
+    .homepage .active-users-frame .cards-frame {
+        justify-content: center !important;
+    }
+
+    .homepage .ads-section {
+        padding: 24px 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .homepage .popular-products-frame .popular-section .cards-frame .card,
+    .homepage .new-products-frame .main .cards-frame .card {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .homepage .active-users-frame .user-card {
+        width: 120px;
+    }
+
+    .homepage .events-info-frame {
+        width: 85vw;
+    }
+
+    .homepage .no-data {
+        font-size: 18px;
+        text-align: center;
+    }
+}
