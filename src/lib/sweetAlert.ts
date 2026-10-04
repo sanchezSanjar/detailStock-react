@@ -1,7 +1,10 @@
 import Swal from "sweetalert2";
+import axios from "axios";
 
 export const sweetErrorHandling = async (err: unknown) => {
-    const message = err instanceof Error ? err.message : "Something went wrong!";
+    const message = axios.isAxiosError(err) && err.response?.data?.message
+        ? err.response.data.message
+        : err instanceof Error ? err.message : "Something went wrong!";
     await Swal.fire({
         icon: "error",
         title: "Oops...",
