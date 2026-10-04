@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 
-export const RippleBadge = styled(Badge)(({ theme }) => ({
+export const RippleBadge = styled(Badge)(() => ({
   "& .MuiBadge-badge": {
     color: "#44b700",
     background: "white",

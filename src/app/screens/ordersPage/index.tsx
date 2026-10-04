@@ -50,7 +50,7 @@ export default function OrdersPage() {
         if (!authMember) navigate("/");
     }, [authMember, navigate]);
 
-    const handleChange = (e: SyntheticEvent, newValue: string) => {
+    const handleChange = (_e: SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
 

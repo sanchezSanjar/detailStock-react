@@ -37,7 +37,7 @@ export default function UserPage() {
                             Profile
                         </Box>
                         <Box className={"order-info-box"}>
-                            <Stack direction="column" alignItems="center" sx={{ width: "100%" }}>
+                            <Stack direction="column" sx={{ width: "100%", alignItems: "center" }}>
                                 <img
                                     src={getImageUrl(authMember?.memberImage)}
                                     className={"order-user-avatar"}

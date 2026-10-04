@@ -69,7 +69,7 @@ export default function Products() {
         setProductSearch((prev) => ({ ...prev, search: searchText }));
     };
 
-    const paginationHandler = (e: ChangeEvent<unknown>, value: number) => {
+    const paginationHandler = (_e: ChangeEvent<unknown>, value: number) => {
         setProductSearch((prev) => ({ ...prev, page: value }));
     };
 

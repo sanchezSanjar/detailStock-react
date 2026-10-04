@@ -10,7 +10,7 @@ import { terms } from "../../../lib/data/terms";
 export default function HelpPage() {
     const [value, setValue] = useState("1");
 
-    const handleChange = (e: SyntheticEvent, newValue: string) => {
+    const handleChange = (_e: SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
 
