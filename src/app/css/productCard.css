@@ -1,0 +1,129 @@
+.product-card {
+    position: relative;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(229, 9, 20, 0.35);
+    box-shadow: 0 14px 30px rgba(30, 36, 43, 0.12);
+}
+
+/* PHOTO: whole image, grey fills the space its shape leaves */
+
+.product-card .product-photo {
+    position: relative;
+    height: 230px;
+    background: var(--photo-bg);
+    overflow: hidden;
+}
+
+.product-card .product-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-photo img {
+    transform: scale(1.04);
+}
+
+.product-card .product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+    padding: 4px 10px;
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 8px rgba(30, 36, 43, 0.1);
+}
+
+.product-card .product-badge.sold-out {
+    left: auto;
+    right: 12px;
+    background: var(--text);
+    color: #ffffff;
+}
+
+/* BODY */
+
+.product-card .product-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 16px 16px;
+}
+
+.product-card .product-name {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-card .product-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 44px;
+}
+
+.product-card .product-price {
+    color: var(--brand);
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.product-card .product-views {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.product-cart-btn.MuiIconButton-root {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    width: 38px;
+    height: 38px;
+    background: var(--brand);
+    color: #ffffff;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.product-cart-btn.MuiIconButton-root:hover {
+    background: var(--brand-dark);
+    transform: scale(1.08);
+}
+
+.product-cart-btn.MuiIconButton-root.Mui-disabled {
+    background: var(--line);
+    color: var(--muted);
+}
+
+@media (max-width: 600px) {
+    .product-card {
+        width: 100%;
+        max-width: 360px;
+    }
+}
