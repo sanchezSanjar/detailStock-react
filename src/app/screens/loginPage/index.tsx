@@ -1,7 +1,7 @@
 import { useState, type KeyboardEvent } from "react";
 import { Box, Button, Container, Stack, TextField, Typography } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import type { LoginInput } from "../../../lib/types/member";
 import MemberService from "../../services/MemberService";
 import { setAuthMember } from "../../slices/authSlice";
@@ -10,6 +10,7 @@ import "../../css/auth.css";
 
 export default function LoginPage() {
     const dispatch = useAppDispatch();
+    const authMember = useAppSelector((state) => state.auth.authMember);
     const navigate = useNavigate();
     const [memberNick, setMemberNick] = useState("");
     const [memberPassword, setMemberPassword] = useState("");
@@ -33,6 +34,8 @@ export default function LoginPage() {
     const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === "Enter") handleLogin();
     };
+
+    if (authMember) return <Navigate to="/" replace />;
 
     return (
         <div className={"auth-page"}>

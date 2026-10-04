@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import Statistics from "./Statistics";
 import PopularProducts from "./PopularProducts";
 import NewProducts from "./NewProducts";
@@ -15,6 +15,7 @@ import Events from "./Events";
 
 export default function HomePage() {
     const dispatch = useAppDispatch();
+    const authMember = useAppSelector((state) => state.auth.authMember);
 
     useEffect(() => {
         const product = new ProductService();
@@ -48,9 +49,9 @@ export default function HomePage() {
                         Service 24/7
                     </Typography>
                     <Box className="hero-cta">
-                        <NavLink to="/signup">
+                        <NavLink to={authMember ? "/products" : "/signup"}>
                             <Button variant="contained" className="signup-btn">
-                                SIGN UP
+                                {authMember ? "SHOP NOW" : "SIGN UP"}
                             </Button>
                         </NavLink>
                     </Box>
