@@ -2,7 +2,7 @@ import { Box, Stack, Button } from "@mui/material";
 import TabPanel from "@mui/lab/TabPanel";
 import moment from "moment";
 import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import { retrieveProcessOrders } from "./selector";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
 import type { Order, OrderItem, OrderUpdateInput } from "../../../lib/types/order";

@@ -1,7 +1,7 @@
 import { Box, Container, Stack, Card, CardMedia, CardContent, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import { retrieveNewProducts } from "./selector";
 import type { Product } from "../../../lib/types/product";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";

@@ -1,6 +1,6 @@
 import { Box, Container, Stack, Avatar, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 import { retrieveTopUsers } from "./selector";
 import type { Member } from "../../../lib/types/member";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
