@@ -76,3 +76,28 @@
     color: #cccccc;
     font-size: 15px;
 }
+
+@media (max-width: 900px) {
+    .help-page {
+        background-attachment: scroll;
+        padding: 40px 0;
+    }
+
+    .help-container {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .rules-frame p {
+        font-size: 14px;
+    }
+
+    .admin-letter-frame span {
+        font-size: 20px;
+    }
+
+    .help-main-content .MuiTabPanel-root {
+        padding: 16px 0;
+    }
+}

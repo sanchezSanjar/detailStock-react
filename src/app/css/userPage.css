@@ -198,3 +198,43 @@
     text-align: center;
 }
 
+
+
+@media (max-width: 900px) {
+    .user-page {
+        background-attachment: scroll;
+        padding: 40px 0;
+    }
+
+    .my-page-left,
+    .my-page-right {
+        min-width: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .my-page-right {
+        margin-top: 0;
+    }
+
+    .my-page-right .menu-name {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu-content,
+    .order-info-box {
+        padding: 18px;
+    }
+
+    .input-frame {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .settings .member-media-frame {
+        flex-direction: column;
+        text-align: center;
+    }
+}

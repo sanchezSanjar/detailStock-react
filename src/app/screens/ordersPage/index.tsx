@@ -64,7 +64,7 @@ export default function OrdersPage() {
                     <TabContext value={value}>
                         <Box className={"order-nav-frame"}>
                             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                                <Tabs value={value} onChange={handleChange} className={"table_list"}>
+                                <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" className={"table_list"}>
                                     <Tab label="PAUSED ORDERS" value={"1"} />
                                     <Tab label="PROCESS ORDERS" value={"2"} />
                                     <Tab label="FINISHED ORDERS" value={"3"} />

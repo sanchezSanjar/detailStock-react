@@ -20,7 +20,7 @@ export default function HelpPage() {
                 <TabContext value={value}>
                     <Box className={"help-menu"}>
                         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                            <Tabs value={value} onChange={handleChange} className={"table_list"}>
+                            <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" className={"table_list"}>
                                 <Tab label="TERMS" value={"1"} />
                                 <Tab label="FAQ" value={"2"} />
                                 <Tab label="CONTACT" value={"3"} />

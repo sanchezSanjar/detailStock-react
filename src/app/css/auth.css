@@ -84,3 +84,25 @@
 .auth-row .auth-input-group {
     flex: 1;
 }
+
+@media (max-width: 900px) {
+    .auth-page {
+        background-attachment: scroll;
+        padding: 40px 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .auth-frame {
+        padding: 28px 20px;
+    }
+
+    .auth-title.MuiTypography-root {
+        font-size: 26px;
+    }
+
+    .auth-row {
+        flex-direction: column !important;
+        gap: 0;
+    }
+}
