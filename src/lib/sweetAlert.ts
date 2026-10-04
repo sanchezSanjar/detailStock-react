@@ -29,3 +29,14 @@ export const sweetTopSmallSuccessAlert = async (message: string, duration = 1500
         toast: true,
     });
 };
+
+export const sweetConfirm = async (message: string): Promise<boolean> => {
+    const result = await Swal.fire({
+        icon: "question",
+        title: message,
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        cancelButtonText: "No",
+    });
+    return result.isConfirmed;
+};

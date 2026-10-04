@@ -1,50 +1,43 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-import type { Order } from "../../../lib/types/order";
-import { OrderStatus } from "../../../lib/enums/order.enum";
+import type { ReactNode } from "react";
+import { Box } from "@mui/material";
+import type { Order, OrderItem } from "../../../lib/types/order";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
 
 interface OrderCardProps {
     order: Order;
-    onUpdateStatus?: (orderId: string, newStatus: OrderStatus) => void;
+    children?: ReactNode;
 }
 
-export default function OrderCard({ order, onUpdateStatus }: OrderCardProps) {
+export default function OrderCard({ order, children }: OrderCardProps) {
     return (
-        <Box className={"order-card"}>
-            <Stack className={"order-items"}>
-                {order.orderItems.map((item) => {
-                    const product = order.productData.find((p) => p._id === item.productId);
-                    const imagePath = getImageUrl(product?.productImages[0]);
+        <Box className={"order-main-box"}>
+            <Box className={"order-box-scroll"}>
+                {order.orderItems?.map((item: OrderItem) => {
+                    const product = order.productData.find((ele) => item.productId === ele._id);
+                    if (!product) return null;
+                    const imagePath = getImageUrl(product.productImages[0]);
                     return (
-                        <Stack key={item._id} direction={"row"} className={"order-item-row"} sx={{ alignItems: "center", gap: 2 }}>
-                            <img src={imagePath} className={"order-item-img"} alt="" />
-                            <Box sx={{ flex: 1 }}>
-                                <Typography className={"order-item-name"}>{product?.productName ?? "Product unavailable"}</Typography>
-                                <Typography className={"order-item-qty"}>Qty: {item.itemQuantity}</Typography>
+                        <Box key={item._id} className={"orders-name-price"}>
+                            <img src={imagePath} className={"order-dish-img"} alt={product.productName} />
+                            <p className={"title-dish"}>{product.productName}</p>
+                            <Box className={"price-box"}>
+                                <p>${item.itemPrice}</p>
+                                <p>x {item.itemQuantity}</p>
+                                <p style={{ marginLeft: "15px" }}>${item.itemQuantity * item.itemPrice}</p>
                             </Box>
-                            <Typography className={"order-item-price"}>${item.itemPrice}</Typography>
-                        </Stack>
+                        </Box>
                     );
                 })}
-            </Stack>
+            </Box>
 
-            <Stack direction={"row"} className={"order-footer"} sx={{ justifyContent: "space-between", alignItems: "center" }}>
-                <Typography className={"order-total"}>Total: ${order.orderTotal}</Typography>
-
-                {order.orderStatus === OrderStatus.PAUSE && onUpdateStatus && (
-                    <Button variant="contained" className={"order-action-btn"} onClick={() => onUpdateStatus(order._id, OrderStatus.PROCESS)}>
-                        Confirm Order
-                    </Button>
-                )}
-                {order.orderStatus === OrderStatus.PROCESS && onUpdateStatus && (
-                    <Button variant="contained" className={"order-action-btn"} onClick={() => onUpdateStatus(order._id, OrderStatus.FINISH)}>
-                        Mark as Finished
-                    </Button>
-                )}
-                {order.orderStatus === OrderStatus.FINISH && (
-                    <Typography className={"order-finished-label"}>✓ Completed</Typography>
-                )}
-            </Stack>
+            <Box className={"total-price-box"}>
+                <Box className={"box-total"}>
+                    <p>Product price: ${order.orderTotal - order.orderDelivery}</p>
+                    <p>Delivery: ${order.orderDelivery}</p>
+                    <p>Total: ${order.orderTotal}</p>
+                </Box>
+                {children}
+            </Box>
         </Box>
     );
 }
