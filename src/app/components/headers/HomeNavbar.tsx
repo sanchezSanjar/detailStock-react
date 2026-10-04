@@ -18,9 +18,10 @@ export default function HomeNavbar() {
         try {
             const member = new MemberService();
             await member.logout();
-            dispatch(logout());
         } catch (err) {
             console.log(err);
+        } finally {
+            dispatch(logout());
         }
     };
     return (

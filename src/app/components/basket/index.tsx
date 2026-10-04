@@ -16,6 +16,7 @@ export function Basket() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const cartItems = useSelector((state: RootState) => state.cart.items);
+    const authMember = useSelector((state: RootState) => state.auth.authMember);
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
@@ -31,16 +32,17 @@ export function Basket() {
         setAnchorEl(null);
     };
 
-    const handleOrder = () => {
+    const handleOrder = async () => {
         try {
-        new OrderService().createOrder(cartItems);
-        dispatch(clearCart());
-        handleClose();
-        navigate("/orders");
-    } catch (err) {
-        console.log(err);
-        sweetErrorHandling(err).then();
-    }
+            handleClose();
+            if (!authMember) throw new Error("Please login first!");
+            await new OrderService().createOrder(cartItems);
+            dispatch(clearCart());
+            navigate("/orders");
+        } catch (err) {
+            console.log(err);
+            sweetErrorHandling(err).then();
+        }
     };
 
     return (

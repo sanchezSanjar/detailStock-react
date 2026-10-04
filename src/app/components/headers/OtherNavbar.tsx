@@ -17,9 +17,10 @@ export function OtherNavbar() {
         try {
             const member = new MemberService();
             await member.logout();
-            dispatch(logout());
         } catch (err) {
             console.log(err);
+        } finally {
+            dispatch(logout());
         }
     };
 
