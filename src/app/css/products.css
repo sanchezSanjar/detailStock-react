@@ -436,3 +436,94 @@
     font-size: 16px;
     border-radius: 10px;
 }
+
+@media (max-width: 900px) {
+    /* iOS Safari does not support fixed backgrounds */
+    .products {
+        background-attachment: scroll;
+        padding: 40px 0 0;
+    }
+
+    .products .top-text p {
+        font-size: 26px;
+        margin-bottom: 16px;
+    }
+
+    .products .category-main {
+        margin-bottom: 24px;
+    }
+
+    .address {
+        margin-top: 40px;
+        padding: 40px 0;
+    }
+
+    .chosen-product {
+        padding: 40px 0;
+    }
+
+    .chosen-product .title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .chosen-product .product-container {
+        gap: 24px;
+    }
+
+    .chosen-product .chosen-product-slider,
+    .chosen-product .chosen-product-info {
+        min-width: 0;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .products .single-search-input {
+        height: 46px;
+        padding: 0 12px;
+        min-width: 0;
+    }
+
+    .products .single-button-search {
+        height: 46px;
+        padding: 0 14px;
+    }
+
+    .products .category-main button {
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+
+    .products .product-wrapper {
+        gap: 16px;
+    }
+
+    .products .product-card {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .products .product-card .MuiCardMedia-root {
+        height: 240px;
+    }
+
+    .map-links {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .map-btn {
+        text-align: center;
+    }
+
+    .chosen-product .slider-image {
+        height: 280px;
+    }
+
+    .chosen-product .product-name {
+        font-size: 24px;
+    }
+}
