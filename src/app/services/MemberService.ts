@@ -66,8 +66,8 @@ class MemberService {
         const formData = new FormData();
         if (input.memberNick) formData.append("memberNick", input.memberNick);
         if (input.memberPhone) formData.append("memberPhone", input.memberPhone);
-        if (input.memberAddress) formData.append("memberAddress", input.memberAddress);
-        if (input.memberDesc) formData.append("memberDesc", input.memberDesc);
+        if (input.memberAddress !== undefined) formData.append("memberAddress", input.memberAddress);
+        if (input.memberDesc !== undefined) formData.append("memberDesc", input.memberDesc);
         if (input.memberImage instanceof File) formData.append("memberImage", input.memberImage);
 
         const url = this.path + "/member/update";
