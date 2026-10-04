@@ -39,7 +39,7 @@ export default function HomePage() {
 
         <div className="hero-section">
             <video className="hero-video" autoPlay muted loop playsInline poster="/img/default.png">
-                <source type="video/mp4" src="/video/detailStock-ads.mp4" />
+                <source type="video/mp4" src="/video/detailStock-ads-1.mp4" />
             </video>
             <Container maxWidth={false} className="hero-content">
                 <Stack className="hero-text">
