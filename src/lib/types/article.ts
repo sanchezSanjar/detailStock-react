@@ -5,6 +5,9 @@ export interface Article {
     articleType: ArticleType;
     articleTitle: string;
     articleContent: string;
+    articleImage?: string;
+    articleLocation?: string;
+    articleAuthor?: string;
     createdAt: Date;
     updatedAt: Date;
 }
