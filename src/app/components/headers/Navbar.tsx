@@ -1,6 +1,8 @@
 import { useState, type MouseEvent } from "react";
-import { Stack, Box, Button, Menu, MenuItem, ListItemIcon } from "@mui/material";
+import { Stack, Box, Button, Menu, MenuItem, ListItemIcon, IconButton, Drawer } from "@mui/material";
 import Logout from "@mui/icons-material/Logout";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { Basket } from "../basket";
@@ -14,6 +16,19 @@ export default function Navbar() {
     const authMember = useAppSelector((state) => state.auth.authMember);
     const dispatch = useAppDispatch();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
+    const links = [
+        { to: "/", label: "Home" },
+        { to: "/products", label: "Products" },
+        ...(authMember
+            ? [
+                { to: "/orders", label: "Orders" },
+                { to: "/member-page", label: "My Page" },
+            ]
+            : []),
+        { to: "/help", label: "Help" },
+    ];
 
     const handleMenuClose = () => setAnchorEl(null);
 
@@ -28,6 +43,20 @@ export default function Navbar() {
             dispatch(logout());
         }
     };
+
+    const renderLinks = (onClick?: () => void) =>
+        links.map((link) => (
+            <Box key={link.to} className={"hover-line"}>
+                <NavLink
+                    to={link.to}
+                    end={link.to === "/"}
+                    onClick={onClick}
+                    className={({ isActive }) => (isActive ? "underline" : "")}
+                >
+                    {link.label}
+                </NavLink>
+            </Box>
+        ));
 
     return (
         <div className="navbar-wrapper">
@@ -49,25 +78,9 @@ export default function Navbar() {
                     sx={{ alignItems: "center" }}
                     className="nav-links"
                 >
-                    <Box className={"hover-line"}>
-                        <NavLink to="/" className={({ isActive }) => isActive ? "underline" : ""}>Home</NavLink>
-                    </Box>
-                    <Box className={"hover-line"}>
-                        <NavLink to="/products" className={({ isActive }) => isActive ? "underline" : ""}>Products</NavLink>
-                    </Box>
-                    {authMember ? (
-                        <Box className={"hover-line"}>
-                            <NavLink to="/orders" className={({ isActive }) => isActive ? "underline" : ""}>Orders</NavLink>
-                        </Box>
-                    ) : null}
-                    {authMember ? (
-                        <Box className={"hover-line"}>
-                            <NavLink to="/member-page" className={({ isActive }) => isActive ? "underline" : ""}>My Page</NavLink>
-                        </Box>
-                    ) : null}
-                    <Box className={"hover-line"}>
-                        <NavLink to="/help" className={({ isActive }) => isActive ? "underline" : ""}>Help</NavLink>
-                    </Box>
+                    <Stack direction={"row"} sx={{ alignItems: "center" }} className="nav-menu-links">
+                        {renderLinks()}
+                    </Stack>
 
                     <Basket />
 
@@ -105,8 +118,32 @@ export default function Navbar() {
                             </Menu>
                         </>
                     )}
+
+                    <IconButton
+                        className="nav-burger"
+                        aria-label="open menu"
+                        onClick={() => setDrawerOpen(true)}
+                    >
+                        <MenuIcon />
+                    </IconButton>
                 </Stack>
             </Stack>
+
+            <Drawer
+                anchor="right"
+                open={drawerOpen}
+                onClose={() => setDrawerOpen(false)}
+                slotProps={{ paper: { className: "nav-drawer" } }}
+            >
+                <Box className="nav-drawer-header">
+                    <IconButton aria-label="close menu" onClick={() => setDrawerOpen(false)}>
+                        <CloseIcon />
+                    </IconButton>
+                </Box>
+                <Stack className="nav-drawer-links">
+                    {renderLinks(() => setDrawerOpen(false))}
+                </Stack>
+            </Drawer>
         </div>
     );
 }

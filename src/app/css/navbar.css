@@ -100,3 +100,84 @@ body {
     background-color: #0a0a0a;   /* solid color only, no image, no url() */
     min-height: 100vh;
 }
+
+/* MOBILE MENU */
+
+.nav-burger.MuiIconButton-root {
+    display: none;
+    color: #ffffff;
+}
+
+.nav-drawer.MuiPaper-root {
+    width: 260px;
+    background: #111111;
+    color: #ffffff;
+}
+
+.nav-drawer-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px;
+}
+
+.nav-drawer-header .MuiIconButton-root {
+    color: #ffffff;
+}
+
+.nav-drawer-links {
+    padding: 0 16px;
+    gap: 6px;
+}
+
+.nav-drawer-links a {
+    display: block;
+    padding: 14px 16px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+.nav-drawer-links a.underline,
+.nav-drawer-links a:hover {
+    background: #e50914;
+}
+
+@media (max-width: 900px) {
+    .navbar-inner {
+        width: 100%;
+        gap: 12px;
+        padding: 0 16px;
+    }
+
+    .nav-menu-links {
+        display: none !important;
+    }
+
+    .nav-burger.MuiIconButton-root {
+        display: inline-flex;
+    }
+
+    .nav-links {
+        gap: 4px;
+    }
+
+    .login-box {
+        margin-left: 4px;
+    }
+
+    .login-btn.MuiButton-root {
+        padding: 6px 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar-wrapper {
+        padding: 10px 0;
+    }
+
+    .logo-text {
+        font-size: 17px;
+    }
+}

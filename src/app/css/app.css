@@ -227,3 +227,18 @@
     font-size: 13px;
     color: #777777;
 }
+
+@media (max-width: 900px) {
+    .footer-top {
+        flex-direction: column !important;
+        gap: 32px;
+    }
+
+    .footer-brand {
+        max-width: 100%;
+    }
+
+    .footer-content {
+        padding: 0 16px;
+    }
+}
