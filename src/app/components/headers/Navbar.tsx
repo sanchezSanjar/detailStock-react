@@ -108,6 +108,7 @@ export default function Navbar() {
                                 anchorEl={anchorEl}
                                 open={Boolean(anchorEl)}
                                 onClose={handleMenuClose}
+                                disableScrollLock
                                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
                             >

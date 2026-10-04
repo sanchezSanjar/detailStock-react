@@ -64,6 +64,7 @@ export function Basket() {
                 id="account-menu"
                 open={open}
                 onClose={handleClose}
+                disableScrollLock
                 slotProps={{
                     paper: {
                         elevation: 0,
