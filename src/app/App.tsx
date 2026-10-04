@@ -1,12 +1,11 @@
 // import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { Route , Routes, useLocation} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./screens/homePage";
 import ProductsPage from "./screens/productsPage";
 import OrdersPage from "./screens/ordersPage";
 import UserPage from "./screens/userPage";
 import  HelpPage from "./screens/helpPage";
-import HomeNavbar from "./components/headers/HomeNavbar";
-import { OtherNavbar } from "./components/headers/OtherNavbar";
+import Navbar from "./components/headers/Navbar";
 import { Footer } from "./components/footer";
 import LoginPage from "./screens/loginPage";
 import SignupPage from "./screens/signupPage";
@@ -16,12 +15,9 @@ import "./css/home.css";
 
 
 function App() {
-const location = useLocation();
-
-
  return(
   <>      
-    {location.pathname === "/" ?<HomeNavbar /> : <OtherNavbar/>}
+    <Navbar />
      
         <Routes>
     <Route path="/products/*" element={<ProductsPage />} />

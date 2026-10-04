@@ -1,16 +1,15 @@
 import { Stack, Box, Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "../../store";
 import { Basket } from "../basket";
-import { useDispatch } from "react-redux";
 import { logout } from "../../slices/authSlice";
 import MemberService from "../../services/MemberService";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
 
 const defaultUserIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
 
-export default function HomeNavbar() {
+export default function Navbar() {
     const authMember = useSelector((state: RootState) => state.auth.authMember);
     const dispatch = useDispatch();
 
@@ -24,6 +23,7 @@ export default function HomeNavbar() {
             dispatch(logout());
         }
     };
+
     return (
         <div className="navbar-wrapper">
             <Stack
@@ -69,7 +69,9 @@ export default function HomeNavbar() {
                     {!authMember ? (
                         <Box className="login-box">
                             <NavLink to="/login">
-                                <Button variant="contained" className="login-btn">Login</Button>
+                                <Button variant="contained" className="login-btn">
+                                    Login
+                                </Button>
                             </NavLink>
                         </Box>
                     ) : (
