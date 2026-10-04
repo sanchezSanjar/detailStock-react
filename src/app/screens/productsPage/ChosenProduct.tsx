@@ -80,15 +80,17 @@ export default function ChosenProduct() {
                         <div className={"button-box"}>
                             <Button
                                 variant="contained"
+                                disabled={chosenProduct.productLeftCount === 0}
                                 onClick={() => dispatch(addToCart({
                                     productId: chosenProduct._id,
                                     productName: chosenProduct.productName,
                                     productPrice: chosenProduct.productPrice,
                                     productImage: chosenProduct.productImages[0],
+                                    productLeftCount: chosenProduct.productLeftCount,
                                     quantity: 1,
                                 }))}
                             >
-                                Add To Basket
+                                {chosenProduct.productLeftCount === 0 ? "Sold Out" : "Add To Basket"}
                             </Button>
                         </div>
                     </Box>

@@ -90,6 +90,7 @@ export default function Products() {
             productName: product.productName,
             productPrice: product.productPrice,
             productImage: product.productImages[0],
+            productLeftCount: product.productLeftCount,
             quantity: 1,
         }));
     };
@@ -193,6 +194,7 @@ export default function Products() {
                                         <CardMedia component="img" image={imagePath} draggable={false} sx={{ height: 300 }} />
                                         <Button
                                             className={"shop-btn"}
+                                            disabled={product.productLeftCount === 0}
                                             onClick={(e) => handleAddToCart(product, e)}
                                             sx={{ position: "absolute", top: 10, right: 10, zIndex: 2 }}
                                         >

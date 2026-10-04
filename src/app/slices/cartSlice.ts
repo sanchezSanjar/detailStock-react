@@ -6,6 +6,7 @@ export interface CartItem {
     productPrice: number;
     productImage: string;
     quantity: number;
+    productLeftCount?: number;
 }
 
 interface CartState {
@@ -22,6 +23,10 @@ const loadCartFromStorage = (): CartItem[] => {
     }
 };
 
+// Items saved before stock was tracked have no limit
+const withinStock = (item: CartItem, quantity: number) =>
+    item.productLeftCount === undefined ? quantity : Math.min(quantity, item.productLeftCount);
+
 const saveCartToStorage = (items: CartItem[]) => {
     localStorage.setItem("cartData", JSON.stringify(items));
 };
@@ -35,17 +40,19 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action: PayloadAction<CartItem>) => {
+            if (action.payload.productLeftCount === 0) return;
             const existing = state.items.find(i => i.productId === action.payload.productId);
             if (existing) {
-                existing.quantity += action.payload.quantity;
+                existing.productLeftCount = action.payload.productLeftCount;
+                existing.quantity = withinStock(existing, existing.quantity + action.payload.quantity);
             } else {
-                state.items.push(action.payload);
+                state.items.push({ ...action.payload, quantity: withinStock(action.payload, action.payload.quantity) });
             }
             saveCartToStorage(state.items);
         },
         incrementItem: (state, action: PayloadAction<string>) => {
             const item = state.items.find(i => i.productId === action.payload);
-            if (item) item.quantity++;
+            if (item) item.quantity = withinStock(item, item.quantity + 1);
             saveCartToStorage(state.items);
         },
         decrementItem: (state, action: PayloadAction<string>) => {
