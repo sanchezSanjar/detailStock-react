@@ -1,5 +1,5 @@
 import { useEffect, useState, type SyntheticEvent } from "react";
-import { Box, Container, Stack, Tabs, Tab } from "@mui/material";
+import { Box, Container, Stack, Tabs, Tab, Pagination } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./PausedOrders";
@@ -7,12 +7,14 @@ import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
-import type { OrderInquiry } from "../../../lib/types/order";
+import { retrieveFinishedOrders, retrievePausedOrders, retrieveProcessOrders } from "./selector";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { useNavigate } from "react-router-dom";
 import "../../css/order.css";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
+
+const ORDERS_LIMIT = 5;
 
 export default function OrdersPage() {
     const dispatch = useAppDispatch();
@@ -20,24 +22,27 @@ export default function OrdersPage() {
     const navigate = useNavigate();
     const [value, setValue] = useState("1");
     const [orderBuilder, setOrderBuilder] = useState<Date>(new Date());
-    const [orderInquiry] = useState<OrderInquiry>({ page: 1, limit: 5, orderStatus: OrderStatus.PAUSE });
+    const [pages, setPages] = useState<Record<string, number>>({ "1": 1, "2": 1, "3": 1 });
+    const pausedOrders = useAppSelector(retrievePausedOrders);
+    const processOrders = useAppSelector(retrieveProcessOrders);
+    const finishedOrders = useAppSelector(retrieveFinishedOrders);
 
     useEffect(() => {
         if (!authMember) return;
         const order = new OrderService();
 
-        order.getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
+        order.getMyOrders({ page: pages["1"], limit: ORDERS_LIMIT, orderStatus: OrderStatus.PAUSE })
             .then((data) => dispatch(setPausedOrders(data)))
             .catch((err) => console.log(err));
 
-        order.getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PROCESS })
+        order.getMyOrders({ page: pages["2"], limit: ORDERS_LIMIT, orderStatus: OrderStatus.PROCESS })
             .then((data) => dispatch(setProcessOrders(data)))
             .catch((err) => console.log(err));
 
-        order.getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
+        order.getMyOrders({ page: pages["3"], limit: ORDERS_LIMIT, orderStatus: OrderStatus.FINISH })
             .then((data) => dispatch(setFinishedOrders(data)))
             .catch((err) => console.log(err));
-    }, [dispatch, authMember, orderInquiry, orderBuilder]);
+    }, [dispatch, authMember, pages, orderBuilder]);
 
     useEffect(() => {
         if (!authMember) navigate("/");
@@ -46,6 +51,9 @@ export default function OrdersPage() {
     const handleChange = (_e: SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
+
+    const currentOrders = value === "1" ? pausedOrders : value === "2" ? processOrders : finishedOrders;
+    const currentPage = pages[value];
 
     if (!authMember) return null;
 
@@ -67,6 +75,14 @@ export default function OrdersPage() {
                             <PausedOrders setValue={setValue} setOrderBuilder={setOrderBuilder} />
                             <ProcessOrders setValue={setValue} setOrderBuilder={setOrderBuilder} />
                             <FinishedOrders />
+                        </Stack>
+                        <Stack className={"order-pagination"} sx={{ alignItems: "center", my: 2 }}>
+                            <Pagination
+                                count={currentOrders.length === ORDERS_LIMIT ? currentPage + 1 : currentPage}
+                                page={currentPage}
+                                color={"secondary"}
+                                onChange={(_e, page) => setPages((prev) => ({ ...prev, [value]: page }))}
+                            />
                         </Stack>
                     </TabContext>
                 </Stack>
