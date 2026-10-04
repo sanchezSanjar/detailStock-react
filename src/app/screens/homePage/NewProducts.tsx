@@ -1,6 +1,6 @@
 import { Box, Container, Stack, Card, CardMedia, CardContent, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks";
 import { createSelector } from "@reduxjs/toolkit";
 import { retrieveNewProducts } from "./selector";
 import type { Product } from "../../../lib/types/product";
@@ -9,7 +9,7 @@ import { getImageUrl } from "../../../lib/utils/getImageUrl";
 const newProductsRetriever = createSelector(retrieveNewProducts, (newProducts) => ({ newProducts }));
 
 export default function NewProducts() {
-    const { newProducts } = useSelector(newProductsRetriever);
+    const { newProducts } = useAppSelector(newProductsRetriever);
 
     return (
         <div className={"new-products-frame"}>

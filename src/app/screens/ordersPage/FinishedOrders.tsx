@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import TabPanel from "@mui/lab/TabPanel";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks";
 import { createSelector } from "@reduxjs/toolkit";
 import { retrieveFinishedOrders } from "./selector";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
@@ -10,7 +10,7 @@ import type { Product } from "../../../lib/types/product";
 const finishedOrdersRetriever = createSelector(retrieveFinishedOrders, (finishedOrders) => ({ finishedOrders }));
 
 export default function FinishedOrders() {
-    const { finishedOrders } = useSelector(finishedOrdersRetriever);
+    const { finishedOrders } = useAppSelector(finishedOrdersRetriever);
 
     return (
         <TabPanel value={"3"}>

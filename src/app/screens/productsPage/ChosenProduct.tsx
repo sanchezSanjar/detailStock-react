@@ -6,45 +6,38 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Divider from "../../components/divider";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector, type Dispatch } from "@reduxjs/toolkit";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { createSelector } from "@reduxjs/toolkit";
 import { setChosenProduct, setShop } from "./slice";
 import { retrieveChosenProduct, retrieveShop } from "./selector";
-import type { Product } from "../../../lib/types/product";
 import { useParams } from "react-router-dom";
 import ProductService from "../../services/ProductService";
 import MemberService from "../../services/MemberService";
-import type { Member } from "../../../lib/types/member";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
 import { addToCart } from "../../slices/cartSlice";
 import  "../../css/products.css";
 
-const actionDispatch = (dispatch: Dispatch) => ({
-    setShop: (data: Member) => dispatch(setShop(data)),
-    setChosenProduct: (data: Product) => dispatch(setChosenProduct(data)),
-});
 const chosenProductRetriever = createSelector(retrieveChosenProduct, (chosenProduct) => ({ chosenProduct }));
 const shopRetriever = createSelector(retrieveShop, (shop) => ({ shop }));
 
 export default function ChosenProduct() {
     const { productId } = useParams<{ productId: string }>();
-    const dispatch = useDispatch();
-    const { setShop, setChosenProduct } = actionDispatch(dispatch);
-    const { chosenProduct } = useSelector(chosenProductRetriever);
-    const { shop } = useSelector(shopRetriever);
+    const dispatch = useAppDispatch();
+    const { chosenProduct } = useAppSelector(chosenProductRetriever);
+    const { shop } = useAppSelector(shopRetriever);
 
     useEffect(() => {
         if (!productId) return;
         const product = new ProductService();
         product.getProduct(productId)
-            .then((data) => setChosenProduct(data))
+            .then((data) => dispatch(setChosenProduct(data)))
             .catch((err) => console.log(err));
 
         const member = new MemberService();
         member.getShop()
-            .then((data) => setShop(data))
+            .then((data) => dispatch(setShop(data)))
             .catch((err) => console.log(err));
-    }, [productId]);
+    }, [dispatch, productId]);
 
     if (!chosenProduct || chosenProduct._id !== productId) return null;
 

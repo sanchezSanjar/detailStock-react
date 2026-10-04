@@ -1,17 +1,16 @@
 import { Box, Button } from "@mui/material";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import { useState, type ChangeEvent } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import type { MemberUpdateInput } from "../../../lib/types/member";
 import { sweetErrorHandling, sweetTopSmallSuccessAlert } from "../../../lib/sweetAlert";
 import MemberService from "../../services/MemberService";
 import { setAuthMember } from "../../slices/authSlice";
-import type { RootState } from "../../store";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
 
 export function Settings() {
-    const dispatch = useDispatch();
-    const authMember = useSelector((state: RootState) => state.auth.authMember);
+    const dispatch = useAppDispatch();
+    const authMember = useAppSelector((state) => state.auth.authMember);
 
     const [memberImagePreview, setMemberImagePreview] = useState<string>(
         getImageUrl(authMember?.memberImage)

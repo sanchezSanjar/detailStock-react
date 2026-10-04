@@ -1,7 +1,7 @@
 import { useState, type KeyboardEvent } from "react";
 import { Box, Button, Container, Stack, TextField, Typography } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../hooks";
 import type { LoginInput } from "../../../lib/types/member";
 import MemberService from "../../services/MemberService";
 import { setAuthMember } from "../../slices/authSlice";
@@ -9,7 +9,7 @@ import { sweetErrorHandling } from "../../../lib/sweetAlert";
 import "../../css/auth.css";
 
 export default function LoginPage() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const [memberNick, setMemberNick] = useState("");
     const [memberPassword, setMemberPassword] = useState("");

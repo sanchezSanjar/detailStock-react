@@ -1,45 +1,36 @@
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import type { Dispatch } from "@reduxjs/toolkit";
+import { useAppDispatch } from "../../hooks";
 import Statistics from "./Statistics";
 import PopularProducts from "./PopularProducts";
 import NewProducts from "./NewProducts";
 import { setPopularProducts, setNewProducts, setTopUsers } from "./slice";
-import type { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import MemberService from "../../services/MemberService";
-import type { Member } from "../../../lib/types/member";
 import Advertisement from "./Advertisement";
 import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
 
 
-const actionDispatch = (dispatch: Dispatch) => ({
-    setPopularProducts: (data: Product[]) => dispatch(setPopularProducts(data)),
-    setNewProducts: (data: Product[]) => dispatch(setNewProducts(data)),
-    setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
-});
-
 export default function HomePage() {
-    const { setPopularProducts, setNewProducts, setTopUsers } = actionDispatch(useDispatch());
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const product = new ProductService();
         product.getProducts({ page: 1, limit: 4, order: "productViews" })
-            .then((data) => setPopularProducts(data))
+            .then((data) => dispatch(setPopularProducts(data)))
             .catch((err) => console.log(err));
 
         product.getProducts({ page: 1, limit: 4, order: "createdAt" })
-            .then((data) => setNewProducts(data))
+            .then((data) => dispatch(setNewProducts(data)))
             .catch((err) => console.log(err));
 
         const member = new MemberService();
         member.getTopUsers()
-            .then((data) => setTopUsers(data))
+            .then((data) => dispatch(setTopUsers(data)))
             .catch((err) => console.log(err));
-    }, []);
+    }, [dispatch]);
 
     return (
     <div className="homepage">

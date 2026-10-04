@@ -1,7 +1,7 @@
 import { Box, Container, Stack, Card, CardMedia, CardContent, Typography } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks";
 import { createSelector } from "@reduxjs/toolkit";
 import { retrievePopularProducts } from "./selector";
 import type { Product } from "../../../lib/types/product";
@@ -9,7 +9,7 @@ import type { Product } from "../../../lib/types/product";
 const popularProductsRetriever = createSelector(retrievePopularProducts, (popularProducts) => ({ popularProducts }));
 
 export default function PopularProducts() {
-    const { popularProducts } = useSelector(popularProductsRetriever);
+    const { popularProducts } = useAppSelector(popularProductsRetriever);
 
     return (
         <div className="popular-products-frame">

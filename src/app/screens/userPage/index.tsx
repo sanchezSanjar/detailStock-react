@@ -6,14 +6,13 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { Settings } from "./Settings";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../store";
+import { useAppSelector } from "../../hooks";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
 import "../../css/userPage.css";
 
 export default function UserPage() {
     const navigate = useNavigate();
-    const authMember = useSelector((state: RootState) => state.auth.authMember);
+    const authMember = useAppSelector((state) => state.auth.authMember);
 
     useEffect(() => {
         if (!authMember) navigate("/");

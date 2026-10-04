@@ -1,5 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { HomePageState } from "../../../lib/types/screen";
+import type { Product } from "../../../lib/types/product";
+import type { Member } from "../../../lib/types/member";
 
 const initialState: HomePageState = {
     popularProducts: [],
@@ -11,13 +13,13 @@ const homePageSlice = createSlice({
     name: "homePage",
     initialState,
     reducers: {
-        setPopularProducts: (state, action) => {
+        setPopularProducts: (state, action: PayloadAction<Product[]>) => {
             state.popularProducts = action.payload;
         },
-        setNewProducts: (state, action) => {
+        setNewProducts: (state, action: PayloadAction<Product[]>) => {
             state.newProducts = action.payload;
         },
-        setTopUsers: (state, action) => {
+        setTopUsers: (state, action: PayloadAction<Member[]>) => {
             state.topUsers = action.payload;
         },
     },

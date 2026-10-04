@@ -1,6 +1,6 @@
 import { Box, Stack, Button } from "@mui/material";
 import TabPanel from "@mui/lab/TabPanel";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../hooks";
 import { createSelector } from "@reduxjs/toolkit";
 import { retrievePausedOrders } from "./selector";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
@@ -9,7 +9,6 @@ import type { Product } from "../../../lib/types/product";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
-import type { RootState } from "../../store";
 
 const pausedOrdersRetriever = createSelector(retrievePausedOrders, (pausedOrders) => ({ pausedOrders }));
 
@@ -19,8 +18,8 @@ interface PausedOrdersProps {
 }
 
 export default function PausedOrders({ setValue, setOrderBuilder }: PausedOrdersProps) {
-    const authMember = useSelector((state: RootState) => state.auth.authMember);
-    const { pausedOrders } = useSelector(pausedOrdersRetriever);
+    const authMember = useAppSelector((state) => state.auth.authMember);
+    const { pausedOrders } = useAppSelector(pausedOrdersRetriever);
 
     const deleteOrderHandler = async (orderId: string) => {
         try {

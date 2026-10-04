@@ -3,8 +3,7 @@ import { Box, Button, Stack, IconButton, Badge, Menu, Typography } from "@mui/ma
 import CancelIcon from "@mui/icons-material/Cancel";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import type { RootState } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { incrementItem, decrementItem, removeFromCart } from "../../slices/cartSlice";
 import "../../css/basket.css";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
@@ -14,9 +13,9 @@ import { sweetErrorHandling } from "../../../lib/sweetAlert";
 
 export function Basket() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const cartItems = useSelector((state: RootState) => state.cart.items);
-    const authMember = useSelector((state: RootState) => state.auth.authMember);
+    const dispatch = useAppDispatch();
+    const cartItems = useAppSelector((state) => state.cart.items);
+    const authMember = useAppSelector((state) => state.auth.authMember);
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);

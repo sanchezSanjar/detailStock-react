@@ -5,26 +5,18 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
-import { useDispatch, useSelector } from "react-redux";
-import type { Dispatch } from "@reduxjs/toolkit";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
-import type { OrderInquiry, Order } from "../../../lib/types/order";
+import type { OrderInquiry } from "../../../lib/types/order";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { useNavigate } from "react-router-dom";
 import "../../css/order.css";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
-import type { RootState } from "../../store";
-
-const actionDispatch = (dispatch: Dispatch) => ({
-    setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
-    setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
-    setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
-});
 
 export default function OrdersPage() {
-    const { setFinishedOrders, setPausedOrders, setProcessOrders } = actionDispatch(useDispatch());
-    const authMember = useSelector((state: RootState) => state.auth.authMember);
+    const dispatch = useAppDispatch();
+    const authMember = useAppSelector((state) => state.auth.authMember);
     const navigate = useNavigate();
     const [value, setValue] = useState("1");
     const [orderBuilder, setOrderBuilder] = useState<Date>(new Date());
@@ -35,17 +27,17 @@ export default function OrdersPage() {
         const order = new OrderService();
 
         order.getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
-            .then((data) => setPausedOrders(data))
+            .then((data) => dispatch(setPausedOrders(data)))
             .catch((err) => console.log(err));
 
         order.getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PROCESS })
-            .then((data) => setProcessOrders(data))
+            .then((data) => dispatch(setProcessOrders(data)))
             .catch((err) => console.log(err));
 
         order.getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
-            .then((data) => setFinishedOrders(data))
+            .then((data) => dispatch(setFinishedOrders(data)))
             .catch((err) => console.log(err));
-    }, [authMember, orderInquiry, orderBuilder]);
+    }, [dispatch, authMember, orderInquiry, orderBuilder]);
 
     useEffect(() => {
         if (!authMember) navigate("/");

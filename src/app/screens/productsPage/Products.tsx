@@ -3,8 +3,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { useDispatch, useSelector } from "react-redux";
-import { createSelector, type Dispatch } from "@reduxjs/toolkit";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { createSelector } from "@reduxjs/toolkit";
 import { setProducts } from "./slice";
 import { retrieveProducts } from "./selector";
 import type { Product, ProductInquiry } from "../../../lib/types/product";
@@ -15,9 +15,6 @@ import { useNavigate } from "react-router-dom";
 import { addToCart } from "../../slices/cartSlice";
 import { Box, Button, Container, Stack, Card, CardMedia, CardContent, Typography, Pagination, PaginationItem } from "@mui/material";
 
-const actionDispatch = (dispatch: Dispatch) => ({
-    setProducts: (data: Product[]) => dispatch(setProducts(data)),
-});
 const productsRetriever = createSelector(retrieveProducts, (products) => ({ products }));
 
 const collections = [
@@ -31,9 +28,8 @@ const collections = [
 ];
 
 export default function Products() {
-    const dispatch = useDispatch();
-    const { setProducts } = actionDispatch(dispatch);
-    const { products } = useSelector(productsRetriever);
+    const dispatch = useAppDispatch();
+    const { products } = useAppSelector(productsRetriever);
     const [productSearch, setProductSearch] = useState<ProductInquiry>({
         page: 1,
         limit: 8,
@@ -46,9 +42,9 @@ export default function Products() {
     useEffect(() => {
         const product = new ProductService();
         product.getProducts(productSearch)
-            .then((data) => setProducts(data))
+            .then((data) => dispatch(setProducts(data)))
             .catch((err) => console.log(err));
-    }, [productSearch]);
+    }, [dispatch, productSearch]);
 
     // useEffect(() => {
     //     if (searchText === "") {
