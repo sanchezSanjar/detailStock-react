@@ -23,6 +23,8 @@ export default function Advertisement() {
                         loop
                         muted
                         playsInline
+                        // shown while the video loads or when the device blocks autoplay (e.g. battery saver)
+                        poster="/img/ads-poster.jpg"
                         data-video-media=""
                         onLoadedMetadata={(e) => slowDown(e.currentTarget)}
                     >
