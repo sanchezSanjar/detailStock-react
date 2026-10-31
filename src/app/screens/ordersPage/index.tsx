@@ -72,6 +72,10 @@ export default function OrdersPage() {
 
     return (
         <div className={"order-page"}>
+            <div className="page-head">
+                <span className="page-eyebrow">Your account</span>
+                <h1 className="page-title">My orders</h1>
+            </div>
             <Container className="order-container">
                 <Stack className={"order-left"}>
                     <TabContext value={value}>

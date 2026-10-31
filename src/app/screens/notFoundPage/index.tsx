@@ -1,18 +1,23 @@
-import { Button, Container, Stack, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 export default function NotFoundPage() {
     return (
-        <Container>
-            <Stack sx={{ alignItems: "center", justifyContent: "center", minHeight: "60vh", gap: 2, textAlign: "center" }}>
-                <Typography sx={{ fontSize: { xs: 64, md: 96 }, fontWeight: 800, color: "#e50914" }}>404</Typography>
-                <Typography sx={{ fontSize: { xs: 18, md: 22 }, color: "var(--muted)" }}>
-                    The page you are looking for does not exist.
-                </Typography>
-                <NavLink to="/">
-                    <Button variant="contained">Back to Home</Button>
+        <div className="not-found">
+            <span className="not-found-code" aria-hidden>
+                404
+            </span>
+            <span className="page-eyebrow">Wrong turn</span>
+            <h1 className="page-title">This page took a detour</h1>
+            <p className="not-found-text">The page you are looking for does not exist or was moved.</p>
+            <div className="not-found-actions">
+                <NavLink to="/" className="btn-shine">
+                    Back to home <ArrowForwardIcon fontSize="small" />
                 </NavLink>
-            </Stack>
-        </Container>
+                <NavLink to="/products" className="btn-glass">
+                    Browse the shop
+                </NavLink>
+            </div>
+        </div>
     );
 }

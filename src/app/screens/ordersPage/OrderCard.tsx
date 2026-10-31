@@ -19,8 +19,8 @@ export default function OrderCard({ order, children }: OrderCardProps) {
                     const imagePath = getImageUrl(product.productImages[0]);
                     return (
                         <Box key={item._id} className={"orders-name-price"}>
-                            <img src={imagePath} className={"order-dish-img"} alt={product.productName} />
-                            <p className={"title-dish"}>{product.productName}</p>
+                            <img src={imagePath} className={"order-item-img"} alt={product.productName} />
+                            <p className={"order-item-title"}>{product.productName}</p>
                             <Box className={"price-box"}>
                                 <p>{formatPrice(item.itemPrice)}</p>
                                 <p>x {item.itemQuantity}</p>

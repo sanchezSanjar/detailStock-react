@@ -6,6 +6,7 @@ import { Footer } from "./components/footer";
 import "./css/app.css";
 import "./css/navbar.css";
 import "./css/home.css";
+import "./css/pages.css";
 
 const HomePage = lazy(() => import("./screens/homePage"));
 const ProductsPage = lazy(() => import("./screens/productsPage"));

@@ -22,10 +22,14 @@ export default function UserPage() {
 
     return (
         <div className={"user-page"}>
+            <div className="page-head">
+                <span className="page-eyebrow">Your account</span>
+                <h1 className="page-title">My page</h1>
+            </div>
             <Container>
                 <Stack direction="row" className={"my-page-frame"}>
                     <Stack direction="column" className={"my-page-left"}>
-                        <Box className={"menu-name"}>Modify Member Details</Box>
+                        <Box className={"menu-name"}>Profile details</Box>
                         <Box className={"menu-content"}>
                             <Settings />
                         </Box>

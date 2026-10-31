@@ -31,6 +31,10 @@ export default function HelpPage() {
 
     return (
         <div className={"help-page"}>
+            <div className="page-head">
+                <span className="page-eyebrow">Help center</span>
+                <h1 className="page-title">How can we help?</h1>
+            </div>
             <Container className={"help-container"}>
                 <TabContext value={value}>
                     <Box className={"help-menu"}>

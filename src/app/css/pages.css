@@ -1,0 +1,572 @@
+/* ORDERS, MY PAGE, HELP, LOGIN / SIGNUP, BASKET, 404: the premium black + red skin.
+   Every selector starts with :root so it wins over the older page styles, whichever file loads first. */
+
+/* SHARED PAGE PARTS */
+
+:root .order-page,
+:root .user-page,
+:root .help-page {
+    min-height: 70vh;
+    padding: 0 0 90px;
+    background:
+        radial-gradient(900px 420px at 50% -10%, rgba(229, 9, 20, 0.15), transparent 65%),
+        var(--bg);
+}
+
+:root .page-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px 34px;
+    text-align: center;
+    animation: pageRise 0.6s ease-out both;
+}
+
+:root .page-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: var(--brand);
+}
+
+:root .page-eyebrow::before,
+:root .page-eyebrow::after {
+    content: "";
+    width: 26px;
+    height: 2px;
+    background: var(--brand);
+}
+
+:root .page-title {
+    margin: 12px 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(38px, 4.6vw, 62px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+/* glass panel look, shared by every card on these pages */
+:root .order-nav-frame,
+:root .order-main-box,
+:root .order-info-box,
+:root .menu-content,
+:root .help-menu,
+:root .help-main-content .MuiTabPanel-root,
+:root .user-page .order-info-box {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    border-radius: 22px !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* tabs with a glowing red underline */
+:root .table_list .MuiTab-root {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    transition: color 0.2s ease;
+}
+
+:root .table_list .MuiTab-root:hover {
+    color: #ffffff;
+}
+
+:root .table_list .MuiTab-root.Mui-selected {
+    color: #ffffff;
+}
+
+:root .table_list .MuiTabs-indicator {
+    height: 3px;
+    border-radius: 3px;
+    background: var(--brand);
+    box-shadow: 0 0 12px rgba(229, 9, 20, 0.8);
+}
+
+:root .order-page .no-data,
+:root .help-empty {
+    padding: 50px 0;
+    text-align: center;
+    color: var(--muted);
+}
+
+/* ORDERS */
+
+:root .order-container {
+    animation: pageRise 0.6s ease-out 0.1s both;
+}
+
+:root .order-main-box {
+    margin-bottom: 18px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+:root .order-main-box:hover {
+    transform: translateY(-3px);
+    border-color: rgba(229, 9, 20, 0.35) !important;
+}
+
+:root .orders-name-price {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+:root .order-item-img {
+    border-radius: 14px;
+    background: var(--photo-bg);
+    object-fit: contain;
+}
+
+:root .order-item-title {
+    font-weight: 700;
+    color: var(--text);
+}
+
+:root .total-price-box {
+    background: rgba(229, 9, 20, 0.05);
+    border-top: 1px solid rgba(229, 9, 20, 0.2);
+}
+
+:root .box-total p:last-child {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: #ffffff;
+}
+
+:root .pay-button.MuiButton-root,
+:root .verify-button.MuiButton-root,
+:root .save-box .MuiButton-root,
+:root .auth-btn.MuiButton-root {
+    font-weight: 700;
+    text-transform: none;
+    color: #ffffff;
+    background: linear-gradient(135deg, #ff2a36, var(--brand) 55%, var(--brand-dark));
+    border-radius: 999px;
+    box-shadow: 0 10px 24px rgba(229, 9, 20, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+:root .pay-button.MuiButton-root:hover,
+:root .verify-button.MuiButton-root:hover,
+:root .save-box .MuiButton-root:hover,
+:root .auth-btn.MuiButton-root:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(229, 9, 20, 0.5);
+}
+
+:root .cancel-button.MuiButton-root {
+    font-weight: 700;
+    text-transform: none;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    box-shadow: none;
+}
+
+:root .cancel-button.MuiButton-root:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* account card next to the orders */
+:root .order-info-box {
+    position: sticky;
+    top: 96px;
+}
+
+:root .order-user-img,
+:root .user-page .order-user-img {
+    padding: 3px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--brand), transparent 45%, var(--brand) 75%, transparent);
+}
+
+:root .order-user-avatar {
+    border: 3px solid var(--bg) !important;
+}
+
+:root .order-user-name {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+:root .order-user-prof {
+    display: inline-block;
+    padding: 3px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--brand);
+    background: var(--brand-soft);
+    border-radius: 999px;
+}
+
+:root .order-page .MuiPaginationItem-root.Mui-selected {
+    background: var(--brand);
+    box-shadow: 0 6px 16px rgba(229, 9, 20, 0.4);
+}
+
+/* MY PAGE */
+
+:root .my-page-frame {
+    animation: pageRise 0.6s ease-out 0.1s both;
+}
+
+:root .menu-name {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+:root .spec-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+:root .spec-input,
+:root .spec-textarea {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+:root .spec-input:focus,
+:root .spec-textarea:focus {
+    border-color: rgba(229, 9, 20, 0.6);
+    box-shadow: 0 0 0 4px var(--brand-soft);
+    outline: none;
+}
+
+:root .mb-image {
+    border: 3px solid var(--brand);
+    box-shadow: 0 0 0 6px var(--brand-soft);
+}
+
+:root .user-media-box svg {
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+:root .user-media-box svg:hover {
+    color: var(--brand);
+    transform: translateY(-3px);
+}
+
+/* HELP */
+
+:root .help-container {
+    animation: pageRise 0.6s ease-out 0.1s both;
+}
+
+:root .accordion-menu .MuiAccordion-root {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: 14px !important;
+    transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+:root .accordion-menu .MuiAccordion-root:hover,
+:root .accordion-menu .MuiAccordion-root.Mui-expanded {
+    border-color: rgba(229, 9, 20, 0.45);
+    background: rgba(229, 9, 20, 0.04);
+}
+
+:root .notice-card {
+    position: relative;
+    padding-left: 26px;
+    border-left: 1px solid var(--line);
+    background: transparent;
+}
+
+:root .notice-card::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--brand);
+    box-shadow: 0 0 0 4px var(--brand-soft);
+}
+
+:root .notice-title {
+    font-weight: 700;
+    color: var(--text);
+}
+
+:root .rules-frame p {
+    line-height: 1.7;
+    color: var(--text-soft);
+}
+
+/* LOGIN / SIGNUP */
+
+:root .auth-page {
+    position: relative;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    padding: 50px 0;
+    background:
+        radial-gradient(700px 400px at 20% 20%, rgba(229, 9, 20, 0.22), transparent 60%),
+        radial-gradient(600px 400px at 85% 85%, rgba(229, 9, 20, 0.12), transparent 60%),
+        var(--charcoal);
+    overflow: hidden;
+}
+
+/* slowly drifting light behind the card */
+:root .auth-page::before {
+    content: "";
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    left: 50%;
+    top: 50%;
+    margin: -260px 0 0 -260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(229, 9, 20, 0.18), transparent 65%);
+    filter: blur(20px);
+    animation: authDrift 12s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+:root .auth-frame {
+    position: relative;
+    padding: 40px 34px !important;
+    background: rgba(20, 23, 28, 0.72) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 26px !important;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55) !important;
+    animation: pageRise 0.6s ease-out both;
+}
+
+:root .auth-frame::before {
+    content: "";
+    position: absolute;
+    left: 34px;
+    right: 34px;
+    top: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--brand), transparent);
+}
+
+:root .auth-title.MuiTypography-root {
+    font-family: var(--font-display);
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+:root .auth-subtext a {
+    color: var(--brand);
+    font-weight: 700;
+}
+
+:root .auth-input-group label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+:root .auth-input-group .MuiOutlinedInput-root {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    transition: box-shadow 0.2s ease;
+}
+
+:root .auth-input-group .MuiOutlinedInput-notchedOutline {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+:root .auth-input-group .MuiOutlinedInput-root.Mui-focused {
+    box-shadow: 0 0 0 4px var(--brand-soft);
+}
+
+:root .auth-input-group .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: var(--brand);
+}
+
+:root .auth-btn.MuiButton-root {
+    padding: 12px 0;
+    font-size: 15px;
+}
+
+/* BASKET MENU */
+
+:root .basket-frame {
+    animation: pageRise 0.25s ease-out both;
+}
+
+:root .basket-info-box {
+    transition: background 0.2s ease;
+}
+
+:root .basket-info-box:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+:root .basket-info-box .product-img {
+    border-radius: 12px;
+}
+
+:root .basket-order .price {
+    font-family: var(--font-display);
+    font-size: 22px;
+}
+
+:root .basket-order .MuiButton-contained {
+    font-weight: 700;
+    text-transform: none;
+    background: linear-gradient(135deg, #ff2a36, var(--brand-dark));
+    border-radius: 999px;
+    box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
+}
+
+:root .col-2 button {
+    width: 30px;
+    height: 30px;
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+:root .col-2 button:hover {
+    background: var(--brand);
+    border-color: var(--brand);
+}
+
+/* 404 */
+
+:root .not-found {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(700px 400px at 50% 40%, rgba(229, 9, 20, 0.14), transparent 65%);
+}
+
+:root .not-found-code {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    font-family: var(--font-display);
+    font-size: clamp(180px, 32vw, 420px);
+    font-weight: 800;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(229, 9, 20, 0.25);
+    pointer-events: none;
+    animation: notFoundFloat 5s ease-in-out infinite;
+}
+
+:root .not-found .page-eyebrow,
+:root .not-found .page-title,
+:root .not-found-text,
+:root .not-found-actions {
+    position: relative;
+    animation: pageRise 0.6s ease-out both;
+}
+
+:root .not-found-text {
+    margin: 14px 0 28px;
+    color: var(--muted);
+}
+
+:root .not-found-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* ANIMATIONS */
+
+@keyframes pageRise {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes authDrift {
+    from { transform: translate(-120px, -60px); }
+    to { transform: translate(120px, 60px); }
+}
+
+@keyframes notFoundFloat {
+    0%, 100% { transform: translate(-50%, -55%); }
+    50% { transform: translate(-50%, -60%); }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    :root .page-head {
+        padding: 44px 16px 24px;
+    }
+
+    :root .order-info-box {
+        position: static;
+    }
+}
+
+@media (max-width: 600px) {
+    :root .auth-frame {
+        padding: 30px 22px !important;
+    }
+
+    :root .auth-title.MuiTypography-root {
+        font-size: 38px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root .page-head,
+    :root .order-container,
+    :root .my-page-frame,
+    :root .help-container,
+    :root .auth-frame,
+    :root .auth-page::before,
+    :root .not-found *,
+    :root .basket-frame {
+        animation: none !important;
+    }
+}
