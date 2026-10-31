@@ -44,15 +44,15 @@
     padding: 70px 0;
 }
 
-/* ADVERTISEMENT */
+/* SHOWCASE VIDEO */
 
-.homepage .ads-section {
+.homepage .showcase-section {
     width: 100%;
     background-color: var(--bg);
     padding: 60px 0;
 }
 
-.homepage .ads-frame {
+.homepage .showcase-frame {
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
@@ -61,7 +61,7 @@
     box-shadow: var(--shadow);
 }
 
-.homepage .ads-video {
+.homepage .showcase-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -248,7 +248,7 @@
         gap: 16px;
     }
 
-    .homepage .ads-section {
+    .homepage .showcase-section {
         padding: 32px 0;
     }
 }

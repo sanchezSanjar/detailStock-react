@@ -8,7 +8,7 @@ import NewProducts from "./NewProducts";
 import { setPopularProducts, setNewProducts, setTopUsers } from "./slice";
 import ProductService from "../../services/ProductService";
 import MemberService from "../../services/MemberService";
-import Advertisement from "./Advertisement";
+import Showcase from "./Showcase";
 import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
 import InfoCenter from "./InfoCenter";
@@ -39,7 +39,7 @@ export default function HomePage() {
 
         <div className="hero-section">
             <video className="hero-video" autoPlay muted loop playsInline poster="/img/default.png">
-                <source type="video/mp4" src="/video/detailStock-ads-1.mp4" />
+                <source type="video/mp4" src="/video/detailstock-hero.mp4" />
             </video>
             <Container maxWidth={false} className="hero-content">
                 <Stack className="hero-text">
@@ -67,7 +67,7 @@ export default function HomePage() {
 
         <PopularProducts />
         <NewProducts />
-        <Advertisement />
+        <Showcase />
         <ActiveUsers />
         <Events />
         <InfoCenter />

@@ -11,24 +11,24 @@ const slowDown = (video: HTMLVideoElement | null) => {
     video.playbackRate = PLAYBACK_RATE;
 };
 
-export default function Advertisement() {
+export default function Showcase() {
     return (
-        <div className="ads-section">
+        <div className="showcase-section">
             <Container>
-                <div className="ads-frame">
+                <div className="showcase-frame">
                     <video
                         ref={slowDown}
-                        className={"ads-video"}
+                        className={"showcase-video"}
                         autoPlay={true}
                         loop
                         muted
                         playsInline
                         // shown while the video loads or when the device blocks autoplay (e.g. battery saver)
-                        poster="/img/ads-poster.jpg"
+                        poster="/img/showcase-poster.jpg"
                         data-video-media=""
                         onLoadedMetadata={(e) => slowDown(e.currentTarget)}
                     >
-                        <source type="video/mp4" src="/video/detailStock-ads.mp4" />
+                        <source type="video/mp4" src="/video/detailstock-showcase.mp4" />
                     </video>
                 </div>
             </Container>
