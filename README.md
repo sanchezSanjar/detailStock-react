@@ -31,7 +31,7 @@ DetailStock sells polishes, pads, brushes and interior / exterior care products.
 
 ## Features
 
-- **Home page** with a video hero, shop numbers, popular and new products, a showcase video, top members, events and an info center
+- **Home page** with a full-screen video hero and animated headline, live shop numbers that count up on scroll, collection tiles, product sliders with add-to-basket, a showcase video, a top-members leaderboard, event cards and an info center
 - **Shop** with 7 collections, search, sorting by newest, price or views, and paging
 - **Product page** with photo gallery, stock status and "add to basket"
 - **Basket** that remembers its items, respects stock, and shows the delivery fee ($5 under $100, free from $100) and the real order total
@@ -47,7 +47,7 @@ DetailStock sells polishes, pads, brushes and interior / exterior care products.
 | Framework | React 19, TypeScript, Vite |
 | State | Redux Toolkit (auth, basket, page data), persisted basket in localStorage |
 | Routing | React Router 7 with lazy-loaded pages |
-| UI | MUI 9, custom CSS with design tokens (dark graphite + red), Swiper |
+| UI | MUI 9, custom CSS with design tokens (dark graphite + red), Swiper sliders, Barlow Condensed + Inter fonts, scroll-reveal animations |
 | Data | Axios with credentials, a 401 interceptor for expired sessions |
 | Feedback | SweetAlert2 dialogs |
 | Code quality | ESLint, React Compiler |
