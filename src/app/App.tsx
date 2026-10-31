@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Box, CircularProgress } from "@mui/material";
 import Navbar from "./components/headers/Navbar";
 import { Footer } from "./components/footer";
+import ScrollToTop from "./components/ScrollToTop";
 import "./css/app.css";
 import "./css/navbar.css";
 import "./css/home.css";
@@ -26,6 +27,7 @@ const PageLoader = () => (
 function App() {
     return (
         <>
+            <ScrollToTop />
             <Navbar />
             <Suspense fallback={<PageLoader />}>
                 <Routes>
