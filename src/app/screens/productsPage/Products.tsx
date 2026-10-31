@@ -8,7 +8,7 @@ import { retrieveProducts } from "./selector";
 import type { Product, ProductInquiry } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { addToCart } from "../../slices/cartSlice";
 import { Box, Button, Container, Stack, Pagination, PaginationItem } from "@mui/material";
 import ProductCard from "../../components/productCard";
@@ -32,11 +32,15 @@ const orders = [
 export default function Products() {
     const dispatch = useAppDispatch();
     const products = useAppSelector(retrieveProducts);
+    // /products?collection=WHEELS_TIRES (from the home page tiles) opens the shop already filtered
+    const [searchParams] = useSearchParams();
+    const linkedCollection = searchParams.get("collection") as ProductCollection | null;
     const [productSearch, setProductSearch] = useState<ProductInquiry>({
         page: 1,
         limit: 8,
         order: "createdAt",
         search: "",
+        productCollection: linkedCollection && collections.includes(linkedCollection) ? linkedCollection : undefined,
     });
     const [searchText, setSearchText] = useState<string>("");
     const navigate = useNavigate();
