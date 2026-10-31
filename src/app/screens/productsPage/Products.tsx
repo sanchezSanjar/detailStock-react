@@ -96,6 +96,7 @@ export default function Products() {
                 <Stack direction={"column"} sx={{ alignItems: "center" }}>
                     <Stack className="avatar-big-box">
                         <Stack className="top-text">
+                            <span className="shop-eyebrow">The shop</span>
                             <p>DetailStock Shop</p>
                             <span className="top-subtext">Professional-grade care for every part of your car</span>
                             <Stack direction={"row"} className="single-search-big-box">
@@ -122,8 +123,8 @@ export default function Products() {
                         </Stack>
                     </Stack>
 
-                    <Stack className="dishes-filter-section">
-                        <Stack direction={"row"} className="dishes-filter-box">
+                    <Stack className="sort-section">
+                        <Stack direction={"row"} className="sort-box">
                             {orders.map((order) => (
                                 <Button
                                     key={order.value}
