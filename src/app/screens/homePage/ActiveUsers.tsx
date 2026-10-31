@@ -1,38 +1,53 @@
-import { Box, Container, Stack, Avatar, Typography } from "@mui/material";
-import { useAppSelector } from "../../hooks";
 import { createSelector } from "@reduxjs/toolkit";
+import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
+import { useAppSelector } from "../../hooks";
 import { retrieveTopUsers } from "./selector";
 import type { Member } from "../../../lib/types/member";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
+import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 const activeUsersRetriever = createSelector(retrieveTopUsers, (topUsers) => ({ topUsers }));
 
+/** leaderboard of the members with the most points (1 point per confirmed order) */
 export default function ActiveUsers() {
     const { topUsers } = useAppSelector(activeUsersRetriever);
+    const maxPoints = Math.max(1, ...topUsers.map((member: Member) => member.memberPoints ?? 0));
 
     return (
-        <div className={"active-users-frame"}>
-            <Container>
-                <Stack className={"main"}>
-                    <Box className={"category-title"}>Active Users</Box>
-                    <Stack direction={"row"} sx={{ justifyContent: "space-between", flexWrap: "wrap", gap: 3 }} className={"cards-frame"}>
-                        {topUsers.length !== 0 ? (
-                            topUsers.map((member: Member) => {
-                                const imagePath = getImageUrl(member.memberImage);
-                                return (
-                                    <Stack key={member._id} className={"user-card"} sx={{ alignItems: "center" }}>
-                                        <Avatar src={imagePath} sx={{ width: 90, height: 90, border: "2px solid #e50914" }} />
-                                        <Typography className={"user-name"}>{member.memberNick}</Typography>
-                                        <Typography className={"user-points"}>{member.memberPoints ?? 0} pts</Typography>
-                                    </Stack>
-                                );
-                            })
-                        ) : (
-                            <Box className="no-data">No active Users available</Box>
-                        )}
-                    </Stack>
-                </Stack>
-            </Container>
-        </div>
+        <Reveal className="home-band">
+            <div className="home-wrap">
+                <SectionHeader
+                    eyebrow="Community"
+                    title="Top members"
+                    subtitle="Every confirmed order earns a point. These are our most loyal detailers."
+                />
+                {topUsers.length === 0 ? (
+                    <div className="home-empty">No active members yet</div>
+                ) : (
+                    <div className="member-grid">
+                        {topUsers.map((member: Member, index: number) => {
+                            const points = member.memberPoints ?? 0;
+                            return (
+                                <div key={member._id} className={`member-card ${index === 0 ? "is-leader" : ""}`}>
+                                    <span className="member-rank">#{index + 1}</span>
+                                    {index === 0 && <EmojiEventsOutlinedIcon className="member-trophy" />}
+                                    <div className="member-avatar">
+                                        <img src={getImageUrl(member.memberImage)} alt={member.memberNick} />
+                                    </div>
+                                    <span className="member-name">{member.memberNick}</span>
+                                    <span className="member-points">
+                                        <strong>{points}</strong> pts
+                                    </span>
+                                    <span className="member-bar">
+                                        <span style={{ width: `${(points / maxPoints) * 100}%` }} />
+                                    </span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
+            </div>
+        </Reveal>
     );
 }

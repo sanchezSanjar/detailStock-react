@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Container, Stack, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Stack, Typography } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CampaignOutlinedIcon from "@mui/icons-material/CampaignOutlined";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutlineOutlined";
@@ -8,6 +8,8 @@ import moment from "moment";
 import ArticleService from "../../services/ArticleService";
 import { ArticleType } from "../../../lib/enums/article.enum";
 import type { Article } from "../../../lib/types/article";
+import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 const NOTICE_LIMIT = 3;
 const FAQ_LIMIT = 4;
@@ -27,10 +29,13 @@ export default function InfoCenter() {
     }, []);
 
     return (
-        <div className={"info-center-frame"}>
-            <Container>
-                <Box className={"category-title"}>Notices & FAQ</Box>
-                <Box className={"section-subtitle"}>Latest news from DetailStock and answers to common questions</Box>
+        <Reveal className="home-band">
+            <div className="home-wrap">
+                <SectionHeader
+                    eyebrow="Help center"
+                    title="Notices & FAQ"
+                    subtitle="Latest news from DetailStock and answers to common questions"
+                />
 
                 <Stack direction={{ xs: "column", md: "row" }} className={"info-columns"}>
                     <Box className={"info-panel"}>
@@ -66,7 +71,7 @@ export default function InfoCenter() {
                         {faq.length === 0 && <div className={"info-empty"}>No FAQ yet.</div>}
                     </Box>
                 </Stack>
-            </Container>
-        </div>
+            </div>
+        </Reveal>
     );
 }

@@ -1,4 +1,6 @@
-import { Container } from "@mui/material";
+import { NavLink } from "react-router-dom";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import Reveal from "./Reveal";
 
 // the clip is short and fast, play it at half speed
 const PLAYBACK_RATE = 0.5;
@@ -13,8 +15,8 @@ const slowDown = (video: HTMLVideoElement | null) => {
 
 export default function Showcase() {
     return (
-        <div className="showcase-section">
-            <Container>
+        <Reveal className="home-band">
+            <div className="home-wrap">
                 <div className="showcase-frame">
                     <video
                         ref={slowDown}
@@ -30,8 +32,22 @@ export default function Showcase() {
                     >
                         <source type="video/mp4" src="/video/detailstock-showcase.mp4" />
                     </video>
+                    <div className="showcase-overlay">
+                        <span className="sec-eyebrow">Inside the garage</span>
+                        <h2 className="showcase-title">
+                            Made for people who
+                            <br />
+                            <span>love a perfect finish</span>
+                        </h2>
+                        <p className="showcase-text">
+                            The same polishes, pads and towels the pros use, ready for your driveway.
+                        </p>
+                        <NavLink to="/products" className="btn-shine">
+                            Explore the shop <ArrowForwardIcon fontSize="small" />
+                        </NavLink>
+                    </div>
                 </div>
-            </Container>
-        </div>
+            </div>
+        </Reveal>
     );
 }

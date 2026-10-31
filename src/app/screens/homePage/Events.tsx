@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
-import { Box, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, Pagination, A11y } from "swiper/modules";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import moment from "moment";
 import ArticleService from "../../services/ArticleService";
 import { ArticleType } from "../../../lib/enums/article.enum";
 import type { Article } from "../../../lib/types/article";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
+import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 export default function Events() {
@@ -24,57 +27,59 @@ export default function Events() {
     if (events.length === 0) return null;
 
     return (
-        <div className={"events-frame"}>
-            <Stack className={"events-main"}>
-                <Box className={"events-text"}>
-                    <span className={"category-title"}>Events</span>
-                </Box>
+        <Reveal className="home-band home-band-raised">
+            <div className="home-wrap">
+                <SectionHeader
+                    eyebrow="What's on"
+                    title="Events"
+                    subtitle="Workshops, launches and offers from the DetailStock team"
+                    actions={
+                        <>
+                            <button className="rail-arrow events-prev" aria-label="previous event">
+                                <ArrowBackIcon fontSize="small" />
+                            </button>
+                            <button className="rail-arrow events-next" aria-label="next event">
+                                <ArrowForwardIcon fontSize="small" />
+                            </button>
+                        </>
+                    }
+                />
 
                 <Swiper
-                    modules={[Autoplay, Navigation, Pagination]}
-                    className={"events-info"}
-                    slidesPerView={"auto"}
-                    centeredSlides={true}
-                    spaceBetween={30}
-                    navigation={{
-                        nextEl: ".events-nav-next",
-                        prevEl: ".events-nav-prev",
-                    }}
-                    pagination={{
-                        el: ".events-dots",
-                        clickable: true,
-                    }}
-                    autoplay={{
-                        delay: 2000,
-                        disableOnInteraction: true,
-                    }}
+                    className="event-rail"
+                    modules={[Autoplay, Navigation, Pagination, A11y]}
+                    navigation={{ prevEl: ".events-prev", nextEl: ".events-next" }}
+                    pagination={{ el: ".event-dots", clickable: true }}
+                    autoplay={{ delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                    spaceBetween={20}
+                    slidesPerView={1.1}
+                    breakpoints={{ 700: { slidesPerView: 2 }, 1100: { slidesPerView: 3 } }}
                 >
                     {events.map((event) => (
-                        <SwiperSlide key={event._id} className={"events-info-frame"}>
-                            <div className={"events-img"}>
-                                <img src={getImageUrl(event.articleImage, "/img/default.png")} className={"events-img-el"} alt={event.articleTitle} />
-                            </div>
-                            <Box className={"events-desc"}>
-                                <div className={"event-title-speaker"}>
-                                    <strong>{event.articleTitle}</strong>
-                                    <p className={"spec-text-author"}>{event.articleAuthor || "DetailStock Team"}</p>
+                        <SwiperSlide key={event._id}>
+                            <article className="event-card">
+                                <div className="event-photo">
+                                    <img src={getImageUrl(event.articleImage, "/img/default.png")} alt={event.articleTitle} />
                                 </div>
-                                <p className={"text-desc"}>{event.articleContent}</p>
-                                <div className={"bott-info"}>
-                                    <span className={"bott-info-main"}>{moment(event.createdAt).fromNow()}</span>
-                                    <span className={"bott-info-main"}>{event.articleLocation}</span>
+                                <div className="event-caption">
+                                    <span className="event-when">{moment(event.createdAt).fromNow()}</span>
+                                    <h3 className="event-title">{event.articleTitle}</h3>
+                                    <p className="event-text">{event.articleContent}</p>
+                                    <div className="event-meta">
+                                        <span>{event.articleAuthor || "DetailStock Team"}</span>
+                                        {event.articleLocation && (
+                                            <span>
+                                                <PlaceOutlinedIcon fontSize="inherit" /> {event.articleLocation}
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
-                            </Box>
+                            </article>
                         </SwiperSlide>
                     ))}
                 </Swiper>
-
-                <Box className={"prev-next-frame"}>
-                    <button className={"events-nav-prev"}>‹</button>
-                    <div className={"events-dots"}></div>
-                    <button className={"events-nav-next"}>›</button>
-                </Box>
-            </Stack>
-        </div>
+                <div className="event-dots" />
+            </div>
+        </Reveal>
     );
 }
