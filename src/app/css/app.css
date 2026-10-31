@@ -50,127 +50,93 @@ body {
     text-align: center;
 }
 
-/* FOOTER */
+/* BUTTONS (used on every page) */
 
-.footer-section {
-    width: 100%;
-    background: var(--charcoal);
-    padding: 56px 0 24px;
-}
-
-.footer-content {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.footer-top {
-    justify-content: space-between;
-}
-
-.footer-brand {
-    max-width: 380px;
-}
-
-.footer-logo.MuiTypography-root {
-    font-size: 24px;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 16px;
-}
-
-.footer-desc.MuiTypography-root {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #aab1bb;
-    margin-bottom: 20px;
-}
-
-.footer-socials {
-    gap: 12px;
-}
-
-.footer-socials a {
-    width: 36px;
-    height: 36px;
-    display: flex;
+/* primary button: red pill with a light sweep on hover */
+.btn-shine {
+    position: relative;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
+    padding: 16px 30px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 50%;
-    transition: background 0.2s ease;
+    text-decoration: none;
+    background: linear-gradient(135deg, #ff2a36, var(--brand) 55%, var(--brand-dark));
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(229, 9, 20, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.footer-socials a:hover {
-    background: var(--brand);
+.btn-shine::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
 }
 
-.footer-heading.MuiTypography-root {
+.btn-shine:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(229, 9, 20, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.btn-shine:hover::after {
+    left: 120%;
+}
+
+.btn-shine svg {
+    transition: transform 0.25s ease;
+}
+
+.btn-shine:hover svg {
+    transform: translateX(4px);
+}
+
+/* the same look on real <button> elements */
+button.btn-shine {
+    border: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+button.btn-shine:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* secondary button: frosted glass */
+.btn-glass {
+    display: inline-flex;
+    align-items: center;
+    padding: 16px 28px;
     font-size: 15px;
     font-weight: 700;
     color: #ffffff;
-    margin-bottom: 16px;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-}
-
-.footer-link {
-    color: #aab1bb;
     text-decoration: none;
-    font-size: 14px;
-    margin-bottom: 12px;
-    transition: color 0.2s ease;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    backdrop-filter: blur(12px);
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
 }
 
-.footer-link:hover {
-    color: #ffffff;
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-3px);
 }
-
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-}
-
-.footer-line.MuiTypography-root {
-    font-size: 14px;
-    color: #aab1bb;
-    margin-bottom: 12px;
-}
-
-.footer-line strong {
-    color: var(--brand);
-    margin-right: 6px;
-}
-
-.footer-divider.MuiDivider-root {
-    background-color: rgba(255, 255, 255, 0.1);
-    margin: 30px 0 20px;
-}
-
-.footer-copyright.MuiTypography-root {
-    text-align: center;
-    font-size: 13px;
-    color: #8a929c;
-}
-
 
 @media (max-width: 900px) {
-    .footer-top {
-        flex-direction: column !important;
-        gap: 32px;
-    }
-
-    .footer-brand {
-        max-width: 100%;
-    }
-
-    .footer-content {
-        padding: 0 16px;
-    }
-
     .category-title {
         font-size: 28px;
     }
