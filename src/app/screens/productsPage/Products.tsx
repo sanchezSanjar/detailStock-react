@@ -32,16 +32,24 @@ const orders = [
 export default function Products() {
     const dispatch = useAppDispatch();
     const products = useAppSelector(retrieveProducts);
-    // /products?collection=WHEELS_TIRES (from the home page tiles) opens the shop already filtered
-    const [searchParams] = useSearchParams();
-    const linkedCollection = searchParams.get("collection") as ProductCollection | null;
+    // the address decides the collection: /products?collection=WHEELS_TIRES (home tiles, footer links, chips)
+    const [searchParams, setSearchParams] = useSearchParams();
+    const linked = searchParams.get("collection") as ProductCollection | null;
+    const linkedCollection = linked && collections.includes(linked) ? linked : undefined;
     const [productSearch, setProductSearch] = useState<ProductInquiry>({
         page: 1,
         limit: 8,
         order: "createdAt",
         search: "",
-        productCollection: linkedCollection && collections.includes(linkedCollection) ? linkedCollection : undefined,
+        productCollection: linkedCollection,
     });
+
+    // the address changed while the shop was already open (e.g. a footer link): follow it, back to page 1
+    const [shownCollection, setShownCollection] = useState(linkedCollection);
+    if (shownCollection !== linkedCollection) {
+        setShownCollection(linkedCollection);
+        setProductSearch((prev) => ({ ...prev, page: 1, productCollection: linkedCollection }));
+    }
     const [searchText, setSearchText] = useState<string>("");
     const navigate = useNavigate();
 
@@ -52,8 +60,9 @@ export default function Products() {
             .catch((err) => console.log(err));
     }, [dispatch, productSearch]);
 
+    // chips change the address too, so a filtered shop can be shared or opened again with Back
     const searchCollectionHandler = (collection: ProductCollection | undefined) => {
-        setProductSearch((prev) => ({ ...prev, page: 1, productCollection: collection }));
+        setSearchParams(collection ? { collection } : {});
     };
 
     const searchOrderHandler = (order: string) => {
