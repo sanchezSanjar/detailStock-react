@@ -50,6 +50,12 @@ body {
     text-align: center;
 }
 
+/* SweetAlert messages ("Added to basket", "Saved"...) must show above the sticky navbar (z-index 1100),
+   the phone menu (1200) and MUI pop-ups (1300) */
+.swal2-container {
+    z-index: 1400 !important;
+}
+
 /* BUTTONS (used on every page) */
 
 /* primary button: red pill with a light sweep on hover */
