@@ -1,38 +1,39 @@
-import { Box, Container, Stack } from "@mui/material";
-// import Divider from "../../components/divider";
+import { useEffect, useState } from "react";
 import { useCountUp } from "../../components/hooks/useCountUp";
+import { useInView } from "../../components/hooks/useInView";
+import StatsService from "../../services/StatsService";
+import type { ShopStats } from "../../../lib/types/stats";
 
+const EMPTY: ShopStats = { products: 0, collections: 0, customers: 0, ordersDelivered: 0 };
+
+/** real numbers from the server; they count up once the bar scrolls into view */
 export default function Statistics() {
-    const shopsCount = useCountUp(12);
-    const feedbacksCount = useCountUp(8);
-    const productsCount = useCountUp(50);
-    const customersCount = useCountUp(200);
+    const [stats, setStats] = useState<ShopStats>(EMPTY);
+    const { ref, inView } = useInView<HTMLDivElement>(0.4);
+
+    useEffect(() => {
+        new StatsService()
+            .getStats()
+            .then(setStats)
+            .catch(() => setStats(EMPTY));
+    }, []);
+
+    const show = inView ? stats : EMPTY;
+    const items = [
+        { label: "Products", value: useCountUp(show.products) },
+        { label: "Collections", value: useCountUp(show.collections) },
+        { label: "Customers", value: useCountUp(show.customers) },
+        { label: "Orders delivered", value: useCountUp(show.ordersDelivered) },
+    ];
 
     return (
-        <div className={"stats-bar"}>
-            <Container>
-                <Stack direction={"row"} sx={{ justifyContent: "space-around", alignItems: "center" }}>
-                    <Stack sx={{ alignItems: "center" }} className="stat-item">
-                        <Box className="stat-number">{shopsCount}</Box>
-                        <Box className="stat-label">Shops</Box>
-                    </Stack>
-                    <div className="stat-divider" />
-                    <Stack sx={{ alignItems: "center" }} className="stat-item">
-                        <Box className="stat-number">{feedbacksCount}</Box>
-                        <Box className="stat-label">Feedbacks</Box>
-                    </Stack>
-                    <div className="stat-divider" />
-                    <Stack sx={{ alignItems: "center" }} className="stat-item">
-                        <Box className="stat-number">{productsCount}+</Box>
-                        <Box className="stat-label">Products</Box>
-                    </Stack>
-                    <div className="stat-divider" />
-                    <Stack sx={{ alignItems: "center" }} className="stat-item">
-                        <Box className="stat-number">{customersCount}+</Box>
-                        <Box className="stat-label">Customers</Box>
-                    </Stack>
-                </Stack>
-            </Container>
+        <div className={`stats-glass${inView ? " is-visible" : ""}`} ref={ref}>
+            {items.map((item) => (
+                <div className="stats-cell" key={item.label}>
+                    <span className="stats-value">{item.value}</span>
+                    <span className="stats-label">{item.label}</span>
+                </div>
+            ))}
         </div>
     );
 }
