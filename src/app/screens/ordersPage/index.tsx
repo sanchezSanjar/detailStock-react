@@ -30,17 +30,30 @@ export default function OrdersPage() {
     useEffect(() => {
         if (!authMember) return;
         const order = new OrderService();
+        // the last order of a page was cancelled / moved on: show the previous page instead of an empty one
+        const stepBackIfEmpty = (tab: string, data: unknown[]) => {
+            if (data.length === 0 && pages[tab] > 1) setPages((prev) => ({ ...prev, [tab]: prev[tab] - 1 }));
+        };
 
         order.getMyOrders({ page: pages["1"], limit: ORDERS_LIMIT, orderStatus: OrderStatus.PAUSE })
-            .then((data) => dispatch(setPausedOrders(data)))
+            .then((data) => {
+                dispatch(setPausedOrders(data));
+                stepBackIfEmpty("1", data);
+            })
             .catch((err) => console.log(err));
 
         order.getMyOrders({ page: pages["2"], limit: ORDERS_LIMIT, orderStatus: OrderStatus.PROCESS })
-            .then((data) => dispatch(setProcessOrders(data)))
+            .then((data) => {
+                dispatch(setProcessOrders(data));
+                stepBackIfEmpty("2", data);
+            })
             .catch((err) => console.log(err));
 
         order.getMyOrders({ page: pages["3"], limit: ORDERS_LIMIT, orderStatus: OrderStatus.FINISH })
-            .then((data) => dispatch(setFinishedOrders(data)))
+            .then((data) => {
+                dispatch(setFinishedOrders(data));
+                stepBackIfEmpty("3", data);
+            })
             .catch((err) => console.log(err));
     }, [dispatch, authMember, pages, orderBuilder]);
 
