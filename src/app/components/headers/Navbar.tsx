@@ -1,4 +1,4 @@
-import { useState, type MouseEvent } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import { Stack, Box, Button, Menu, MenuItem, ListItemIcon, IconButton, Drawer } from "@mui/material";
 import Logout from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,6 +18,15 @@ export default function Navbar() {
     const dispatch = useAppDispatch();
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
+    // after a little scrolling the bar becomes compact and darker
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 24);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
 
     const links = [
         { to: "/", label: "Home" },
@@ -62,7 +71,7 @@ export default function Navbar() {
         ));
 
     return (
-        <div className="navbar-wrapper">
+        <div className={`navbar-wrapper${scrolled ? " is-scrolled" : ""}`}>
             <Stack
                 direction={"row"}
                 sx={{ justifyContent: "space-between", alignItems: "center" }}

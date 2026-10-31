@@ -1,21 +1,48 @@
+/* NAVBAR: glass bar that becomes compact and darker on scroll */
+
 .navbar-wrapper {
     position: sticky;
     top: 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 12px 0;
-    background-color: var(--nav-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
+    padding: 16px 0;
+    background-color: rgba(12, 14, 17, 0.55);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     z-index: 1100;
+    transition: padding 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    animation: navDrop 0.6s ease-out both;
+}
+
+.navbar-wrapper.is-scrolled {
+    padding: 8px 0;
+    background-color: rgba(10, 11, 14, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* thin red line along the bottom once scrolled */
+.navbar-wrapper::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, var(--brand), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.navbar-wrapper.is-scrolled::after {
+    opacity: 0.7;
 }
 
 .navbar-inner {
     width: 100%;
     max-width: 1300px;
-    padding: 0 24px;
+    padding: 0 28px;
     box-sizing: border-box;
     gap: 40px;
 }
@@ -25,122 +52,236 @@
 }
 
 .logo-text {
-    font-size: 22px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
     color: var(--text);
+    transition: letter-spacing 0.3s ease;
 }
 
 .logo-text strong {
     color: var(--brand);
+    font-weight: 700;
+}
+
+.logo-box a:hover .logo-text {
+    letter-spacing: 0.1em;
 }
 
 .nav-links {
-    gap: 8px;
+    gap: 10px;
 }
 
 .nav-menu-links {
-    gap: 4px;
+    gap: 2px;
 }
 
-.nav-links a {
+.nav-menu-links a {
+    position: relative;
     display: block;
     padding: 10px 16px;
-    color: var(--text);
+    color: var(--text-soft);
     text-decoration: none;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
-    border-radius: 10px;
-    transition: background 0.2s ease, color 0.2s ease;
+    letter-spacing: 0.3px;
+    transition: color 0.2s ease;
 }
 
-.nav-links .hover-line a:hover {
+/* underline that grows from the middle */
+.nav-menu-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    width: 0;
+    height: 2px;
+    background: var(--brand);
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.nav-menu-links a:hover {
+    color: #ffffff;
+}
+
+.nav-menu-links a:hover::after {
+    width: 22px;
+}
+
+.nav-menu-links a.underline {
+    color: #ffffff;
+}
+
+.nav-menu-links a.underline::after {
+    width: 22px;
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.8);
+}
+
+/* basket icon */
+.nav-links .hover-line .MuiIconButton-root {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-links .hover-line .MuiIconButton-root:hover {
     background: var(--brand-soft);
-    color: var(--brand);
+    border-color: rgba(229, 9, 20, 0.5);
+    transform: translateY(-1px);
 }
 
-.nav-links .hover-line a.underline {
-    color: var(--brand);
+.nav-links .MuiBadge-badge {
+    font-weight: 700;
+    box-shadow: 0 0 0 2px var(--bg);
 }
 
 .login-box {
-    margin-left: 8px;
+    margin-left: 6px;
+}
+
+.login-box a {
+    text-decoration: none;
 }
 
 .login-btn.MuiButton-root {
-    background: var(--brand);
-    color: #ffffff;
-    border-radius: 10px;
+    padding: 9px 24px;
     font-weight: 700;
+    letter-spacing: 0.3px;
     text-transform: none;
-    padding: 8px 24px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #ff2a36, var(--brand) 55%, var(--brand-dark));
+    border-radius: 999px;
+    box-shadow: 0 8px 22px rgba(229, 9, 20, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .login-btn.MuiButton-root:hover {
-    background: var(--brand-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(229, 9, 20, 0.5);
+}
+
+/* avatar with a red ring that glows on hover */
+.user-avatar {
+    padding: 2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brand), rgba(229, 9, 20, 0.2));
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.user-avatar:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 0 4px var(--brand-soft), 0 0 20px rgba(229, 9, 20, 0.45);
 }
 
 .user-avatar img {
     display: block;
-    width: 72px;
-    height: 72px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--brand);
-    transition: transform 0.2s ease;
+    border: 2px solid var(--bg);
 }
 
-.user-avatar img:hover {
-    transform: scale(1.05);
+/* account menu */
+.MuiMenu-paper:has(.MuiMenuItem-root) {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+    border: 1px solid var(--line);
+    border-radius: 14px !important;
 }
-
 
 /* MOBILE MENU */
 
 .nav-burger.MuiIconButton-root {
     display: none;
     color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .nav-drawer.MuiPaper-root {
-    width: 260px;
-    background: var(--surface);
+    width: min(320px, 86vw);
+    background:
+        radial-gradient(500px 300px at 100% 0%, rgba(229, 9, 20, 0.16), transparent 60%),
+        var(--charcoal);
     color: var(--text);
+    border-left: 1px solid var(--line);
 }
 
 .nav-drawer-header {
     display: flex;
     justify-content: flex-end;
-    padding: 12px;
+    padding: 14px;
 }
 
 .nav-drawer-header .MuiIconButton-root {
     color: var(--text);
+    border: 1px solid var(--line);
 }
 
 .nav-drawer-links {
-    padding: 0 16px;
+    padding: 8px 20px;
     gap: 6px;
 }
 
+/* links slide in one after another when the drawer opens */
+.nav-drawer-links .hover-line {
+    opacity: 0;
+    transform: translateX(24px);
+    animation: drawerItem 0.4s ease-out forwards;
+}
+
+.nav-drawer-links .hover-line:nth-child(1) { animation-delay: 0.05s; }
+.nav-drawer-links .hover-line:nth-child(2) { animation-delay: 0.1s; }
+.nav-drawer-links .hover-line:nth-child(3) { animation-delay: 0.15s; }
+.nav-drawer-links .hover-line:nth-child(4) { animation-delay: 0.2s; }
+.nav-drawer-links .hover-line:nth-child(5) { animation-delay: 0.25s; }
+
 .nav-drawer-links a {
     display: block;
-    padding: 14px 16px;
-    color: var(--text);
+    padding: 14px 18px;
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-soft);
     text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 10px;
+    border-radius: 14px;
+    transition: background 0.2s ease, color 0.2s ease, padding 0.2s ease;
 }
 
 .nav-drawer-links a.underline {
-    background: var(--brand);
     color: #ffffff;
+    background: linear-gradient(135deg, var(--brand), var(--brand-dark));
 }
 
 .nav-drawer-links a:not(.underline):hover {
+    padding-left: 26px;
+    color: #ffffff;
     background: var(--brand-soft);
-    color: var(--brand);
+}
+
+@keyframes navDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes drawerItem {
+    to {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 @media (max-width: 900px) {
@@ -158,15 +299,11 @@
     }
 
     .nav-links {
-        gap: 4px;
-    }
-
-    .login-box {
-        margin-left: 4px;
+        gap: 8px;
     }
 
     .login-btn.MuiButton-root {
-        padding: 6px 16px;
+        padding: 7px 18px;
     }
 }
 
@@ -176,11 +313,25 @@
     }
 
     .logo-text {
-        font-size: 18px;
+        font-size: 22px;
     }
 
     .user-avatar img {
-        width: 48px;
-        height: 48px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-links .hover-line .MuiIconButton-root {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar-wrapper,
+    .nav-drawer-links .hover-line {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 }
