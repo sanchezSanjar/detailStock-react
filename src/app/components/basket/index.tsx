@@ -12,6 +12,9 @@ import OrderService from "../../services/OrderService";
 import { clearCart } from "../../slices/cartSlice";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
 
+const DELIVERY_FEE = 5;
+const FREE_DELIVERY_FROM = 100;
+
 export function Basket() {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -22,6 +25,8 @@ export function Basket() {
     const open = Boolean(anchorEl);
 
     const totalPrice = cartItems.reduce((sum, item) => sum + item.productPrice * item.quantity, 0);
+    // same rule as the server: $5 delivery under $100, free from $100
+    const delivery = totalPrice < FREE_DELIVERY_FROM ? DELIVERY_FEE : 0;
     const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -131,9 +136,20 @@ export function Basket() {
 
                     {cartItems.length > 0 && (
                         <Box className={"basket-order"}>
-                            <Typography className={"price"}>
-                                Total: {formatPrice(totalPrice)} ({totalQuantity} items)
-                            </Typography>
+                            <Box className={"basket-summary"}>
+                                <div className={"summary-line"}>
+                                    <span>Items ({totalQuantity})</span>
+                                    <span>{formatPrice(totalPrice)}</span>
+                                </div>
+                                <div className={"summary-line"}>
+                                    <span>Delivery</span>
+                                    <span>{delivery ? formatPrice(delivery) : "Free"}</span>
+                                </div>
+                                <Typography className={"price"}>Total: {formatPrice(totalPrice + delivery)}</Typography>
+                                {delivery > 0 && (
+                                    <div className={"summary-hint"}>Free delivery from {formatPrice(FREE_DELIVERY_FROM)}</div>
+                                )}
+                            </Box>
                             <Button startIcon={<ShoppingCartIcon />} variant={"contained"} onClick={handleOrder}>
                                 Order
                             </Button>
