@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { Basket } from "../basket";
 import { logout } from "../../slices/authSlice";
+import { clearCart } from "../../slices/cartSlice";
 import MemberService from "../../services/MemberService";
 import { getImageUrl } from "../../../lib/utils/getImageUrl";
 
@@ -41,6 +42,8 @@ export default function Navbar() {
             console.log(err);
         } finally {
             dispatch(logout());
+            // the next person on this browser must not see (or order) this member's basket
+            dispatch(clearCart());
         }
     };
 
